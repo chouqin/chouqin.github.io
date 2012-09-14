@@ -9,14 +9,14 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
+title : Chouqin & Laoqi
 tagline: Site Tagline
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedburner : feedname
+  name : Qiping Li
+  email : liqiping1991@gmail.com
+  github : chouqin
+  twitter : chouqin
+  feedburner : Chouqin's Blog
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -73,6 +73,7 @@ JB :
   archive_path: /archive.html
   categories_path : /categories.html
   tags_path : /tags.html
+  #about_path : /about.md
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.

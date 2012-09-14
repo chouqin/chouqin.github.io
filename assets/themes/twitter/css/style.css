@@ -1,6 +1,7 @@
 /* Override some defaults */
 html, body {
   background-color: #eee;
+  /*font-size:1.0em;*/
 }
 .navbar {
   margin-bottom: 0;
@@ -68,4 +69,10 @@ html, body {
 	border:1px solid #4C964D;
 	color:#FFF;
 }
+.navbar .brand {
+    font-size:1.6em;
+}
 	
+ul,p{
+    font-size:1.2em;
+}

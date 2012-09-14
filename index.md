@@ -1,46 +1,26 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Welcome to My Github Pages
+<!--tagline: Supporting tagline-->
 ---
 {% include JB/setup %}
 
-Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
+Github 真是个好东西，除了给你提供很好的代码托管服务，还提供了建立个人博客站点的功能。
 
-Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
+我这个博客就是通过Github Pages加上Jekyll创建的。
 
-## Update Author Attributes
+想知道怎么回事？请看[Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)。
 
-In `_config.yml` remember to specify your own data:
+有时间的话我就会来上面写写，感兴趣的话可以多来看看。我希望能够多谈谈自己所碰到的问题，以及是如何解决的，
+借此来启发大家不要跟我犯同样的错误，也可以少走很多弯路。在这个博客中，只谈技术，不聊国事。
+
+好东西在天朝是不能存活下去的，github也不能幸免。我只希望我亲爱的祖国，能让我多用它一段时间，这样我也就满意了。
     
-    title : My Blog =)
-    
-    author :
-      name : Name Lastname
-      email : blah@email.test
-      github : username
-      twitter : username
-
-The theme should reference these variables whenever needed.
-    
-## Sample Posts
-
-This blog contains sample posts which help stage pages and blog data.
-When you don't need the samples anymore just delete the `_posts/core-samples` folder.
-
-    $ rm -rf _posts/core-samples
-
-Here's a sample "posts list".
+## My Posts
 
 <ul class="posts">
   {% for post in site.posts %}
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
-
-## To-Do
-
-This theme is still unfinished. If you'd like to be added as a contributor, [please fork](http://github.com/plusjade/jekyll-bootstrap)!
-We need to clean up the themes, make theme usage guides with theme-specific markup examples.
-
 
