@@ -73,6 +73,6 @@ html, body {
     font-size:1.6em;
 }
 	
-ul,p{
+ul.posts, p{
     font-size:1.2em;
 }

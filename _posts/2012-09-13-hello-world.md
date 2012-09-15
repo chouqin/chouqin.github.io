@@ -1,7 +1,9 @@
 ---
-layout: page
-title: Welcome to My Github Pages
-<!--tagline: Supporting tagline-->
+layout: post
+title: "Hello World"
+description: ""
+category: 
+tags: []
 ---
 {% include JB/setup %}
 
@@ -15,12 +17,3 @@ Github 真是个好东西，除了给你提供很好的代码托管服务，还�
 借此来启发大家不要跟我犯同样的错误，也可以少走很多弯路。在这个博客中，只谈技术，不聊国事。
 
 好东西在天朝是不能存活下去的，github也不能幸免。我只希望我亲爱的祖国，能让我多用它一段时间，这样我也就满意了。
-    
-## My Posts
-
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-

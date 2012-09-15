@@ -1,0 +1,80 @@
+---
+layout: page
+title: Welcome to My Github Pages
+---
+
+<!--Github 真是个好东西，除了给你提供很好的代码托管服务，还提供了建立个人博客站点的功能。-->
+
+<!--我这个博客就是通过Github Pages加上Jekyll创建的。-->
+
+<!--想知道怎么回事？请看[Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)。-->
+
+<!--有时间的话我就会来上面写写，感兴趣的话可以多来看看。我希望能够多谈谈自己所碰到的问题，以及是如何解决的，-->
+<!--借此来启发大家不要跟我犯同样的错误，也可以少走很多弯路。在这个博客中，只谈技术，不聊国事。-->
+
+<!--好东西在天朝是不能存活下去的，github也不能幸免。我只希望我亲爱的祖国，能让我多用它一段时间，这样我也就满意了。-->
+    
+<!--## My Posts-->
+
+<!--<ul class="posts">-->
+<!--{% for post in site.posts %}-->
+  <!--<div class="post_info">-->
+    <!--<li>-->
+            <!--<a href="{{ post.url }}">{{ post.title }}</a>-->
+            <!--<span>({{ post.date | date:"%Y-%m-%d" }})</span>-->
+    <!--</li>-->
+    <!--</br> <em>{{ post.excerpt }} </em>-->
+    <!--</div>-->
+  <!--{% endfor %}-->
+<!--</ul>-->
+
+<!--<div id="home">-->
+  <!--[> iterate through the posts on this page <]-->
+  <!--{% for page in paginator.posts %}-->
+    <!--<div class="post">-->
+      <!--<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>-->
+      <!--<p class="meta">{{ page.date | date: "%B %e, %Y" }}</p>-->
+        <!--{{ page.content | postmorefilter: page.url, "Read the rest of this entry" }}-->
+    <!--</div>-->
+  <!--{% endfor %}-->
+
+  <!--[> links to prev and next pages for browsing thru archives <]-->
+  <!--{% if paginator.previous_page == 1 %}-->
+    <!--<span id="newer"><a href="/">&laquo;&laquo; Newer Entries</a></span>-->
+  <!--{% elsif paginator.previous_page %}-->
+    <!--<span id="newer"><a href="/page{{ paginator.previous_page }}">&laquo;&laquo; Newer Entries</a></span>-->
+  <!--{% endif %}-->
+  <!--{% if paginator.next_page %}-->
+    <!--<span id="older"><a href="/page{{ paginator.next_page }}">Older Entries &raquo;&raquo;</a></span>-->
+  <!--{% endif %}-->
+
+<!--</div>-->
+
+
+
+{% for post in paginator.posts %}
+
+   <!-- here add you post markup -->
+   <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+   <p class="author">
+    <span class="date">{{post.date}}</span>
+  </p>
+  <div class="content">
+    {{ post.content }}
+  </div>
+{% endfor %}
+
+<!-- Pagination links -->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="/page{{paginator.previous_page}}" class="previous">Previous</a>
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number ">Page: {{paginator.page}} of {{paginator.total_pages}}</span>
+  {% if paginator.next_page %}
+    <a href="/page{{paginator.next_page}}" class="next ">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
+</div>

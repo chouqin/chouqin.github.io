@@ -10,12 +10,14 @@ tags: [linux]
 可是成功之后的除了用起来爽很多之外，这其中的过程也是很有意义的。Arch的好处嘛，除了更新方便之外，源也比Ubuntu的
 要快很多，社区服务用起来也比Ubuntu更加方便。废话不多说，直接说安装过程。
 
-###准备工作
+##准备工作
 当然首先是从arch的Download上下载iso文件，然后把它写到U盘中用于U盘引导安装，关于U盘引导，请参照[USB Installation Media](https://wiki.archlinux.org/index.php/USB_Installation_Media)。
 
 我下的是2012.08.04的iso，刻录U盘的软件使用的是Linux Live USB Creator，上述页面中的其他的好像都不能正确引导，所以我还是推荐这个。
 
-###基本安装
+<!--more-->
+
+##基本安装
 能够正确引导的话就可以进行安装了，安装的时候我完全是照着Wiki上的[Beginner's Guide](https://wiki.archlinux.org/index.php/Beginners'_Guide)一步步过来的。
 只是有几点需要注意：
 * 因为在开始安装基础包的时候需要网络链接，在网络连接的时候我采用的是static IP的有线连接，在设置网络的时候只需要正确设置有线连接即可。
@@ -31,16 +33,16 @@ tags: [linux]
 
 在注意以下几点之后，就能完成基本的安装了。能够有一个命令行下的基本archlinux系统了。
 
-###扩展安装
+##扩展安装
 在完成基本安装之后，我安装了以下扩展。
 
-####增加用户
+###增加用户
 这个只需要用`useradd`命令即可。
 
-####安装sudo
+###安装sudo
 通过pacman进行简单安装，然后通过visudo将需要的用户添加到sudolist中。
 
-####安装Gnome3
+###安装Gnome3
 首先是安装必备的几个包:
 
     # pacman -S xorg-server xorg-xinit xorg-server-utils
@@ -58,10 +60,10 @@ tags: [linux]
 
     # pacman -S gnome-tweak-tool
 
-####设置中文和字体
+###设置中文和字体
 这个部分用来设置archlinux的中文支持和中文字体。
 
-#####设置locale
+####设置locale
 修改/etc/locale.gen文件，将以下行的注释去掉:
 
     en_US.UTF8 UTF-8
@@ -79,14 +81,14 @@ tags: [linux]
     export LANG=zh_CN.UTF-8
     export LC_ALL="zh_CN.UTF-8"
 
-#####设置中文字体：
+####设置中文字体：
 安装以下字体包：
 
     # pacman -S wqy-bitmapfont wqy-zenhei ttf-arphic-ukai ttf-arphic-uming ttf-fireflysung
 
 在gnome的高级设置中设置字体:我把所有的字体都设为文泉驿等宽正黑，这种字体中文和英文都比较圆滑。
 
-####设置无线网络：
+###设置无线网络：
 首先安装networkmanager，然后按照wiki上的[NetWorkManager](https://wiki.archlinux.org/index.php/NetworkManager)进行设置/etc/rc.conf。
 
 添加networkmanager到daemons数组，同时删除network。
@@ -100,5 +102,5 @@ tags: [linux]
 然后安装network-manager-applet，这样就能在gnome启动的时候打开NetWorkManager，可以通过NetWorkManager管理无线网络和有线网络了，
 就跟在Ubuntu中一样。
 
-###总结
+##总结
 至此，我安装了我现在archlinux的主要部分，过程虽然比较复杂，但是只要照着wiki来，就能正确完成。
