@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        ArchLinux 安装经过 - 
+      
+      Chouqin & Laoqi
+    </title>
+    <meta name="description" content="">
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+<div class="page-header">
+  <h1>
+    ArchLinux 安装经过 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p>因为实在受不了Ubuntu的更新繁琐，终于还是下定决心安装ArchLinux了。虽说安装起来要比Ubuntu的无脑安装要艰辛许多，
+可是成功之后的除了用起来爽很多之外，这其中的过程也是很有意义的。Arch的好处嘛，除了更新方便之外，源也比Ubuntu的
+要快很多，社区服务用起来也比Ubuntu更加方便。废话不多说，直接说安装过程。</p>
+
+<h2>准备工作</h2>
+
+<p>当然首先是从arch的Download上下载iso文件，然后把它写到U盘中用于U盘引导安装，关于U盘引导，请参照<a href="https://wiki.archlinux.org/index.php/USB_Installation_Media">USB Installation Media</a>。</p>
+
+<p>我下的是2012.08.04的iso，刻录U盘的软件使用的是Linux Live USB Creator，上述页面中的其他的好像都不能正确引导，所以我还是推荐这个。</p>
+
+<!--more-->
+
+
+<h2>基本安装</h2>
+
+<p>能够正确引导的话就可以进行安装了，安装的时候我完全是照着Wiki上的<a href="https://wiki.archlinux.org/index.php/Beginners'_Guide">Beginner's Guide</a>一步步过来的。
+只是有几点需要注意：
+* 因为在开始安装基础包的时候需要网络链接，在网络连接的时候我采用的是static IP的有线连接，在设置网络的时候只需要正确设置有线连接即可。
+* 在设置硬盘的时候一定要小心，一般情况下用于安装arch的硬盘已经排到了sda4以后，不要照着Beginner's Guide上面敲sda1等，稍不注意就会把windows给格掉。
+* 在设置mirrorlist时，建议把China的几个server单独选出作为新的mirrorlist文件,这样比较稳定。
+* 在Configure BootLoader时，我用的是GRUB，同时要安装os-prober,这样能够自动检测其他系统然后会为这些系统建立引导项。命令也就几行:</p>
+
+<pre><code>    # pacman -S grub-bios
+    # grub-install --target=i386-pc --recheck /dev/sda
+    # cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+    # pacman -S os-prober
+    # grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre>
+
+<p>在注意以下几点之后，就能完成基本的安装了。能够有一个命令行下的基本archlinux系统了。</p>
+
+<h2>扩展安装</h2>
+
+<p>在完成基本安装之后，我安装了以下扩展。</p>
+
+<h3>增加用户</h3>
+
+<p>这个只需要用<code>useradd</code>命令即可。</p>
+
+<h3>安装sudo</h3>
+
+<p>通过pacman进行简单安装，然后通过visudo将需要的用户添加到sudolist中。</p>
+
+<h3>安装Gnome3</h3>
+
+<p>首先是安装必备的几个包:</p>
+
+<pre><code># pacman -S xorg-server xorg-xinit xorg-server-utils
+</code></pre>
+
+<p>然后安装显卡驱动，我的显卡是nvida的，选用的驱动是nouveau：</p>
+
+<pre><code># pacman -S xf86-video-nouveau
+</code></pre>
+
+<p>然后安装gnome,dbus,gdm:</p>
+
+<pre><code># pacman -S gnome, dbus, gdm
+</code></pre>
+
+<p>同时将dbus，gdm添加到/etc/rc.conf的daemons数组中。</p>
+
+<p>然后安装gnome-tweak-tool用来调节gnome的主题和字体等:</p>
+
+<pre><code># pacman -S gnome-tweak-tool
+</code></pre>
+
+<h3>设置中文和字体</h3>
+
+<p>这个部分用来设置archlinux的中文支持和中文字体。</p>
+
+<h4>设置locale</h4>
+
+<p>修改/etc/locale.gen文件，将以下行的注释去掉:</p>
+
+<pre><code>en_US.UTF8 UTF-8
+zh_CN.UTF8 UTF-8
+zh_CN.GBK GBK
+zh_CN.GB2312 GB2312
+zh_CN.GB18030 GB18030
+</code></pre>
+
+<p>同时在/etc/rc.conf中加入：</p>
+
+<pre><code>LOCALE=en_US.UTF-8
+</code></pre>
+
+<p>然后在~/.xprofile中加入：</p>
+
+<pre><code>export LANG=zh_CN.UTF-8
+export LC_ALL="zh_CN.UTF-8"
+</code></pre>
+
+<h4>设置中文字体：</h4>
+
+<p>安装以下字体包：</p>
+
+<pre><code># pacman -S wqy-bitmapfont wqy-zenhei ttf-arphic-ukai ttf-arphic-uming ttf-fireflysung
+</code></pre>
+
+<p>在gnome的高级设置中设置字体:我把所有的字体都设为文泉驿等宽正黑，这种字体中文和英文都比较圆滑。</p>
+
+<h3>设置无线网络：</h3>
+
+<p>首先安装networkmanager，然后按照wiki上的<a href="https://wiki.archlinux.org/index.php/NetworkManager">NetWorkManager</a>进行设置/etc/rc.conf。</p>
+
+<p>添加networkmanager到daemons数组，同时删除network。</p>
+
+<pre><code>DAEMONS=(syslog-ng crond dbus networkmanager sshd gdm)
+</code></pre>
+
+<p>注释interface那一行：</p>
+
+<pre><code>#interface=eth0
+</code></pre>
+
+<p>然后安装network-manager-applet，这样就能在gnome启动的时候打开NetWorkManager，可以通过NetWorkManager管理无线网络和有线网络了，
+就跟在Ubuntu中一样。</p>
+
+<h2>总结</h2>
+
+<p>至此，我安装了我现在archlinux的主要部分，过程虽然比较复杂，但是只要照着wiki来，就能正确完成。</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/2012/09/13/hello-world" title="Hello World">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next disabled">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>14 September 2012</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+          linux
+        </span>
+      </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#linux-ref">linux <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+

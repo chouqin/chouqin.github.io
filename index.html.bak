@@ -1,9 +1,165 @@
----
-layout: page
-title: Welcome to My Github Pages
----
 
-<!--Github 真是个好东西，除了给你提供很好的代码托管服务，还提供了建立个人博客站点的功能。-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Welcome to My Github Pages - 
+      
+      Chouqin & Laoqi
+    </title>
+    
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+<div class="page-header-wrapper">
+	<div class="page-header">
+  		<h1>Welcome to My Github Pages </h1>
+  	</div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <!--Github 真是个好东西，除了给你提供很好的代码托管服务，还提供了建立个人博客站点的功能。-->
 
 <!--我这个博客就是通过Github Pages加上Jekyll创建的。-->
 
@@ -17,64 +173,72 @@ title: Welcome to My Github Pages
 <!--## My Posts-->
 
 <!--<ul class="posts">-->
-<!--{% for post in site.posts %}-->
+<!---->
   <!--<div class="post_info">-->
     <!--<li>-->
-            <!--<a href="{{ post.url }}">{{ post.title }}</a>-->
-            <!--<span>({{ post.date | date:"%Y-%m-%d" }})</span>-->
+            <!--<a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a>-->
+            <!--<span>(2012-09-14)</span>-->
     <!--</li>-->
-    <!--</br> <em>{{ post.excerpt }} </em>-->
+    <!--</br> <em> </em>-->
     <!--</div>-->
-  <!--{% endfor %}-->
+  <!---->
+  <!--<div class="post_info">-->
+    <!--<li>-->
+            <!--<a href="/2012/09/13/hello-world">Hello World</a>-->
+            <!--<span>(2012-09-13)</span>-->
+    <!--</li>-->
+    <!--</br> <em> </em>-->
+    <!--</div>-->
+  <!---->
+  <!--<div class="post_info">-->
+    <!--<li>-->
+            <!--<a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a>-->
+            <!--<span>(2011-12-29)</span>-->
+    <!--</li>-->
+    <!--</br> <em> </em>-->
+    <!--</div>-->
+  <!---->
 <!--</ul>-->
 
 <!--<div id="home">-->
   <!--[> iterate through the posts on this page <]-->
-  <!--{% for page in paginator.posts %}-->
-    <!--<div class="post">-->
-      <!--<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>-->
-      <!--<p class="meta">{{ page.date | date: "%B %e, %Y" }}</p>-->
-        <!--{{ page.content | postmorefilter: page.url, "Read the rest of this entry" }}-->
-    <!--</div>-->
-  <!--{% endfor %}-->
+  <!---->
 
   <!--[> links to prev and next pages for browsing thru archives <]-->
-  <!--{% if paginator.previous_page == 1 %}-->
-    <!--<span id="newer"><a href="/">&laquo;&laquo; Newer Entries</a></span>-->
-  <!--{% elsif paginator.previous_page %}-->
-    <!--<span id="newer"><a href="/page{{ paginator.previous_page }}">&laquo;&laquo; Newer Entries</a></span>-->
-  <!--{% endif %}-->
-  <!--{% if paginator.next_page %}-->
-    <!--<span id="older"><a href="/page{{ paginator.next_page }}">Older Entries &raquo;&raquo;</a></span>-->
-  <!--{% endif %}-->
+  <!---->
+  <!---->
 
 <!--</div>-->
 
 
 
-{% for post in paginator.posts %}
 
-   <!-- here add you post markup -->
-   <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-   <p class="author">
-    <span class="date">{{post.date}}</span>
-  </p>
-  <div class="content">
-    {{ post.content }}
-  </div>
-{% endfor %}
 
 <!-- Pagination links -->
 <div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="/page{{paginator.previous_page}}" class="previous">Previous</a>
-  {% else %}
+  
     <span class="previous">Previous</span>
-  {% endif %}
-  <span class="page_number ">Page: {{paginator.page}} of {{paginator.total_pages}}</span>
-  {% if paginator.next_page %}
-    <a href="/page{{paginator.next_page}}" class="next ">Next</a>
-  {% else %}
+  
+  <span class="page_number ">Page:  of </span>
+  
     <span class="next ">Next</span>
-  {% endif %}
+  
 </div>
+
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+
