@@ -10,6 +10,7 @@ http://username.github.com/sitemap.txt
 http://username.github.com/archive.html
 http://username.github.com/page2/index.html
 
+http://username.github.com/Feelings/2012/10/27/feelings
 http://username.github.com/linux/2012/09/14/archlinux-installation
 http://username.github.com/2012/09/13/hello-world
 http://username.github.com/lessons/2011/12/29/jekyll-introduction
