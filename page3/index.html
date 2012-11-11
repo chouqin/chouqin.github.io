@@ -159,60 +159,30 @@
       <!--[> iterate through the posts on this page <]-->
       
         <div class="post">
-          <h1><a href="/python/2012/11/11/chinese-encoding">中文编码闲谈</a></h1>
-          <p class="meta">November 11, 2012</p>
-            <p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
-在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
-所以特地花时间研究了一下中文编码，并通过python来熟悉一些概念。</p>
+          <h1><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></h1>
+          <p class="meta">December 29, 2011</p>
+            <p>This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
+Directly following the intro we'll learn exactly <em>how</em> Jekyll does what it does.</p>
 
-<p>废话不多说，先上干货，<a href="http://www.searchtb.com/2012/04/chinese_encode.html">中文编码杂谈</a>，这篇文章是淘宝
-搜索技术团队写的，深入浅出，基本上将中文编码的各个方面讲得十分细致，而且十分通俗易懂。我很难讲得比这篇文章
-更好了，我主要从几个侧面来阐述一下我对于中文编码的理解。</p>
+<h2>Overview</h2>
 
-<h2>中文编码是什么</h2>
+<h3>What is Jekyll?</h3>
 
-<p>中文编码其实就是将中文转化为二进制比特串的过程，而不同的编码方式会把同一个中文字符转化为不同的二进制表示，
-比如“中”这个字，通过utf-8编码会转化为二进制E4B8AD，而在计算中，所有的数据都是通过二进制保存，这样我们就可以
-通过二进制E4B8AD来保存“中”字，然后我们如果需要读取保存的这个字，我们首先需要知道编码方式是utf-8，然后就能将
-E4B8AD转化为“中”。</p>
+<p>Jekyll is a parsing engine bundled as a ruby gem used to build static websites from
+dynamic components such as templates, partials, liquid code, markdown, etc. Jekyll is known as "a simple, blog aware, static site generator".</p>
 
-<h2>python的中文处理</h2>
+<h3>Examples</h3>
 
-<div class="highlight"><pre><code class="python">    <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-        <span class="k">print</span> <span class="s">&quot;hello world!&quot;</span>
-</code></pre>
-</div>
+<p>This website is created with Jekyll. <a href="https://github.com/mojombo/jekyll/wiki/Sites">Other Jekyll websites</a>.</p>
 
-
-
-
-        </div>
-      
-        <div class="post">
-          <h1><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></h1>
-          <p class="meta">October 27, 2012</p>
-            
-
-<h2>来由</h2>
-
-<p>这段时间真的很忙，忙得都没时间好好看书，好好写博客。</p>
-
-<p>每天都要上班，还要忙着保研的各种事情，有时还在保研和直接工作中纠结，
-导致一有一点空闲时间，就什么事情也没想干了。</p>
-
-<p>还好，现在这些事情也终于告一段落，也不用再去纠结什么了，终于可以静下心来
-去做自己喜欢做的事，踏踏实实地学习某些东西了。</p>
-
-<p>但是总结一番还是有点必要的，不然这些日子的纠结不是白费了吗。</p>
-
-<p class='more'><a href='/Feelings/2012/10/27/feeling'>More...</a></p>
+<p class='more'><a href='/lessons/2011/12/29/jekyll-introduction'>More...</a></p>
         </div>
       
 
       <!--[> links to prev and next pages for browsing thru archives <]-->
       
+        <span id="newer"><a href="/page2">&laquo;&laquo; Newer Entries</a></span>
       
-        <span id="older"><a href="/page2">Older Entries &raquo;&raquo;</a></span>
       
 
     </div>

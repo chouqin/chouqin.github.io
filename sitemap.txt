@@ -9,8 +9,10 @@ http://username.github.com/categories.html
 http://username.github.com/about.html
 http://username.github.com/sitemap.txt
 http://username.github.com/page2/index.html
+http://username.github.com/page3/index.html
 
 http://username.github.com/python/2012/11/11/chinese-encoding
+http://username.github.com/Feelings/2012/10/27/feeling
 http://username.github.com/linux/2012/09/14/archlinux-installation
 http://username.github.com/2012/09/13/hello-world
 http://username.github.com/lessons/2011/12/29/jekyll-introduction
