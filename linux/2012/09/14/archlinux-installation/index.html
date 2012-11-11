@@ -67,17 +67,9 @@
   
     
       
-    
-  
-    
-      
       	
-      	<li><a href="/categories.html">Categories</a></li>
+      	<li><a href="/archive.html">Archive</a></li>
       	
-      
-    
-  
-    
       
     
   
@@ -91,6 +83,26 @@
   
     
       
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
       	
       	<li><a href="/about.html">About Me</a></li>
       	
@@ -98,18 +110,6 @@
     
   
     
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
       
     
   
@@ -176,18 +176,22 @@
 <h2>基本安装</h2>
 
 <p>能够正确引导的话就可以进行安装了，安装的时候我完全是照着Wiki上的<a href="https://wiki.archlinux.org/index.php/Beginners'_Guide">Beginner's Guide</a>一步步过来的。
-只是有几点需要注意：
-* 因为在开始安装基础包的时候需要网络链接，在网络连接的时候我采用的是static IP的有线连接，在设置网络的时候只需要正确设置有线连接即可。
-* 在设置硬盘的时候一定要小心，一般情况下用于安装arch的硬盘已经排到了sda4以后，不要照着Beginner's Guide上面敲sda1等，稍不注意就会把windows给格掉。
-* 在设置mirrorlist时，建议把China的几个server单独选出作为新的mirrorlist文件,这样比较稳定。
-* 在Configure BootLoader时，我用的是GRUB，同时要安装os-prober,这样能够自动检测其他系统然后会为这些系统建立引导项。命令也就几行:</p>
+只是有几点需要注意：</p>
 
-<pre><code>    # pacman -S grub-bios
-    # grub-install --target=i386-pc --recheck /dev/sda
-    # cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
-    # pacman -S os-prober
-    # grub-mkconfig -o /boot/grub/grub.cfg
-</code></pre>
+<ul>
+<li>因为在开始安装基础包的时候需要网络链接，在网络连接的时候我采用的是static IP的有线连接，在设置网络的时候只需要正确设置有线连接即可。</li>
+<li>在设置硬盘的时候一定要小心，一般情况下用于安装arch的硬盘已经排到了sda4以后，不要照着Beginner's Guide上面敲sda1等，稍不注意就会把windows给格掉。</li>
+<li>在设置mirrorlist时，建议把China的几个server单独选出作为新的mirrorlist文件,这样比较稳定。</li>
+<li><p>在Configure BootLoader时，我用的是GRUB，同时要安装os-prober,这样能够自动检测其他系统然后会为这些系统建立引导项。命令也就几行:</p>
+
+<pre><code>  # pacman -S grub-bios
+  # grub-install --target=i386-pc --recheck /dev/sda
+  # cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+  # pacman -S os-prober
+  # grub-mkconfig -o /boot/grub/grub.cfg
+</code></pre></li>
+</ul>
+
 
 <p>在注意以下几点之后，就能完成基本的安装了。能够有一个命令行下的基本archlinux系统了。</p>
 
@@ -290,7 +294,7 @@ export LC_ALL="zh_CN.UTF-8"
       
         <a class="btn" href="/archive.html">Archive</a>
       
-        <a class="btn next" href="/Feelings/2012/10/27/feelings" title="最近的感悟与总结">Next &rarr;</a>
+        <a class="btn next" href="/python/2012/11/11/chinese-encoding" title="中文编码闲谈">Next &rarr;</a>
       
     </div>
     <hr>
