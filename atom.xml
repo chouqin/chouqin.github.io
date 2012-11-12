@@ -4,7 +4,7 @@
  <title>Chouqin & Laoqi</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2012-11-11T23:21:34+08:00</updated>
+ <updated>2012-11-12T16:27:35+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Qiping Li</name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>中文编码闲谈</title>
+   <title>浅谈中文编码</title>
    <link href="http://username.github.com/python/2012/11/11/chinese-encoding"/>
    <updated>2012-11-11T00:00:00+08:00</updated>
    <id>http://username.github.com/python/2012/11/11/chinese-encoding</id>
@@ -21,26 +21,86 @@
 在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
 所以特地花时间研究了一下中文编码，并通过python来熟悉一些概念。&lt;/p&gt;
 
-&lt;p&gt;废话不多说，先上干货，&lt;a href=&quot;http://www.searchtb.com/2012/04/chinese_encode.html&quot;&gt;中文编码杂谈&lt;/a&gt;，这篇文章是淘宝
-搜索技术团队写的，深入浅出，基本上将中文编码的各个方面讲得十分细致，而且十分通俗易懂。我很难讲得比这篇文章
-更好了，我主要从几个侧面来阐述一下我对于中文编码的理解。&lt;/p&gt;
+&lt;p&gt;废话不多说，先上干货，&lt;a href=&quot;http://www.searchtb.com/2012/04/chinese_encode.html&quot;&gt;中文编码杂谈&lt;/a&gt;，
+这篇文章是淘宝搜索技术团队写的，深入浅出，基本上将中文编码的各个方面讲得十分细致，而且十分通俗易懂。
+我很难讲得比这篇文章更好了，我主要从几个侧面来阐述一下我对于中文编码的理解。&lt;/p&gt;
 
 &lt;h2&gt;中文编码是什么&lt;/h2&gt;
 
 &lt;p&gt;中文编码其实就是将中文转化为二进制比特串的过程，而不同的编码方式会把同一个中文字符转化为不同的二进制表示，
-比如“中”这个字，通过utf-8编码会转化为二进制E4B8AD，而在计算中，所有的数据都是通过二进制保存，这样我们就可以
+比如“中”这个字，通过utf-8编码会转化为二进制E4B8AD，而在计算机中，所有的数据都是通过二进制保存，这样我们就可以
 通过二进制E4B8AD来保存“中”字，然后我们如果需要读取保存的这个字，我们首先需要知道编码方式是utf-8，然后就能将
 E4B8AD转化为“中”。&lt;/p&gt;
 
 &lt;h2&gt;python的中文处理&lt;/h2&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello_world&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;hello world!&amp;quot;&lt;/span&gt;
+&lt;p&gt;python提供了对unicode很好的支持，同时也能将unicode转化为其他的各种编码。&lt;/p&gt;
+
+&lt;p&gt;下面通过代码来对解释一下pytho中的编码问题。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;我是123&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\xe6\x88\x91\xe6\x98\xaf&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;123&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 
+&lt;p&gt;从上面的代码可以看到，python把&quot;我是123&quot;这个字符串当成是str类型，其实只是把这个字符串的编码
+二进制当成中文来处理。当我们通过输入法输入&quot;我是123&quot;时，输入法会根据我们系统的LACALE值将&quot;我是123&quot;
+编码成相应的二进制，而python遇到二进制值时的处理也是要根据系统的编码方式，如果是一个python的脚本，
+我们可以通过再脚本的头部通过&lt;/p&gt;
 
+&lt;pre&gt;&lt;code&gt;`# -*- coding:utf-8 -*- `
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;设置python处理编码的方式。&lt;/p&gt;
+
+&lt;p&gt;同时可以看到&quot;我是123&quot;这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为&lt;code&gt;'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'&lt;/code&gt;,
+一共占了9个字节，python的len()函数对于字符串就是计算它占了多少个byte,所以:len(a) = 9。&lt;/p&gt;
+
+&lt;p&gt;下面看如何与unicode进行相互转化:(此时采用的编码是utf8，其他的编码也是一样的处理):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;u&amp;#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u6211\u662f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;123&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;我是&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;unicode&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\xe6\x88\x91\xe6\x98\xaf&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;123&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;unicode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;我是123&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;或者是&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;u&amp;quot;我是123&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，
+都当作同样的字符来进行处理，这样一个unicode的长度就是所有字符的个数，而不管这些字符是中文
+汉字还是英文字符。这样的好处就在于能够很好地定位到一个具体的字符，字符串的截取以及正则表达式
+匹配等操作都十分方便。所以推荐在处理包含中文的字符串时，先把这个字符串转化为unicode，然后再
+进行操作，操作完以后再encode成字符串。&lt;/p&gt;
+
+&lt;p&gt;关于中文编码就很浅显地谈到这里，希望能给大家带来帮助，有什么问题可以在留言中和我讨论。&lt;/p&gt;
 </content>
  </entry>
  

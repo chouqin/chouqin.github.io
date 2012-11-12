@@ -76,27 +76,23 @@
     
       
       	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
       	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
       	
       
     
@@ -106,6 +102,10 @@
       	
       	<li><a href="/about.html">About Me</a></li>
       	
+      
+    
+  
+    
       
     
   
@@ -159,32 +159,92 @@
       <!--[> iterate through the posts on this page <]-->
       
         <div class="post">
-          <h1><a href="/python/2012/11/11/chinese-encoding">中文编码闲谈</a></h1>
+          <h1><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></h1>
           <p class="meta">November 11, 2012</p>
             <p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
 在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
 所以特地花时间研究了一下中文编码，并通过python来熟悉一些概念。</p>
 
-<p>废话不多说，先上干货，<a href="http://www.searchtb.com/2012/04/chinese_encode.html">中文编码杂谈</a>，这篇文章是淘宝
-搜索技术团队写的，深入浅出，基本上将中文编码的各个方面讲得十分细致，而且十分通俗易懂。我很难讲得比这篇文章
-更好了，我主要从几个侧面来阐述一下我对于中文编码的理解。</p>
+<p>废话不多说，先上干货，<a href="http://www.searchtb.com/2012/04/chinese_encode.html">中文编码杂谈</a>，
+这篇文章是淘宝搜索技术团队写的，深入浅出，基本上将中文编码的各个方面讲得十分细致，而且十分通俗易懂。
+我很难讲得比这篇文章更好了，我主要从几个侧面来阐述一下我对于中文编码的理解。</p>
 
 <h2>中文编码是什么</h2>
 
 <p>中文编码其实就是将中文转化为二进制比特串的过程，而不同的编码方式会把同一个中文字符转化为不同的二进制表示，
-比如“中”这个字，通过utf-8编码会转化为二进制E4B8AD，而在计算中，所有的数据都是通过二进制保存，这样我们就可以
+比如“中”这个字，通过utf-8编码会转化为二进制E4B8AD，而在计算机中，所有的数据都是通过二进制保存，这样我们就可以
 通过二进制E4B8AD来保存“中”字，然后我们如果需要读取保存的这个字，我们首先需要知道编码方式是utf-8，然后就能将
 E4B8AD转化为“中”。</p>
 
 <h2>python的中文处理</h2>
 
-<div class="highlight"><pre><code class="python">    <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-        <span class="k">print</span> <span class="s">&quot;hello world!&quot;</span>
+<p>python提供了对unicode很好的支持，同时也能将unicode转化为其他的各种编码。</p>
+
+<p>下面通过代码来对解释一下pytho中的编码问题。</p>
+
+<div class="highlight"><pre><code class="python">    <span class="o">&gt;&gt;&gt;</span><span class="n">a</span> <span class="o">=</span> <span class="s">&quot;我是123&quot;</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="n">a</span>
+    <span class="s">&#39;</span><span class="se">\xe6\x88\x91\xe6\x98\xaf</span><span class="s">123&#39;</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="nb">str</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="mi">9</span>
 </code></pre>
 </div>
 
 
+<p>从上面的代码可以看到，python把"我是123"这个字符串当成是str类型，其实只是把这个字符串的编码
+二进制当成中文来处理。当我们通过输入法输入"我是123"时，输入法会根据我们系统的LACALE值将"我是123"
+编码成相应的二进制，而python遇到二进制值时的处理也是要根据系统的编码方式，如果是一个python的脚本，
+我们可以通过再脚本的头部通过</p>
 
+<pre><code>`# -*- coding:utf-8 -*- `
+</code></pre>
+
+<p>设置python处理编码的方式。</p>
+
+<p>同时可以看到"我是123"这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
+一共占了9个字节，python的len()函数对于字符串就是计算它占了多少个byte,所以:len(a) = 9。</p>
+
+<p>下面看如何与unicode进行相互转化:(此时采用的编码是utf8，其他的编码也是一样的处理):</p>
+
+<div class="highlight"><pre><code class="python">    <span class="o">&gt;&gt;&gt;</span><span class="n">ua</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="n">ua</span>
+    <span class="s">u&#39;</span><span class="se">\u6211\u662f</span><span class="s">123&#39;</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="k">print</span> <span class="n">ua</span>
+    <span class="err">我是</span><span class="mi">123</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="nb">type</span><span class="p">(</span><span class="n">ua</span><span class="p">)</span>
+    <span class="nb">unicode</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">ua</span><span class="p">)</span>
+    <span class="mi">5</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="n">b</span> <span class="o">=</span> <span class="n">ua</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span><span class="n">b</span>
+    <span class="s">&#39;</span><span class="se">\xe6\x88\x91\xe6\x98\xaf</span><span class="s">123&#39;</span>
+</code></pre>
+</div>
+
+
+<p>将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：</p>
+
+<div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="s">&quot;我是123&quot;</span><span class="p">,</span> <span class="s">&quot;utf-8&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+<p>或者是</p>
+
+<div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="s">u&quot;我是123&quot;</span>
+</code></pre>
+</div>
+
+
+<p>得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，
+都当作同样的字符来进行处理，这样一个unicode的长度就是所有字符的个数，而不管这些字符是中文
+汉字还是英文字符。这样的好处就在于能够很好地定位到一个具体的字符，字符串的截取以及正则表达式
+匹配等操作都十分方便。所以推荐在处理包含中文的字符串时，先把这个字符串转化为unicode，然后再
+进行操作，操作完以后再encode成字符串。</p>
+
+<p>关于中文编码就很浅显地谈到这里，希望能给大家带来帮助，有什么问题可以在留言中和我讨论。</p>
 
         </div>
       
@@ -230,16 +290,16 @@ E4B8AD转化为“中”。</p>
     		lessons <span>1</span>
     	</a></li>
      
+    	<li><a href="/categories.html#linux-ref">
+    		linux <span>1</span>
+    	</a></li>
+     
     	<li><a href="/categories.html#python-ref">
     		python <span>1</span>
     	</a></li>
      
     	<li><a href="/categories.html#Feelings-ref">
     		Feelings <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#linux-ref">
-    		linux <span>1</span>
     	</a></li>
     
   
@@ -267,6 +327,26 @@ E4B8AD转化为“中”。</p>
 -->
           <!--</ul>-->
         <!-- -->
+          <!--<h2 id="linux-ref">linux</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
           <!--<h2 id="python-ref">python</h2>-->
           <!--<ul>-->
             <!--  -->
@@ -277,7 +357,7 @@ E4B8AD转化为“中”。</p>
     
       
       	
-      	<li><a href="/python/2012/11/11/chinese-encoding">中文编码闲谈</a></li>
+      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
       	
       
     
@@ -298,26 +378,6 @@ E4B8AD转化为“中”。</p>
       
       	
       	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="linux-ref">linux</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
       	
       
     
