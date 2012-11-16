@@ -11,6 +11,7 @@ http://username.github.com/atom.xml
 http://username.github.com/page2/index.html
 http://username.github.com/page3/index.html
 
+http://username.github.com/mysql/2012/11/15/mysql-basic
 http://username.github.com/python/2012/11/11/chinese-encoding
 http://username.github.com/Feelings/2012/10/27/feeling
 http://username.github.com/linux/2012/09/14/archlinux-installation
