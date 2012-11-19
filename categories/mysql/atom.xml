@@ -1,210 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>
-      
-        MySQL 基本优化 - 
-      
-      Chouqin & Laoqi
-    </title>
-    <meta name="description" content="">
-    <meta name="author" content="Qiping Li">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-
-    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
-    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
-
-    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
-    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
-    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
-    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-
+  <title><![CDATA[Category: mysql | Chouqin & Laoqi]]></title>
+  <link href="/categories/mysql/atom.xml" rel="self"/>
+  <link href="/"/>
+  <updated>2012-11-19T13:43:24+08:00</updated>
+  <id>/</id>
+  <author>
+    <name><![CDATA[weibou/1876004965nameQiping Ligithubchouqinemailliqiping1991@gmail.com]]></name>
     
-    <!-- fav and touch icons -->
-  <!-- Update these with your own images
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  -->
-  </head>
-
-  <body>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>      
-
-
-          <a class="brand" href="/">Chouqin & Laoqi</a>
-
-
-          <div class="nav-collapse">
-            <ul class="nav">
-              
-              
-              
-
+  </author>
+  <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
 
   
-    
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/categories.html">Categories</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/about.html">About Me</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
+  <entry>
+    <title type="html"><![CDATA[MySQL 基本优化]]></title>
+    <link href="/mysql/2012/11/15/mysql-basic"/>
+    <updated>2012-11-15T00:00:00+08:00</updated>
+    <id>/mysql/2012/11/15/mysql-basic</id>
+    <content type="html"><![CDATA[<p></p>
 
-
-
-            </ul>
-            <ul class="nav pull-right social visible-desktop">
-              <li class="divider-vertical"></li>
-              
-                <li>
-                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
-                    <span class="hidden-desktop">Github</a>
-                  </a>
-                </li>
-              
-                  
-                                        
-                         
-                                  
-              
-              
-                <li>
-                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
-                    <span class="hidden-desktop">Weibo</a>
-                  </a>
-                </li>
-              
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="content">
-        
-<div class="page-header">
-  <h1>
-    MySQL 基本优化
-    
-  </h1>
-</div>
-
-<div class="row">
-  <div class="span8">
-    <p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
+<p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
 才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,
 使它能够具有很强的稳定性同时具有很快的相应速度，
 这其中涉及的东西远远不是数据库的课上写几条sql语句那么简单。
@@ -345,89 +161,7 @@ explain sql的输出结果中，除了包含索引选择等信息，
 希望能够多多有所感悟，学到更多的东西。:)</p>
 
 <p>特别感谢老赵的热心，能够让我们阅读这些经典的书籍，也希望他能够帮助更多的人。</p>
-
-    <hr>
-    <div class="pagination btn-group">
-      
-        <a class="btn prev" href="/python/2012/11/11/chinese-encoding" title="浅谈中文编码">&larr; Previous</a>
-      
-        <a class="btn" href="/archive.html">Archive</a>
-      
-        <a class="btn next disabled">Next &rarr;</a>
-      
-    </div>
-    <hr>
-    
-
-
-  <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_developer = 1;
-    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
-    
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-
-
-  </div>
-
-  <div class="span4">
-    <section>
-      <h4>Published</h4>
-      <div class="date"><span>15 November 2012</span></div>
-    </section>
-    
-      <section>
-        <h4>Category</h4>
-        <span class="category">
-             <a class='category' href='/categories/mysql/'>mysql</a>
-            <!--<a href="/categories/">mysql</a>-->
-          <!--mysql-->
-        </span>
-      </section>
-    
-    
-      <section>
-        <h4>Tags</h4>
-        <ul class="tag_box">
-          
-          
-
-
+]]></content>
+  </entry>
   
-     
-    	<li><a href="/tags.html#mysql-ref">mysql <span>1</span></a></li>
-    
-  
-
-
-
-        </ul>
-      </section>
-    
-  </div>
-</div>
-
-
-      </div>
-
-      <footer>
-        <p>&copy; Qiping Li 2012 
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
-        </p>
-      </footer>
-    </div> <!-- /container -->
-    
-  </body>
-</html>
-
+</feed>

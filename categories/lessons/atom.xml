@@ -1,210 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>
-      
-        Jekyll Introduction - 
-      
-      Chouqin & Laoqi
-    </title>
+  <title><![CDATA[Category: lessons | Chouqin & Laoqi]]></title>
+  <link href="/categories/lessons/atom.xml" rel="self"/>
+  <link href="/"/>
+  <updated>2012-11-19T13:43:24+08:00</updated>
+  <id>/</id>
+  <author>
+    <name><![CDATA[weibou/1876004965nameQiping Ligithubchouqinemailliqiping1991@gmail.com]]></name>
     
-    <meta name="author" content="Qiping Li">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-
-    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
-    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
-
-    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
-    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
-    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
-    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
-    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-
-    
-    <!-- fav and touch icons -->
-  <!-- Update these with your own images
-    <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  -->
-  </head>
-
-  <body>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>      
-
-
-          <a class="brand" href="/">Chouqin & Laoqi</a>
-
-
-          <div class="nav-collapse">
-            <ul class="nav">
-              
-              
-              
-
+  </author>
+  <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
 
   
-    
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/categories.html">Categories</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/about.html">About Me</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
+  <entry>
+    <title type="html"><![CDATA[Jekyll Introduction]]></title>
+    <link href="/lessons/2011/12/29/jekyll-introduction"/>
+    <updated>2011-12-29T00:00:00+08:00</updated>
+    <id>/lessons/2011/12/29/jekyll-introduction</id>
+    <content type="html"><![CDATA[<p></p>
 
-
-
-            </ul>
-            <ul class="nav pull-right social visible-desktop">
-              <li class="divider-vertical"></li>
-              
-                <li>
-                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
-                    <span class="hidden-desktop">Github</a>
-                  </a>
-                </li>
-              
-                  
-                                        
-                         
-                                  
-              
-              
-                <li>
-                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
-                    <span class="hidden-desktop">Weibo</a>
-                  </a>
-                </li>
-              
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="content">
-        
-<div class="page-header">
-  <h1>
-    Jekyll Introduction
-    
-  </h1>
-</div>
-
-<div class="row">
-  <div class="span8">
-    <p>This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
+<p>This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
 Directly following the intro we'll learn exactly <em>how</em> Jekyll does what it does.</p>
 
 <h2>Overview</h2>
@@ -433,17 +249,23 @@ There is a special variable in all templates named : <code>content</code>.
 The <code>content</code> variable holds the page/post content including any sub-template content previously defined.
 Render the content variable wherever you want your main content to be injected into your template:</p>
 
-<p>  <pre><code>...
+<p>
+
+
+
+  <pre><code>...
 &lt;body&gt;
   &lt;div id="sidebar"&gt; ... &lt;/div&gt;
-  &lt;div id="main"&gt;</p>
+  &lt;div id="main"&gt;&lt;/p&gt;
 
-<pre><code>&amp;#123;{content}&amp;#125;
-</code></pre>
+&lt;pre&gt;&lt;code&gt;&#123;{content}&#125;
+&lt;/code&gt;&lt;/pre&gt;
 
-<p>  &lt;/div&gt;
+&lt;p&gt;  &lt;/div&gt;
 &lt;/body&gt;
-...</code></pre></p>
+...</code></pre>
+
+</p>
 
 <h3>Sub-Templates</h3>
 
@@ -612,95 +434,7 @@ As noted, our main programming constraint is the fact that our API is limited to
 
 <p>Please take a look at <a href=""></a>
 or jump right into <a href="">Usage</a> if you'd like.</p>
-
-    <hr>
-    <div class="pagination btn-group">
-      
-        <a class="btn disabled prev">&larr; Previous</a>
-      
-        <a class="btn" href="/archive.html">Archive</a>
-      
-        <a class="btn next" href="/2012/09/13/hello-world" title="Hello World">Next &rarr;</a>
-      
-    </div>
-    <hr>
-    
-
-
-  <div id="disqus_thread"></div>
-<script type="text/javascript">
-    var disqus_developer = 1;
-    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
-    
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-
-
-
-
-  </div>
-
-  <div class="span4">
-    <section>
-      <h4>Published</h4>
-      <div class="date"><span>29 December 2011</span></div>
-    </section>
-    
-      <section>
-        <h4>Category</h4>
-        <span class="category">
-             <a class='category' href='/categories/lessons/'>lessons</a>
-            <!--<a href="/categories/">lessons</a>-->
-          <!--lessons-->
-        </span>
-      </section>
-    
-    
-      <section>
-        <h4>Tags</h4>
-        <ul class="tag_box">
-          
-          
-
-
+]]></content>
+  </entry>
   
-     
-    	<li><a href="/tags.html#intro-ref">intro <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#beginner-ref">beginner <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#jekyll-ref">jekyll <span>1</span></a></li>
-     
-    	<li><a href="/tags.html#tutorial-ref">tutorial <span>1</span></a></li>
-    
-  
-
-
-
-        </ul>
-      </section>
-    
-  </div>
-</div>
-
-
-      </div>
-
-      <footer>
-        <p>&copy; Qiping Li 2012 
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
-        </p>
-      </footer>
-    </div> <!-- /container -->
-    
-  </body>
-</html>
-
+</feed>
