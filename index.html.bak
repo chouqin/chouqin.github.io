@@ -76,23 +76,27 @@
     
       
       	
-      	<li><a href="/categories.html">Categories</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
       	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
       	
       
     
@@ -102,6 +106,14 @@
       	
       	<li><a href="/about.html">About Me</a></li>
       	
+      
+    
+  
+    
+      
+    
+  
+    
       
     
   
@@ -218,6 +230,14 @@
 
 <!--<ul class="posts">-->
 <!---->
+  <!--<div class="post_info">-->
+    <!--<li>-->
+            <!--<a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a>-->
+            <!--<span>(2012-11-19)</span>-->
+    <!--</li>-->
+    <!--</br> <em> </em>-->
+    <!--</div>-->
+  <!---->
   <!--<div class="post_info">-->
     <!--<li>-->
             <!--<a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a>-->
