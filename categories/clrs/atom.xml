@@ -4,10 +4,10 @@
   <title><![CDATA[Category: clrs | Chouqin & Laoqi]]></title>
   <link href="/categories/clrs/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2012-11-24T17:34:09+08:00</updated>
+  <updated>2012-11-25T15:48:35+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
+    <name><![CDATA[weiboatchouqinemailliqiping1991@gmail.comgithubchouqinnameQiping Li]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -187,30 +187,7 @@ $$</p>
 E[X] = E[\sum_{i=1}^n X_i] = \sum_{i=1}^n E[X_i]
 </script>
 
-<p>要使等式的第二步成立，必须要保证<script type="math/tex"> X_i </script>之间是相互独立的。
-而书上5.4.1在证明生日悖论时使用随机变量进行分析有点不对，
-定义的<script type="math/tex"> X_{ij } </script> 如下:</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-
-    X_{ij} = 
-     \begin{cases}
-         1 & \text{如果i和j的生日相同} \\
-         0 & \text{如果i和j的生日不同}
-     \end{cases}
-
- %]]&gt;</script>
-
-<p>我觉得<script type="math/tex"> X_{ij} </script>之间不是相互独立的,
-因为如果i和j生日相同，j和k的生日不同，
-那么i和k的生日一定不同。
-所以不能使用公式:</p>
-
-<script type="math/tex; mode=display">
-    E[\sum_{i=1}^k \sum_{j=i+1}^k X_{ij}] = \sum_{i=1}^k \sum_{j=i+1}^k E[X_{ij}]
-</script>
-
-<p>来进行计算。不过书上只是给出一个渐近意义上的值，而且和准确的值处在同一个量级。</p>
+<p>要使等式的第二步成立，不一定要保证<script type="math/tex"> X_i </script>之间是相互独立的。</p>
 
 <p>这周的读书笔记就先写到这里，下周开始写第8章开始的内容。</p>
 ]]></content>
