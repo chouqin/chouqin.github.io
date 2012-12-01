@@ -4,7 +4,7 @@
  <title>Chouqin & Laoqi</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2012-12-01T19:26:00+08:00</updated>
+ <updated>2012-12-01T19:31:31+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Qiping Li</name>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>算法导论8~9章读书笔记</title>
-   <link href="http://username.github.com/clrs/2012/12/01/clrs-8-11"/>
+   <link href="http://username.github.com/clrs/2012/12/01/clrs-8-9"/>
    <updated>2012-12-01T00:00:00+08:00</updated>
-   <id>http://username.github.com/clrs/2012/12/01/clrs-8-11</id>
+   <id>http://username.github.com/clrs/2012/12/01/clrs-8-9</id>
    <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;比较排序的时间下界&lt;/h3&gt;
@@ -44,6 +44,8 @@ n! \leq 2^h \\
 &lt;/script&gt;
 
 &lt;p&gt;所以比较排序的时间下界是O(nlgn)。&lt;/p&gt;
+
+&lt;!--more--&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;通过计数排序实现线性时间排序&lt;/h3&gt;
 &lt;p&gt;如果已经知道n个元素都是来自于0到k的整数，
