@@ -76,27 +76,23 @@
     
       
       	
-      	<li><a href="/tags.html">Tags</a></li>
-      	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-      	
       	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
       	
       
     
@@ -106,54 +102,6 @@
       	
       	<li><a href="/about.html">About Me</a></li>
       	
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
-      
-    
-  
-    
       
     
   
@@ -209,15 +157,14 @@
         
 <div class="page-header">
   <h1>
-    浅谈中文编码
+    浅谈中文编码 
     
   </h1>
 </div>
 
 <div class="row">
   <div class="span8">
-    
-<p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
+    <p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
 在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
 所以特地花时间研究了一下中文编码，并通过python来熟悉一些概念。</p>
 
@@ -225,13 +172,15 @@
 这篇文章是淘宝搜索技术团队写的，深入浅出，基本上将中文编码的各个方面讲得十分细致，而且十分通俗易懂。
 我很难讲得比这篇文章更好了，我主要从几个侧面来阐述一下我对于中文编码的理解。</p>
 
-<h2 id="section">中文编码是什么</h2>
+<h2>中文编码是什么</h2>
+
 <p>中文编码其实就是将中文转化为二进制比特串的过程，而不同的编码方式会把同一个中文字符转化为不同的二进制表示，
 比如“中”这个字，通过utf-8编码会转化为二进制E4B8AD，而在计算机中，所有的数据都是通过二进制保存，这样我们就可以
 通过二进制E4B8AD来保存“中”字，然后我们如果需要读取保存的这个字，我们首先需要知道编码方式是utf-8，然后就能将
 E4B8AD转化为“中”。</p>
 
-<h2 id="python">python的中文处理</h2>
+<h2>python的中文处理</h2>
+
 <p>python提供了对unicode很好的支持，同时也能将unicode转化为其他的各种编码。</p>
 
 <p>下面通过代码来对解释一下pytho中的编码问题。</p>
@@ -246,10 +195,9 @@ E4B8AD转化为“中”。</p>
 </code></pre>
 </div>
 
-<!--more-->
 
-<p>从上面的代码可以看到，python把&#8221;我是123&#8221;这个字符串当成是str类型，其实只是把这个字符串的编码
-二进制当成中文来处理。当我们通过输入法输入&#8221;我是123&#8221;时，输入法会根据我们系统的LACALE值将&#8221;我是123&#8221;
+<p>从上面的代码可以看到，python把"我是123"这个字符串当成是str类型，其实只是把这个字符串的编码
+二进制当成中文来处理。当我们通过输入法输入"我是123"时，输入法会根据我们系统的LACALE值将"我是123"
 编码成相应的二进制，而python遇到二进制值时的处理也是要根据系统的编码方式，如果是一个python的脚本，
 我们可以通过再脚本的头部通过</p>
 
@@ -258,7 +206,7 @@ E4B8AD转化为“中”。</p>
 
 <p>设置python处理编码的方式。</p>
 
-<p>同时可以看到&#8221;我是123&#8221;这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
+<p>同时可以看到"我是123"这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
 一共占了9个字节，python的len()函数对于字符串就是计算它占了多少个byte,所以:len(a) = 9。</p>
 
 <p>下面看如何与unicode进行相互转化:(此时采用的编码是utf8，其他的编码也是一样的处理):</p>
@@ -278,17 +226,20 @@ E4B8AD转化为“中”。</p>
 </code></pre>
 </div>
 
+
 <p>将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：</p>
 
 <div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="s">&quot;我是123&quot;</span><span class="p">,</span> <span class="s">&quot;utf-8&quot;</span><span class="p">)</span>
 </code></pre>
 </div>
 
+
 <p>或者是</p>
 
 <div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="s">u&quot;我是123&quot;</span>
 </code></pre>
 </div>
+
 
 <p>得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，
 都当作同样的字符来进行处理，这样一个unicode的长度就是所有字符的个数，而不管这些字符是中文
@@ -331,7 +282,7 @@ E4B8AD转化为“中”。</p>
 
 
   </div>
-
+  
   <div class="span4">
     <section>
       <h4>Published</h4>
@@ -341,12 +292,10 @@ E4B8AD转化为“中”。</p>
       <section>
         <h4>Category</h4>
         <span class="category">
-             <a class='category' href='/categories/python/'>python</a>
-            <!--<a href="/categories/">python</a>-->
-          <!--python-->
+          python
         </span>
       </section>
-    
+         
     
       <section>
         <h4>Tags</h4>
@@ -365,7 +314,7 @@ E4B8AD转化为“中”。</p>
 
         </ul>
       </section>
-    
+             
   </div>
 </div>
 
