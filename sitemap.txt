@@ -12,18 +12,18 @@ http://username.github.com/page2/index.html
 http://username.github.com/page3/index.html
 http://username.github.com/page4/index.html
 http://username.github.com/page5/index.html
-http://username.github.comcategories/linux/index.html
-http://username.github.comcategories/linux/atom.xml
 http://username.github.comcategories/feelings/index.html
 http://username.github.comcategories/feelings/atom.xml
 http://username.github.comcategories/lessons/index.html
 http://username.github.comcategories/lessons/atom.xml
+http://username.github.comcategories/linux/index.html
+http://username.github.comcategories/linux/atom.xml
 http://username.github.comcategories/python/index.html
 http://username.github.comcategories/python/atom.xml
-http://username.github.comcategories/mysql/index.html
-http://username.github.comcategories/mysql/atom.xml
 http://username.github.comcategories/clrs/index.html
 http://username.github.comcategories/clrs/atom.xml
+http://username.github.comcategories/mysql/index.html
+http://username.github.comcategories/mysql/atom.xml
 
 http://username.github.com/clrs/2012/12/12/clrs-14-15
 http://username.github.com/clrs/2012/12/04/clrs-10-13
