@@ -1,9 +1,5 @@
-# What is this?
-I create this repositories to use the jekyllbootstrap with plugin enabled.
+This is a blog hosted on github using Github Pages.
 
-I have created a [blog](http://chouqin.github.com) on GitHub using GitHub pages and Jekyll-Bootstrap,
-but github don't let me to use plugin on it, 
-so I follow the instructions of [this site](http://charliepark.org/jekyll-with-plugins/) 
-and create a repository with plugin enabled, using this repository to genearate pages on the github. 
-So this repository is just the 'source code' of [chouqin.github.com](https://github.com/chouqin/chouqin.github.com).
+To view the source, please go to [blog_source](https://github.com/chouqin/blog_source).
 
+To see the blog, please go to [blog](http://chouqin.github.com).
