@@ -4,7 +4,7 @@
  <title>Chouqin & Laoqi</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2012-12-13T14:26:37+08:00</updated>
+ <updated>2012-12-13T14:28:52+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Qiping Li</name>
@@ -94,6 +94,8 @@ low[k] \geq low[j] &gt; high[i] \text{第一个不等式成立是根据红黑树
 &lt;p&gt;所以k与i不重合。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-4&quot;&gt;动态规划&lt;/h2&gt;
+
+&lt;!--more--&gt;
 
 &lt;p&gt;动态规划主要用于求解最优化问题，
 它的基本思想是通过把子问题的结果保存起来，
