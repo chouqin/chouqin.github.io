@@ -271,21 +271,21 @@ $$</p>
   %]]></script>
 
     <p>由简单一致性假设，<script type="math/tex"> E[X_{ij}] = 1/m </script>，所以检查元素个数的期望为：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+ \begin{array} {lcl}
+ E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
+     &=& 1 + \frac{n-1}{2m} \\
+     &=& 1 + \frac{\alpha}{2} - \frac{\alpha}{2n}
+ \end{array}
+  %]]></script>
+
+    <p>所以平均查找时间为: <script type="math/tex"> \Theta (2 + \frac{\alpha}{2} - \frac{\alpha}{2n}) = \Theta (1 + \alpha) </script></p>
   </li>
 </ol>
 
 <!--more-->
-
-<pre><code>$$
-\begin{array} {lcl}
-E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
-    &amp;=&amp; 1 + \frac{n-1}{2m} \\
-    &amp;=&amp; 1 + \frac{\alpha}{2} - \frac{\alpha}{2n}
-\end{array}
-$$
-
-所以平均查找时间为: $$ \Theta (2 + \frac{\alpha}{2} - \frac{\alpha}{2n}) = \Theta (1 + \alpha) $$
-</code></pre>
 
 <h3 id="section-2">开放寻址法</h3>
 <p>在开放寻址法中，对于每一个关键字k，定义探查序列
@@ -568,7 +568,7 @@ $$
       
         <a class="btn" href="/archive.html">Archive</a>
       
-        <a class="btn next disabled">Next &rarr;</a>
+        <a class="btn next" href="/clrs/2012/12/12/clrs-14-15" title="红黑树扩充与动态规划">Next &rarr;</a>
       
     </div>
     <hr>
@@ -620,7 +620,7 @@ $$
 
   
      
-    	<li><a href="/tags.html#clrs-ref">clrs <span>3</span></a></li>
+    	<li><a href="/tags.html#clrs-ref">clrs <span>4</span></a></li>
     
   
 

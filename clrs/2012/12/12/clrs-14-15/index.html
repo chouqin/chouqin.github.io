@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>
       
-        Blog - 
+        红黑树扩充与动态规划 - 
       
       Chouqin & Laoqi
     </title>
-    
+    <meta name="description" content="">
     <meta name="author" content="Qiping Li">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
@@ -210,14 +210,17 @@
 
     <div class="container">
       <div class="content">
-        <div class="row">
-    <div class="span8" style="margin-top:20px;">
-      <!--[> iterate through the posts on this page <]-->
-      
-        <div class="post">
-          <h1><a href="/clrs/2012/12/12/clrs-14-15">红黑树扩充与动态规划</a></h1>
-          <p class="meta">December 12, 2012</p>
-            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+<div class="page-header">
+  <h1>
+    红黑树扩充与动态规划
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <h2 id="section">红黑树的扩充</h2>
 
@@ -527,298 +530,75 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
 人和人之间还是有差距的啊，不管做什么都是，
 希望后面的几章能够翻译好一点，bless!</p>
 
-        </div>
+    <hr>
+    <div class="pagination btn-group">
       
-        <div class="post">
-          <h1><a href="/clrs/2012/12/04/clrs-10-13">《算法导论》之基本数据结构</a></h1>
-          <p class="meta">December  4, 2012</p>
-            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<h2 id="section">散列表中碰撞的解决</h2>
-<p>由于散列表的元素个数小于关键字的取值集合U,
-因此会有两个不同的关键字映射到散列表的同一个槽上，
-这时就发生了碰撞。发生了碰撞时，
-书上给出了两种方法来解决，
-而且保证此时的散列表平均情况下的查找复杂度是O(1)。</p>
-
-<h3 id="section-1">链接法</h3>
-<p>在链接法中，关键字映射到同一个槽上的元素通过一个链表来保存，
-此时散列表T[0..m-1]的任意元素T[j]是一个链表，
-当插入一个元素时，将元素放在它所对应的槽所指向链表的头部。
-下面对链接法的性能进行分析。</p>
-
-<p>定义散列表T的装载因子<script type="math/tex"> \alpha = n / m </script>, 其中n是元素个数，m是散列表槽数,
-我们假设元素满足简单一致散列的条件：
-任何元素散列到m个槽中的每一个的可能性是相同的。</p>
-
-<p>用<script type="math/tex"> n_j </script>表示链表T[j]的长度，有
-$$
-E[n_j] = \alpha = n/m
-$$</p>
-
-<p>有如下性质成立：</p>
-
-<ol>
-  <li>
-    <p>链接方式散列表在简单一致假设下，查找一个不存在元素所需时间的期望为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
-
-    <p>假设查找的元素是k, 它所对应的槽为h(k)，链表T[h(k)]的长度<script type="math/tex"> E[n_{h(k)}] = \alpha </script>，
- 所以平均情况下需要遍历一个长度为<script type="math/tex"> \alpha </script>的链表，外加常数的散列函数时间和寻址T[h(k)]的时间，
- 总共为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
-  </li>
-  <li>
-    <p>链接方式散列表在简单一致假设下，平均查找一个已存在的元素所需的时间为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
-
-    <p>对于任意元素x，检查的元素个数等于x所在链表中，出现在x之前的元素个数加1。
- 设<script type="math/tex"> x_i </script>是第i个插入的元素，i=1,2,..,n,
- 定义：</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-     X_{ij} =
-      \begin{cases}
-          1 & x_i\text{和}x_j\text{在同一槽中} \\
-          0 & \text{否则}
-      \end{cases}
-  %]]></script>
-
-    <p>由简单一致性假设，<script type="math/tex"> E[X_{ij}] = 1/m </script>，所以检查元素个数的期望为：</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
- \begin{array} {lcl}
- E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
-     &=& 1 + \frac{n-1}{2m} \\
-     &=& 1 + \frac{\alpha}{2} - \frac{\alpha}{2n}
- \end{array}
-  %]]></script>
-
-    <p>所以平均查找时间为: <script type="math/tex"> \Theta (2 + \frac{\alpha}{2} - \frac{\alpha}{2n}) = \Theta (1 + \alpha) </script></p>
-  </li>
-</ol>
-
-<p class='more'><a href='/clrs/2012/12/04/clrs-10-13'>More...</a></p>
-        </div>
+        <a class="btn prev" href="/clrs/2012/12/04/clrs-10-13" title="《算法导论》之基本数据结构">&larr; Previous</a>
       
-
-      <!--[> links to prev and next pages for browsing thru archives <]-->
+        <a class="btn" href="/archive.html">Archive</a>
       
+        <a class="btn next disabled">Next &rarr;</a>
       
-        <span id="older"><a href="/page2">Older Entries &raquo;&raquo;</a></span>
-      
-
     </div>
+    <hr>
+    
 
-    <div class="span4" style="margin-top:20px;">
-        <h3>所有分类</h3>
-        <ul class="categories">
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!---->
-        
-        <li><a href="/categories/linux">linux</a></li>
-        
-        <li><a href="/categories/Feelings">Feelings</a></li>
-        
-        <li><a href="/categories/lessons">lessons</a></li>
-        
-        <li><a href="/categories/python">python</a></li>
-        
-        <li><a href="/categories/clrs">clrs</a></li>
-        
-        <li><a href="/categories/mysql">mysql</a></li>
-        
-        <!--Liquid error: undefined method `sort!' for #<Hash:0x7f656773b698>-->
-            <!---->
-            <!--
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>12 December 2012</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+             <a class='category' href='/categories/clrs/'>clrs</a>
+            <!--<a href="/categories/">clrs</a>-->
+          <!--clrs-->
+        </span>
+      </section>
+    
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
 
 
   
      
-    	<li><a href="/categories.html#linux-ref">
-    		linux <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#Feelings-ref">
-    		Feelings <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#lessons-ref">
-    		lessons <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#python-ref">
-    		python <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#clrs-ref">
-    		clrs <span>4</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#mysql-ref">
-    		mysql <span>1</span>
-    	</a></li>
+    	<li><a href="/tags.html#clrs-ref">clrs <span>4</span></a></li>
     
   
 
--->
+
+
         </ul>
-        <!-- -->
-          <!--<h2 id="linux-ref">linux</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
+      </section>
     
-      
-      	
-      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="Feelings-ref">Feelings</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="lessons-ref">lessons</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="python-ref">python</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="clrs-ref">clrs</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/12/clrs-14-15">红黑树扩充与动态规划</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/04/clrs-10-13">《算法导论》之基本数据结构</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/01/clrs-8-9">算法导论8~9章读书笔记</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="mysql-ref">mysql</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!---->
-    </div>
+  </div>
 </div>
 
 
