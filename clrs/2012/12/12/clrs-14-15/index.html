@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        红黑树扩充与动态规划 - 
+      
+      Chouqin & Laoqi
+    </title>
+    <meta name="description" content="">
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+<div class="page-header">
+  <h1>
+    红黑树扩充与动态规划
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<h2 id="section">红黑树的扩充</h2>
+
+<p>由于红黑树这种结构很好的平衡性（树的高度不会很高），
+对于动态变化的集合插入，查找，删除等操作的复杂度都比较低，
+通过给它的节点增加一些其他的属性，
+能够得到一些在特定情况下很有用的数据结构。</p>
+
+<h3 id="section-1">扩充数据结构的四个步骤</h3>
+
+<ol>
+  <li>选择基础的数据结构</li>
+  <li>确定需要给数据结构添加哪些信息，
+这些信息可能被添加到每个节点中，也可能被添加作为整体数据结构的性质</li>
+  <li>验证在数据结构的基本操作的过程中，这些信息可以被有效的维护，
+这里的有效是指不会因为维护这些信息增加基础操作的复杂度</li>
+  <li>利用这些信息提供一些有用的操作</li>
+</ol>
+
+<h3 id="section-2">通过扩充红黑树得到顺序统计</h3>
+
+<p>通过给红黑树的每一个节点x附加属性size[x]，
+表示以x为根的子树的节点个数，
+可以通过递归确定一棵红黑树的第i小关键字的元素。
+由于包含n个元素的红黑树的高度为<script type="math/tex"> O(\lg n) </script>，每次递归高度都会下降一层，
+所以查找第i小关键字的时间复杂度为<script type="math/tex"> O(\lg n) </script>。</p>
+
+<p>在第9章中，给出了获取n个元素的数组中第i个元素的<script type="math/tex"> \Theta(n) </script>的算法，
+而一个包含n个元素的数组如果是有序的话，那么获取第i个元素的复杂度是<script type="math/tex"> O(1) </script>。
+但是这种扩充的数据结构的好处在于它的动态性，它的插入和删除的时间复杂度也是<script type="math/tex"> O(\lg n) </script>，
+而一个有序数组的插入和删除的复杂度是<script type="math/tex"> O(n) </script>。</p>
+
+<h3 id="section-3">通过扩充红黑树得到区间树</h3>
+
+<p>在区间树中，每一个节点x包含了一段区间int[x]，同时包含了一个max[x]，
+表示以x为根的子树中所有区间的右端点的最大值，同时每一个节点的key[x] = low[int[x]]，
+也就是说是把每一个节点所包含区间的左端点作为key。</p>
+
+<p>区间树使得查找整个红黑树中与某一个区间i重合的区间变得十分容易，
+可以如下递归实现：</p>
+
+<ol>
+  <li>如果当前节点为空，返回空节点</li>
+  <li>如果区间i与当前节点的区间重合，返回当前节点</li>
+  <li>如果区间i的左端点小于当前节点左儿子的max，递归查找左子树</li>
+  <li>否则递归查找右子树</li>
+</ol>
+
+<p>情况1，2很自然，情况4也比较好理解，
+因为如果i的左端点大于左儿子的max，它就大于那么对于左子树中所有节点的右端点，
+左子树中一定不存在和区间i重合区间。情况3需要一定的思考，
+因为如果i的左端点小于当前节点左儿子的max，并不能保证它一定不会与右子树中的区间重合，
+所以如果只是递归查找左子树，如果左子树中有区间和i重合，那么能够返回正确结果
+（因为只需要找到一个和i重合的区间就可以），如果左子树中没有区间与i重合，
+那右子树中可能会有区间与i重合，导致没有返回正确的结果。情况是这样的吗？</p>
+
+<p>不是这样的，下面可以证明在情况3时如果左子树中没有找到与i重合的区间，
+那么在右子树中也一定不存在和i重合的区间。</p>
+
+<p>假设左儿子的max来自于high[j]（也就是说，是左子树中区间j的右端点)，
+那么一定有</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+ 
+high[i] < low[j]
+ %]]></script>
+
+<p>否则区间i和j重合，对于右子树中的任意区间k，一定有</p>
+
+<script type="math/tex; mode=display"> 
+low[k] \geq low[j] > high[i] \text{第一个不等式成立是根据红黑树关键字的性质}
+</script>
+
+<p>所以k与i不重合。</p>
+
+<h2 id="section-4">动态规划</h2>
+
+<!--more-->
+
+<p>动态规划主要用于求解最优化问题，
+它的基本思想是通过把子问题的结果保存起来，
+这样当遇到一个更大的问题时，如果它需要解决子问题，
+那么可以直接使用保存好的子问题的结果，而不用再去重复解决子问题。</p>
+
+<h3 id="section-5">动态规划适用的基本条件</h3>
+
+<p>使用动态规划必须要满足两个基本的条件：</p>
+
+<ol>
+  <li>最优子结构。一个问题的最优解包含子问题的最优解。
+通常可以通过&#8221;剪切-粘贴&#8221;的方法证明最优子结构，也就是说，
+假设一个问题的最优解没有包含子问题的最优解，
+那么把相应的子问题的解替换成最优解将得到一个更好的解，
+从而得出矛盾。</li>
+  <li>重叠子问题。如果没有大量的重叠子问题，
+那么直接通过递归求解子问题就可以，
+动态规划相对于递归的好处也就在于不用重复去计算重叠的子问题，
+从而节省了时间。</li>
+</ol>
+
+<h3 id="section-6">动态规划解题的基本思路</h3>
+
+<p>在确定了一个问题适合采用动态规划进行解决之后，
+仍然需要考虑几个问题。最主要的问题就是如何将问题利用更小的子问题来进行解决，
+此时的思路是通过把原来的问题通过转化变成更小的子问题，
+利用合适的转化可以把一个问题缩小成一个更小的子问题，比如最长递增子序列问题，
+求以元素n结尾的最长递增子序列的长度，
+可以转化为求以比n小的排在n前面的某个元素结尾的最长递增子序列的长度。
+通过转化之后问题就缩小了。</p>
+
+<p>将问题转换成子问题之后，必须要知道如何通过子问题的解得到原问题的解，
+也就是所谓的递推公式，
+比如上述问题，知道n之前的某个小于n元素的最长子序列的长度之后，
+n的最长子序列的长度就是这个长度加1。</p>
+
+<p>一个问题可能转化成多个子问题，比如说上面的问题，
+比n小的排在n之前的元素可能有多个，这时，就需要从多个子问题之间做出选择。
+这个选择通常是比较容易的，直接从所有根据子问题递推得到的解中选出一个最优解即可。
+一般情况下，还需要记录此时的选择，用于构造出一个最优解。</p>
+
+<p>把上述的问题都考虑好之后，就可以按照问题的大小，
+从小到大依次将各个问题解决，直到达到所需要的问题的大小，
+就得到了所需问题的解。</p>
+
+<h3 id="section-7">动态规划的经典问题</h3>
+
+<h4 id="lcs">最长公共子序列（LCS）</h4>
+
+<ul>
+  <li>问题描述：
+定义序列<script type="math/tex">% <![CDATA[
+ X = <x_1, x_2, ..., x_m>  %]]></script>的一个子序列为
+<script type="math/tex">% <![CDATA[
+ Z = <x_{i_1}, x_{i_2}, ..., x_{i_k}>  %]]></script>，其中
+<script type="math/tex">% <![CDATA[
+ i_1 < i_2 < ... < i_k, k \geq 1  %]]></script>。求两个序列
+<script type="math/tex">% <![CDATA[
+ X = <x_1, x_2, ..., x_m>  %]]></script>和<script type="math/tex">% <![CDATA[
+ Y = <y_1, y_2, ..., y_n>  %]]></script>的最长公共子序列的长度c[m, n]。</li>
+  <li>
+    <p>求解方法：
+定义c[i, j]为序列<script type="math/tex"> X_i </script>和<script type="math/tex"> Y_j </script>的LCS的长度，
+有如下递推公式成立</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+ 
+      c[i, j] = 
+          \begin{cases}
+              0 & \text{i=0 或j=0} \\
+              c[i-1, j-1] + 1 & i,j > 0, x_i = y_j \\
+              max\{c[i, j-1], c[i-1, j]\} & i,j > 0, x_i \neq y_j
+          \end{cases}
+   %]]></script>
+  </li>
+  <li>说明:
+其实c[i, j]有三个子问题， c[i-1, j-1], c[i-1, j], c[i, j-1],
+为什么当<script type="math/tex"> x_i = y_j </script>时只需要考虑第一个子问题，因为有如下不等式成立:</li>
+</ul>
+
+<script type="math/tex; mode=display">
+c[i-1, j-1] + 1 \geq c[i, j-1] \\
+c[i-1, j-1] + 1 \geq c[i-1, j]
+</script>
+
+<p>因为c[i, j-1]相对于c[i-1, j-1]就多了一个元素c[i]，
+最多能够为最长公共子序列多增加长度1，同理对于c[i-1, j]也是如此。</p>
+
+<h4 id="section-8">背包问题</h4>
+
+<ul>
+  <li>问题描述：
+给定一个重量为w的背包，有n件商品重量分别为<script type="math/tex"> w_1, w_2, ..., w_n </script>,
+价值分别为<script type="math/tex"> v_1, v_2, ..., v_n </script>，求这个背包能容纳的最大的商品价值</li>
+  <li>
+    <p>问题求解：</p>
+
+    <ul>
+      <li>如果对于每一件商品，可以拿取任意多次，则定义K(w)表示重量为w的背包最大的价值，
+  有如下递推关系成立：</li>
+    </ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+  K(w) = max\{K(w-w_i) + v_i\}, i=1..n, w_i < w
+   %]]></script>
+
+    <ul>
+      <li>如果没一件商品只能拿一次，就不能采取上面的方法了，因为如果在K(w)转换至<script type="math/tex"> K(w-w_i) </script>时使用了
+  商品i, 在求解<script type="math/tex"> K(w-w_i) </script>就不能再使用商品i,上述的递推公式不成立。必须采用另外一种方法。
+  定义K(w, i)为重量为w的背包在装载商品1..i时的最大价值，有如下递推关系成立：</li>
+    </ul>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+  K(w, i) = max\{K(w-w_i, i-1) + v_i, K(w, i-1)\}, i=1..n, w_i < w
+   %]]></script>
+  </li>
+</ul>
+
+<h3 id="floyd">Floyd算法的正确性</h3>
+
+<p>Floyd算法用于求解图中所有节点中的最短路径。
+基本思想是通过n（n为节点个数）次循环更新所有节点对之间的最短路径，
+伪代码如下：</p>
+
+<div class="highlight"><pre><code class="pascal">    <span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
+                <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">then</span>
+                    <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">:=</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">;</span>
+</code></pre>
+</div>
+
+<p>在每次迭代时，对于任意节点对(i, j)，如果(i, k)的路径长度加(k, j)的路径长度小于
+原来的(i, j)的路径长度，
+那么就将(i, j)的路径长度更新为(i, k)的路径长度加(k, j)的路径长度（也就是说，
+让(i, j)的最短路径经过k）。
+算法的时间复杂度为<script type="math/tex"> O(n^3) </script>。</p>
+
+<p>动态规划对于这个算法的理解是，在迭代k结束之后，
+此时(i, j)的最短路径为仅使用{1, 2, &#8230;, k}作为中间节点的最短路径，
+当循环结束时，k=n, 此时(i, j)的最短路径为使用任意节点作为中间节点的最短路径，
+也就是(i, j)之间的最短路径。</p>
+
+<p>凭直接感觉，比如说(i, j)之间的最短路径为：</p>
+
+<script type="math/tex; mode=display">
+i \rightarrow ... \rightarrow k_1 \rightarrow ... \rightarrow k_2 \rightarrow ... \rightarrow j
+</script>
+
+<p>其中<script type="math/tex">% <![CDATA[
+ k_1 < k_2  %]]></script>,
+如果最外层的循环遍历到<script type="math/tex"> k_1 </script>时，因为此时不能使用<script type="math/tex"> k_2 </script>作为中间节点，
+所以不会把(i, j)之间的最短路径经过<script type="math/tex"> k_1 </script>，
+当允许使用<script type="math/tex"> k_2 </script>作为中间节点时，
+有不会再去遍历<script type="math/tex"> k_1 </script>让(i, j)之间的最短路径经过<script type="math/tex"> k_1 </script>, 
+所以，(i, j)之间的最短路径没有被找到，这个算法好像是错误的。</p>
+
+<p>我开始老是纠结在这样的感觉中，
+认为Floyd算法可能并没有找到一条最短的路径，
+可是又总是找不到一个反例，
+后面经过仔细地思考，总结出两种方法来说明这个算法的正确性，
+解除了我的疑虑。</p>
+
+<h4 id="floyd-1">通过循环不变式来证明Floyd算法的正确性</h4>
+
+<p>通过证明以下循环不变式证明算法的正确性:</p>
+
+<p>在第k轮迭代开始前，对于任意节点对(i, j)，
+此时的最短路径长度为使用节点{1, 2, .., k-1}作为中间节点的最短路径长度。</p>
+
+<ol>
+  <li>初始化：在开始时，k=1, 此时的最短的路径为不使用任何中间节点的最短路径。</li>
+  <li>保持：在第k轮迭代开始时，
+此时(i, j)之间的最短路径为使用{1，2，&#8230;, k-1}作为中间节点的最短路径，
+令p为(i, j)之间使用{1, 2, &#8230;, k}的最短路径：
+    <ul>
+      <li>如果path[i][k] + path[k][j] &lt; path[i][j]，
+ 那么此时p一定为<script type="math/tex"> i \xrightarrow{p_1} k \xrightarrow{p_2} j </script>，
+ 其中<script type="math/tex"> p_1 </script>为(i, k)之间使用{1, 2, &#8230;, k-1}作为中间节点的最短路径，
+ <script type="math/tex"> p_2 </script>为(k, j)之间使用{1, 2, &#8230;, k-1}作为中间节点的最短路径。
+ 所以此时p的长度为path[i][k] + path[k][j]，不变式得以保持</li>
+      <li>如果path[i][k] + path[k][j] &gt;= path[i][j]，
+ 那么此时p一定也是(i, j)仅经过{1, 2, &#8230;, k-1}的最短路径(也就是说，
+ 此时p一定不经过k)，p的长度就是path[i][j], 不变式同样可以保持</li>
+    </ul>
+  </li>
+  <li>终止：循环结束时，k=n+1, 此时(i, j)的最短路径是使用任意节点作为中间节点的最短路径，
+也就是(i, j)的最短路径。</li>
+</ol>
+
+<p>对于这个循环不变式，定义<script type="math/tex"> path^{(k)}(i, j) </script>表示(i, j)之间仅使用节点1,&#8230;,k作为中间节点的最短路径的长度，
+利用这个递推公式：</p>
+
+<script type="math/tex; mode=display">
+path^{(k)}(i, j) = min\{ path^{(k-1)}(i, k) + path^{(k-1)}(k, j), path^{(k-1)}(i, j) \}
+</script>
+
+<p>可能要更好理解一些。</p>
+
+<h4 id="floyd-2">通过归纳证明Floyd算法的正确性</h4>
+
+<p>可以通过这样一种思路来证明：假设k是(i, j)最短路径中最大的中间节点，
+也就是说对于(i, j)最短路径中任意的中间节点m, 有<script type="math/tex"> m \leq k </script>，这样，
+k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
+能够将(i, j)之间最短路径长度正确的设置，那么这个算法就是正确的。
+在迭代k时，如果(i, k)和(k, j)之间的最短路径已经被正确设置时，
+那么(i, j)在迭代k结束之后能够被正确设置。</p>
+
+<p>下面通过归纳(i, j)路径中中间节点的个数n来证明在迭代k(k是(i, j)最短路径中最后被迭代的节点)时，
+(i, k)和(k, j)最短路径已经被正确的设置：</p>
+
+<ol>
+  <li>当n=1, 在迭代k时，(i, k)和(k, j)都没有中间节点，
+最短路径就是节点i和k以及k和j之间的距离, 已经被正确的设置。</li>
+  <li>如果<script type="math/tex"> n \leq s </script>时，命题成立。那么当n=s+1时，在迭代k时，
+对于路径(i, k), 它的中间节点的个数<script type="math/tex"> n_1 \leq s </script>，
+那么当这条路径的最后一个节点<script type="math/tex"> k_1 </script>被迭代时，<script type="math/tex"> (i, k_1) </script>和<script type="math/tex"> (k_1, k) </script>已经被正确设置，
+迭代之后，能够将路径(i, k)正确设置，同理可以证明路径(k , j)也能够被正确设置。</li>
+  <li>由上述两步可以得知对于任意个数的中间节点，(i, j)在迭代最后一个节点k时，
+(i, k)和(k, j)能够被正确的设置。</li>
+</ol>
+
+<h3 id="section-9">忽略我</h3>
+<p>最后还是吐槽一下动态规划这一章的翻译真的很烂，
+感觉和前面的章节不是同一个人翻译的，
+很多语句很不通顺，比如说有个反问句就绕了我好久，
+试着推测原文才明白什么意思。
+人和人之间还是有差距的啊，不管做什么都是，
+希望后面的几章能够翻译好一点，bless!</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/clrs/2012/12/04/clrs-10-13" title="《算法导论》之基本数据结构">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next" href="/clrs/2012/12/18/clrs-1618" title="贪心算法和B树">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>12 December 2012</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+            <a class='category' href='/categories/clrs/'>clrs</a>
+            <!--<li><a href="/categories/clrs">clrs   page.category 0</a></li>-->
+            <!---->
+            <!--<li><a href="/categories/clrs">clrs   page.category 0</a></li>-->
+            <!--<li><a href="/categories/"> <span> 0 </span></a></li>-->
+            <!---->
+            <!--<a href="/categories/">clrs</a>-->
+          <!--clrs-->
+        </span>
+      </section>
+    
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#clrs-ref">clrs <span>5</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+    
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+
