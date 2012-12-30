@@ -219,6 +219,42 @@
       <!--[> iterate through the posts on this page <]-->
       
         <div class="post">
+          <h1><a href="/clrs/2012/12/01/clrs-8-9">算法导论8~9章读书笔记</a></h1>
+          <p class="meta">December  1, 2012</p>
+            <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h3 id="section">比较排序的时间下界</h3>
+<p>合并排序和堆排序在最坏情况下能够在O(nlgn)时间内排序n个数，
+而快速排序则能够在平均情况下达到这个上界。
+这些算法在确定元素的次序时，
+都是基于元素间的比较。
+这类排序算法称为<strong>比较排序</strong>。</p>
+
+<p>比较排序的时间下界是O(nlgn)，
+这意味着所有的基于比较的排序算法，在最坏情况下都要用<script type="math/tex"> \Omega (n \lg n) </script>
+次比较来完成排序。</p>
+
+<p>这是因为比较排序可以被抽象为<strong>决策树</strong>，
+决策树是一棵满二叉数，
+它的每一条从根节点到叶节点的路径都对应于比较排序的一次执行过程，
+达到叶节点时，叶节点确定了这次排序的结果。
+所以比较排序算法的最坏情况的比较次数等于决策树的高度。
+n个数的排列总数有n!，每一种排列都必须在决策树的叶节点中出现，
+高度为h的决策树的叶节点个数最多为<script type="math/tex"> 2^h </script>，故有：</p>
+
+<script type="math/tex; mode=display">
+n! \leq 2^h \\
+\Longrightarrow   h \geq \lg (n!) = \Omega (n \lg n)
+</script>
+
+<p>所以比较排序的时间下界是O(nlgn)。</p>
+
+<p class='more'><a href='/clrs/2012/12/01/clrs-8-9'>More...</a></p>
+        </div>
+      
+        <div class="post">
           <h1><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></h1>
           <p class="meta">November 19, 2012</p>
             <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
@@ -257,34 +293,6 @@
 <p class='more'><a href='/clrs/2012/11/19/clrs-1'>More...</a></p>
         </div>
       
-        <div class="post">
-          <h1><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></h1>
-          <p class="meta">November 15, 2012</p>
-            
-<p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
-才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,
-使它能够具有很强的稳定性同时具有很快的相应速度，
-这其中涉及的东西远远不是数据库的课上写几条sql语句那么简单。
-而在这篇博客中，我也仅就mysql的一些基本优化知识谈谈我的看法，
-待以后更加深入研究之后，再继续分享。</p>
-
-<h2 id="mysql">MySQL的表的设计</h2>
-
-<h3 id="normalized-schema-or-denormalized-schema">Normalized Schema Or Denormalized Schema?</h3>
-<p>在一般的数据库教材中，讲到设计库表结构的设计，
-都是将数据库设计范式作为设计的准则，因为这样设计的数据库表重复很少，
-这样就会减少存储空间，
-同时因为重复的内容少，维护起来也很方便，
-因为如果很多的重复的话一个信息的更改可能会需要在多处进行更改才能保证数据的一致性。
-然而，数据库范式并不是万能的，这样设计出来的数据库会造成查找时间的加长，
-因为要查找一些数据往往需要将多个表join起来，而join是比较费时间的数据库操作，
-同时，一些有关系的列被分散到各个表中，不好组合在一起建成一个索引，
-这样也会减低查找的速度。
-所以在设计数据库的表的结构时，要结合应用的实际情况，平衡考虑。</p>
-
-<p class='more'><a href='/mysql/2012/11/15/mysql-basic'>More...</a></p>
-        </div>
-      
 
       <!--[> links to prev and next pages for browsing thru archives <]-->
       
@@ -314,30 +322,34 @@
              <!---->
         <!---->
         
+        <!--<li><a href="/categories/clrs">clrs <span> 6 </span></a></li></span>-->
+        <li><a href="/categories/clrs">clrs <span> 6 </span></a></li>
+        
         <!--<li><a href="/categories/mysql">mysql <span> 1 </span></a></li></span>-->
         <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
         
         <!--<li><a href="/categories/Feelings">Feelings <span> 1 </span></a></li></span>-->
         <li><a href="/categories/Feelings">Feelings <span> 1 </span></a></li>
         
-        <!--<li><a href="/categories/lessons">lessons <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/lessons">lessons <span> 1 </span></a></li>
-        
-        <!--<li><a href="/categories/clrs">clrs <span> 5 </span></a></li></span>-->
-        <li><a href="/categories/clrs">clrs <span> 5 </span></a></li>
+        <!--<li><a href="/categories/linux">linux <span> 1 </span></a></li></span>-->
+        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
         
         <!--<li><a href="/categories/python">python <span> 1 </span></a></li></span>-->
         <li><a href="/categories/python">python <span> 1 </span></a></li>
         
-        <!--<li><a href="/categories/linux">linux <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
+        <!--<li><a href="/categories/lessons">lessons <span> 1 </span></a></li></span>-->
+        <li><a href="/categories/lessons">lessons <span> 1 </span></a></li>
         
-        <!--Liquid error: undefined method `sort!' for #<Hash:0xb4380130>-->
+        <!--Liquid error: undefined method `sort!' for #<Hash:0xb54dd07c>-->
             <!---->
             <!--
 
 
   
+     
+    	<li><a href="/categories.html#clrs-ref">
+    		clrs <span>6</span>
+    	</a></li>
      
     	<li><a href="/categories.html#mysql-ref">
     		mysql <span>1</span>
@@ -347,20 +359,16 @@
     		Feelings <span>1</span>
     	</a></li>
      
-    	<li><a href="/categories.html#lessons-ref">
-    		lessons <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#clrs-ref">
-    		clrs <span>5</span>
+    	<li><a href="/categories.html#linux-ref">
+    		linux <span>1</span>
     	</a></li>
      
     	<li><a href="/categories.html#python-ref">
     		python <span>1</span>
     	</a></li>
      
-    	<li><a href="/categories.html#linux-ref">
-    		linux <span>1</span>
+    	<li><a href="/categories.html#lessons-ref">
+    		lessons <span>1</span>
     	</a></li>
     
   
@@ -368,72 +376,20 @@
 -->
         </ul>
         <!-- -->
-          <!--<h2 id="mysql-ref">mysql</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="Feelings-ref">Feelings</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="lessons-ref">lessons</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
           <!--<h2 id="clrs-ref">clrs</h2>-->
           <!--<ul>-->
             <!--  -->
             <!--
 
 
+  
+    
+      
+      	
+      	<li><a href="/clrs/2012/12/30/clrs-22-23">图的基本算法</a></li>
+      	
+      
+    
   
     
       
@@ -480,7 +436,7 @@
 -->
           <!--</ul>-->
         <!-- -->
-          <!--<h2 id="python-ref">python</h2>-->
+          <!--<h2 id="mysql-ref">mysql</h2>-->
           <!--<ul>-->
             <!--  -->
             <!--
@@ -490,7 +446,27 @@
     
       
       	
-      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
+      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="Feelings-ref">Feelings</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
       	
       
     
@@ -511,6 +487,46 @@
       
       	
       	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="python-ref">python</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="lessons-ref">lessons</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
       	
       
     

@@ -4,14 +4,151 @@
   <title><![CDATA[Category: clrs | Chouqin & Laoqi]]></title>
   <link href="/categories/clrs/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2012-12-22T21:45:48+08:00</updated>
+  <updated>2012-12-30T22:09:53+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqinnameQiping Ligithubchouqinemailliqiping1991@gmail.com]]></name>
+    <name><![CDATA[weiboatchouqingithubchouqinnameQiping Liemailliqiping1991@gmail.com]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[图的基本算法]]></title>
+    <link href="/clrs/2012/12/30/clrs-22-23"/>
+    <updated>2012-12-30T00:00:00+08:00</updated>
+    <id>/clrs/2012/12/30/clrs-22-23</id>
+    <content type="html"><![CDATA[<p></p>
+
+<h2 id="section">广度优先遍历</h2>
+
+<p>对于广度优先遍历，在每次遍历时，都试图把同一个级别的所有节点先遍历，
+再遍历下一个级别的节点。它的实现方式是通过一个队列保存需要去遍历的节点，
+在每次遍历到一个节点时，都把它的邻接节点放入队列（如果这个节点没有被遍历过的话）等待着被遍历，
+这样能保证更深层次的节点会遍历在它的任何邻接节点的后面，因为它的邻接节点更先进入队列。</p>
+
+<p>广度优先遍历可以用来求解无权图中的单源最短路径问题，
+对于节点s，在它上面执行一次广度优先遍历就能求出各个节点和s相距的节点数，
+这也就是它们到达节点s所需的距离。对于广度优先遍历，
+算法首先会发现和s距离为k的所有节点，然后再去发现和s距离为k+1的节点。
+这其实和Dijkstra算法是采用同样的思想，先找出和s距离更近的节点，
+在这基础上再找出更远的节点，因为这样的话当确定好了更远节点的路径时，
+就不需要反过来再去修改更近节点的路径，因为通过更远节点的路径肯定没有先前的那条路径好。</p>
+
+<h2 id="section-1">深度优先遍历</h2>
+
+<p>深度优先遍历与广度优先遍历不一样，在遍历到每一个节点时，尽量往更深节点去遍历，
+遍历完之后再考虑同一个级别的节点。它的实现方式不需要队列，
+直接通过递归函数就可以完成这个步骤。每次遍历到一个节点时，先把当前的节点设为已经遍历过，
+然后在它的邻接节点上执行递归遍历的函数（没有遍历过的邻接节点）。如果对整个图进行深度优先遍历，
+首先会选定一个节点，然后在它上面执行深度优先遍历，如果遍历到了所有节点就停止，
+否则选择另一个没有遍历到的节点重复这个过程直至所有的节点都遍历完。在深度优先搜索的过程中，
+会形成一棵棵以挑选出的节点为根的深度优先树组成的深度优先搜索森林。</p>
+
+<p>在深度优先遍历遍历到每一个节点时，可以利用一个计数器记录遍历节点开始时的时间和结束时的时间，
+依据这个时间来确定节点遍历的相对顺序。设节点v遍历的开始时间为d[v]，结束时间为f[v]，
+那么时间区间[d[v], f[v]]就代表了这个节点处在遍历过程中的时间，更具体的说，
+是节点处在递归函数的栈中的时间。因此对于任何节点u, v，
+[d[v], f[v]]和[d[u]， f[u]]只能是不相交或者是一个包含另一个。
+（通过栈可能更好理解一点）</p>
+
+<p>利用这样的计数器，可以完成对图的很多操作，比如说拓扑排序和有向图的连通性检查。</p>
+
+<!--more-->
+
+<h3 id="section-2">拓扑排序</h3>
+
+<p>拓扑排序是对于有向无环图的节点进行一次排序，使得对于任意的节点u, v，如果u有一条边到v，
+那么u一定出现在v的前面。</p>
+
+<p>利用深度优先遍历得到的f值，可以很容易地对节点进行拓扑排序：按f值的大小进行排序，
+具有较大f值的节点排在前面。</p>
+
+<p>可以利用f值进行排序是通过如下性质保证的：</p>
+
+<pre><code>如果f[u] &gt; f[v]，那么一定没有从v到u的边。
+</code></pre>
+
+<p>要证明这个性质，可以考虑f[u] &gt; f[v]的两种情况：</p>
+
+<ul>
+  <li>
+    <p>[d[u], f[u]]与[d[v], f[v]]不相交且在其之后，那么此时遍历完v之后，
+u还没开始遍历，此时不可能有v到u的边，因为如果有的话那么遍历v完成之前就会遍历u，矛盾。</p>
+  </li>
+  <li>
+    <p>[d[u], f[u]]包含[d[v], f[v]]，那么说明在遍历u结束之前遍历到了v，这样就存在一条从u到v的路径，
+如果有v到u的边，就会形成一个环，与无环图矛盾。</p>
+  </li>
+</ul>
+
+<h3 id="section-3">有向图的强连通分量</h3>
+
+<p>对于处于有向图的同一个强连通分量的任意节点u, v，存在一条路径从u到v，
+同时也存在一条路径从v到u。显然任意两个连通分量不能相交，目的是找出有向图中的所有强连通分量，
+注意单个节点可以作为一个强连通分量。</p>
+
+<p>利用深度优先遍历，可以确定有向图的所有强连通分量，方法如下：</p>
+
+<ol>
+  <li>首先通过一次深度优先遍历确定所有节点的f值</li>
+  <li>按f值倒序深度优先遍历原图的反图，在得到的深度优先搜索森林中，
+处于同一棵深度优先搜索树中的节点组成一个强连通分量。</li>
+</ol>
+
+<p>这个算法的正确性由下面的性质保证：</p>
+
+<pre><code>对于任意节点u,v，u,v处于同一强连通分量当且仅当它们在第2步中处于同一棵深度优先搜索树。
+</code></pre>
+
+<p>证明这个性质，不妨设f[u] &gt; f[v]:</p>
+
+<ul>
+  <li>左边到右边, 如果u，v处于同一强连通分量，那么在反图中一定存在从u到v的路径，
+那么遍历到u时一定会沿着这条路径遍历到v，保证了u，v在同一棵深度优先搜索树中。</li>
+  <li>
+    <p>右边到左边，如果u, v在同一棵深度优先搜索树中，说明在反图中有一条u到v的路径，
+也就是原图有一条从v到u的路径，只需要证明原图有一条从u到v的路径即可。
+和证明拓扑排序一样，f[u] &gt; f[v]只有两种情况：</p>
+
+    <ul>
+      <li>
+        <p>[d[u], f[u]]与[d[v], f[v]]不相交且在其之后，那么此时遍历完v之后，
+  u还没开始遍历，由于存在从v到u的路径，那么遍历v完成之前就会遍历u，所以这种情况不可能。</p>
+      </li>
+      <li>
+        <p>[d[u], f[u]]包含[d[v], f[v]]，这种情况是唯一可能的情况，此时存在一条从u到v的路径</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>因此证明结束。</p>
+
+<h2 id="section-4">最小生成树</h2>
+
+<p>在最小生成树问题中，给定一个无向连通图G = (V, E)，从E中挑出权值和最小的|V| - 1条边，
+使得这些节点依旧连通。</p>
+
+<p>有两种算法求解最小生成树问题，而且两种算法都是贪心算法，都满足贪心算法的贪心选择性质。</p>
+
+<h3 id="kruskal">Kruskal算法</h3>
+
+<p>在Kruskal算法中，每次都试图挑选权值最小的一条边，
+但要保证添加这条边不会导致存在回路，如果会导致回路，则不考虑这条边。</p>
+
+<p>可以很简单的通过修改最优解的方式证明这个算法的贪心选择性质，从而证明算法的正确性。</p>
+
+<h3 id="prim">Prim算法</h3>
+
+<p>在Prim算法中，利用一个不断增长的集合S，这个集合原来只包含一个元素，
+然后每次往集合S中添加一个节点，这个节点是V-S中距离S中任意节点最近的节点，
+在把这个节点添加到S的同时，把这个节点和S中与这个节点最近的节点组成的边添加为最小生成树的边。
+显然，Prim算法能够保证每次添加一条边时，都不会导致回路。</p>
+
+<p>同样可以很简单的通过修改最优解的方式证明这个算法的贪心选择性质，从而证明算法的正确性。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[贪心算法和B树]]></title>
@@ -20,7 +157,7 @@
     <id>/clrs/2012/12/18/clrs-1618</id>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <p></p>
 
@@ -75,6 +212,8 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 </script>
 
 <p>得到一个最优的解，而不用考虑其它元素作为划分元素时的子问题。</p>
+
+<!--more-->
 
 <p>定义函数递归函数RECURSIVE-ACTIVITY-SELECTOR(S, f, i, n)求取子问题<script type="math/tex"> S_{i(n+1)} </script>的解，
 伪代码如下：</p>
@@ -1121,188 +1260,6 @@ i是在哪一个部分中去相应部分中进行查找，这种方法能保证�
 <p>类似的小于x的元素个数至少有<script type="math/tex"> \frac{3n}{10} - 6 </script>个，
 所以至多有<script type="math/tex"> \frac{7n}{10} + 6 </script>个元素被递归的调用SELECT，
 有了这个结论之后就能保证SELECT函数可以在线性的时间内完成。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[《算法导论》读书总结1]]></title>
-    <link href="/clrs/2012/11/19/clrs-1"/>
-    <updated>2012-11-19T00:00:00+08:00</updated>
-    <id>/clrs/2012/11/19/clrs-1</id>
-    <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-
-<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<p></p>
-
-<p>正如上一篇所说，我这几天都在学习《算法导论》这本书，
-也终于是下定决心要好好把这本书看出个所以然来。
-这几天看下来，发现最大的困扰并不是知识的难度，
-而是克服自己内心的浮躁。因为这本书并不像其他的工科教材，
-它讲得东西是比较偏理论一些，里面充满了各种数学公式，数学定理,
-包括一个算法正确性的证明，都采取了形式化的证明手段，
-力求证明的数学严格性。
-如果只是需要粗粗理解各种算法是什么样的以及如何实现的话，
-那么看这本书有点不太合适，
-因为这方面的东西并不是这本书的重点。</p>
-
-<p>而我，也是在粗粗了解了各种算法和实现的基础上学习这本书的，
-一开始扫了一下书的第一章，第二章和第六章，
-发现和其他的算法书还差不多嘛，
-直到看到第七章快速排序，
-看到作者在大概描述完快速排序算法之后
-（这个快速排序的划分函数还和我以前见过的都不一样，更加容易理解和实现），
-转而开始分析快速排序的性能和随机化版本，我才明白，
-我不能再这么浮躁地只是抱着了解了解算法的目的来学习这本书了。
-于是我又回过去仔仔细细地从头看到了第7章，
-虽然说这本书里的定理和数学公式很多，但是并不难理解，
-因为作者总是把每一个步骤解释地十分细致和透彻，
-每一步的证明没有很大的跨越，
-每一个结论的得出都会指明依据的定理或者是前面的结论。
-所以说好好看下去其实并没有很大难度，
-关键是要能够静得下心。</p>
-
-<p>下面是1～7章中我的几点体会：</p>
-
-<!--more-->
-
-<h3 id="section">循环不变式</h3>
-<p>循环不变式用于证明算法的正确性，
-它能够保证一个算法能够终止，
-而且当它终止时，得到的结果是正确的结果。
-循环不变式的证明由三个部分组成：</p>
-
-<ul>
-  <li>初始化: 在循环的开始时，循环不变式成立。</li>
-  <li>保持：如果在某一轮迭代之前循环不变式成立，那么在迭代之后，
-循环不变式仍然成立。</li>
-  <li>终止：如果保持循环不变式一直到循环的终止，那么这个算法将得到正确的结果。</li>
-</ul>
-
-<p>循环不变式与数学归纳法十分类似，采用的也是同样的思想。
-在应用循环不变式对算法的正确性进行证明时，
-难点不在于上述的三个步骤，而在于循环不变式的构造，
-要构造一个循环不变式能够在循环过程中始终保持，
-而且能体现算法正确性，这确实需要一定的技巧。
-这就类似于在应用数学归纳法时选取归纳条件。</p>
-
-<p>比如书中思考题2-2：（证明冒泡排序的正确性）</p>
-
-<pre><code>for i &lt;- 1 to length[A]
-    do for j &lt;- length[A] downto i+1
-        do if A[j] &lt; A[j-1]
-            then exchange A[j] &lt;-&gt; A[j-1]
-</code></pre>
-
-<p>b)对于2-4行(内层循环)给出一个循环不变式，并证明这个循环不变式是成立的。</p>
-
-<p>内层循环的作用是把A[i]到A[n]（n是length[A]）中最小元素放到A[i],
-可以采用如下的循环不变式来表示：</p>
-
-<p>在每一轮迭代的开始，子数组A[j..n]中最小的元素位于A[j]。</p>
-
-<p>下面对这个循环不变式进行证明：</p>
-
-<ul>
-  <li>初始化： 在第一轮迭代开始前，j = n，A[j..n]中就只有一个元素，
-最小的元素位于A[n]。</li>
-  <li>保持：在第k轮迭代时，
-    <ul>
-      <li>如果A[j] &gt;= A[j-1]，由循环不变式可知，
-A[j]是字数组A[j..n]中最小的元素，那么循环结束时A[j-1]将是字数组A[j-1..n]中的最小元素。</li>
-      <li>如果A[j] &lt; A[j-1], 那么在互换A[j]和A[j-1]之后，最小的元素仍然是A[j-1]。</li>
-    </ul>
-  </li>
-  <li>终止: 在循环结束时j=i, 说明A[i]是字数组A[i..n]中的最小元素，
-算法达到了把最小元素放到A[i]的目的。</li>
-</ul>
-
-<h3 id="section-1">渐进符号</h3>
-<p>渐进符号用户描述一个算法的复杂度，以前只知道
-渐进符号用于描述算法的量级，比如<script type="math/tex"> 2n^2 = O(n^2) </script> 
-说明 
-<script type="math/tex"> 2n^2 </script>
-的量级是
-<script type="math/tex">O(n^2)</script>。</p>
-
-<p>书上给出了准确的定义:</p>
-
-<script type="math/tex; mode=display">
-O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
-</script>
-
-<p>同时有：</p>
-
-<script type="math/tex; mode=display">
-f(n) = O(g(n)) \Longleftrightarrow f(n) \in O(g(n)) 
-</script>
-
-<p>其他的符号如<script type="math/tex">\Omega</script>, <script type="math/tex">\Theta </script>都是类似的定义。
-当然，我们只需要知道用<script type="math/tex"> O(f(n)) </script>来确定一个函数的上界，
-用<script type="math/tex"> \Omega(f(n)) </script>来确定一个函数的下界就可以了。</p>
-
-<h3 id="section-2">递归与主定理</h3>
-<p>分治法是一种很常见的算法设计方法，
-分治法的时间复杂度一般由如下的递归式给出：</p>
-
-<script type="math/tex; mode=display">
-T(n) = aT(n/b) + f(n)
-</script>
-
-<p>其中<script type="math/tex"> a \geq 1, b > 1</script>，f(n)一般用渐进函数表示。</p>
-
-<p>对于这样的递归式，主定理给出了计算T(n)的方法：</p>
-
-<ul>
-  <li>如果存在常数<script type="math/tex"> \epsilon > 0 </script>，有
-<script type="math/tex"> f(n) = O(n^{\log_ba - \epsilon}) </script>，
-则
-<script type="math/tex"> T(n) = \Theta(n^{\log_ba}) </script>;</li>
-  <li>如果
-<script type="math/tex"> f(n) = \Theta(n^{\log_ba}) </script>，
-则
-<script type="math/tex"> T(n) = \Theta(n^{\log_ba}\lg n) </script>;</li>
-  <li>如果存在常数<script type="math/tex"> \epsilon > 0 </script>，有
-<script type="math/tex"> f(n) = \Omega(n^{\log_ba + \epsilon}) </script>，
-且对常数<script type="math/tex">% &lt;![CDATA[
- c < 1  %]]&gt;</script>与足够大的n,有
-<script type="math/tex"> af(n/b) \leq cf(n) </script>，则
-<script type="math/tex"> T(n) = \Theta(f(n)) </script>。</li>
-</ul>
-
-<p>运用主定理，能够很快地求出分治算法的复杂度。</p>
-
-<h3 id="section-3">指示器随机变量</h3>
-<p>指示器随机变量的定义如下:</p>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
- 
-    X_H = I\{H\} = 
-     \begin{cases}
-         1 & \text{如果H发生} \\
-         0 & \text{如果H没有发生}
-     \end{cases}
- %]]&gt;</script>
-
-<p>指示器随机变量是随机变量的一种，可以求出它的期望如下：
-$$
-    E[X_H] = Pr_H
-$$</p>
-
-<p>指示器随机变量有一个很好的性质，它只能取0或者1，
-可以把它这些变量加起来求总的发生次数,
-因此当它应用到重复随机试验中时,
-统计重复试验某一事件发生次数的期望，
-比如在随机化的快速排序中统计交换次数的期望,
-可以通过如下公式得到：</p>
-
-<script type="math/tex; mode=display"> 
-E[X] = E[\sum_{i=1}^n X_i] = \sum_{i=1}^n E[X_i]
-</script>
-
-<p>要使等式的第二步成立，不一定要保证<script type="math/tex"> X_i </script>之间是相互独立的。</p>
-
-<p>这周的读书笔记就先写到这里，下周开始写第8章开始的内容。</p>
 ]]></content>
   </entry>
   
