@@ -4,10 +4,10 @@
   <title><![CDATA[Category: mysql | Chouqin & Laoqi]]></title>
   <link href="/categories/mysql/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:53:25+08:00</updated>
+  <updated>2013-01-01T15:59:33+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqinemailliqiping1991@gmail.comgithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,7 @@
     <link href="/mysql/2012/11/15/mysql-basic"/>
     <updated>2012-11-15T00:00:00+08:00</updated>
     <id>/mysql/2012/11/15/mysql-basic</id>
-    <content type="html"><![CDATA[<p></p>
+    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
 
 <p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
 才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,

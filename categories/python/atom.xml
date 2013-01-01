@@ -4,10 +4,10 @@
   <title><![CDATA[Category: python | Chouqin & Laoqi]]></title>
   <link href="/categories/python/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:53:25+08:00</updated>
+  <updated>2013-01-01T15:59:33+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqinemailliqiping1991@gmail.comgithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,7 @@
     <link href="/python/2012/11/11/chinese-encoding"/>
     <updated>2012-11-11T00:00:00+08:00</updated>
     <id>/python/2012/11/11/chinese-encoding</id>
-    <content type="html"><![CDATA[<p></p>
+    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
 
 <p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
 在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
@@ -39,16 +39,15 @@ E4B8AD转化为“中”。</p>
 
 <p>下面通过代码来对解释一下pytho中的编码问题。</p>
 
-<p><div class="highlight"><pre><code class="python">   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;a = &amp;#8220;我是123&amp;#8221;</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;a</span>
-    <span class="o">&amp;</span><span class="c">#8216;\xe6\x88\x91\xe6\x98\xaf123&amp;#8217;</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;type(a)</span>
-    <span class="nb">str</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;len(a)</span>
-    <span class="mi">9</span>
-</code></pre>
-</div>
-</p>
+<p>{% highlight python%}
+   &#160;&#187;&gt;a = &#8220;我是123&#8221;
+   &#160;&#187;&gt;a
+    &#8216;\xe6\x88\x91\xe6\x98\xaf123&#8217;
+   &#160;&#187;&gt;type(a)
+    str
+   &#160;&#187;&gt;len(a)
+    9
+{% endhighlight %}</p>
 
 <!--more-->
 
@@ -67,35 +66,32 @@ E4B8AD转化为“中”。</p>
 
 <p>下面看如何与unicode进行相互转化:(此时采用的编码是utf8，其他的编码也是一样的处理):</p>
 
-<p><div class="highlight"><pre><code class="python">   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;ua = a.decode(&amp;#8220;utf-8&amp;#8221;)</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;ua</span>
-    <span class="n">u</span><span class="o">&amp;</span><span class="c">#8217;\u6211\u662f123&amp;#8217;</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;print ua</span>
-    <span class="err">我是</span><span class="mi">123</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;type(ua)</span>
-    <span class="nb">unicode</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;len(ua)</span>
-    <span class="mi">5</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;b = ua.encode(&amp;#8220;utf-8&amp;#8221;)</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;b</span>
-    <span class="o">&amp;</span><span class="c">#8216;\xe6\x88\x91\xe6\x98\xaf123&amp;#8217;</span>
-</code></pre>
-</div>
-</p>
+<p>{% highlight python%}
+   &#160;&#187;&gt;ua = a.decode(&#8220;utf-8&#8221;)
+   &#160;&#187;&gt;ua
+    u&#8217;\u6211\u662f123&#8217;
+   &#160;&#187;&gt;print ua
+    我是123
+   &#160;&#187;&gt;type(ua)
+    unicode
+   &#160;&#187;&gt;len(ua)
+    5
+   &#160;&#187;&gt;b = ua.encode(&#8220;utf-8&#8221;)
+   &#160;&#187;&gt;b
+    &#8216;\xe6\x88\x91\xe6\x98\xaf123&#8217;
+{% endhighlight %}</p>
 
 <p>将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：</p>
 
-<p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="o">&amp;</span><span class="c">#8220;我是123&amp;#8221;, &amp;#8220;utf-8&amp;#8221;)</span>
-</code></pre>
-</div>
-</p>
+<p>{% highlight python%}
+    ua = unicode(&#8220;我是123&#8221;, &#8220;utf-8&#8221;)
+{% endhighlight %}</p>
 
 <p>或者是</p>
 
-<p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="n">u</span><span class="o">&amp;</span><span class="c">#8221;我是123&amp;#8221;</span>
-</code></pre>
-</div>
-</p>
+<p>{% highlight python%}
+    ua = u&#8221;我是123&#8221;
+{% endhighlight %}</p>
 
 <p>得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，
 都当作同样的字符来进行处理，这样一个unicode的长度就是所有字符的个数，而不管这些字符是中文

@@ -4,10 +4,10 @@
   <title><![CDATA[Category: lessons | Chouqin & Laoqi]]></title>
   <link href="/categories/lessons/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:53:25+08:00</updated>
+  <updated>2013-01-01T15:59:33+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqinemailliqiping1991@gmail.comgithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,7 @@
     <link href="/lessons/2011/12/29/jekyll-introduction"/>
     <updated>2011-12-29T00:00:00+08:00</updated>
     <id>/lessons/2011/12/29/jekyll-introduction</id>
-    <content type="html"><![CDATA[<p></p>
+    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
 
 <p>This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
 Directly following the intro we&#8217;ll learn exactly <em>how</em> Jekyll does what it does.</p>
@@ -257,20 +257,15 @@ There is a special variable in all templates named : <code>content</code>.
 The <code>content</code> variable holds the page/post content including any sub-template content previously defined.
 Render the content variable wherever you want your main content to be injected into your template:</p>
 
-<p>
-
-
-
-  <pre><code>&#8230;&lt;/p&gt;
-&lt;body&gt;
-  &lt;div id="sidebar"&gt; ... &lt;/div&gt;
-  &lt;div id="main"&gt;
-    &#123;{content}&#125;
-  &lt;/div&gt;
-&lt;/body&gt;
-&lt;p&gt;&#8230;</code></pre>
-
-</p>
+<p>{% capture text %}&#8230;</p>
+<body>
+  <div id="sidebar"> ... </div>
+  <div id="main">
+    |.{content}.|
+  </div>
+</body>
+<p>&#8230;{% endcapture %}
+{% include JB/liquid_raw %}</p>
 
 <h3 id="sub-templates">Sub-Templates</h3>
 
@@ -440,8 +435,8 @@ As noted, our main programming constraint is the fact that our API is limited to
 
 <h2 id="next-steps">Next Steps</h2>
 
-<p>Please take a look at <a href=""></a> 
-or jump right into <a href="">Usage</a> if you&#8217;d like.</p>
+<p>Please take a look at <a href="{{ BASE_PATH }}{{ site.categories.api.first.url }}">{{ site.categories.api.first.title }}</a> 
+or jump right into <a href="{{ BASE_PATH }}{{ site.categories.usage.first.url }}">Usage</a> if you&#8217;d like.</p>
 ]]></content>
   </entry>
   

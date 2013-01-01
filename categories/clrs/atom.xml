@@ -4,10 +4,10 @@
   <title><![CDATA[Category: clrs | Chouqin & Laoqi]]></title>
   <link href="/categories/clrs/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:53:25+08:00</updated>
+  <updated>2013-01-01T15:59:33+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqinemailliqiping1991@gmail.comgithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,7 @@
     <link href="/clrs/2012/12/30/clrs-22-23"/>
     <updated>2012-12-30T00:00:00+08:00</updated>
     <id>/clrs/2012/12/30/clrs-22-23</id>
-    <content type="html"><![CDATA[<p></p>
+    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
 
 <h2 id="section">广度优先遍历</h2>
 
@@ -157,9 +157,9 @@ u还没开始遍历，此时不可能有v到u的边，因为如果有的话那�
     <id>/clrs/2012/12/18/clrs-1618</id>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<p></p>
+<p>{% include JB/setup %}</p>
 
 <h2 id="section">贪心算法</h2>
 <p>动态规划是一种解决问题的通用方法，
@@ -435,10 +435,10 @@ B树也正是实现了这样的思想，B树的深度不会太深，
     <link href="/clrs/2012/12/12/clrs-14-15"/>
     <updated>2012-12-12T00:00:00+08:00</updated>
     <id>/clrs/2012/12/12/clrs-14-15</id>
-    <content type="html"><![CDATA[<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <content type="html"><![CDATA[<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<p></p>
+<p>{% include JB/setup %}</p>
 
 <h2 id="section">红黑树的扩充</h2>
 
@@ -644,14 +644,13 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
 基本思想是通过n（n为节点个数）次循环更新所有节点对之间的最短路径，
 伪代码如下：</p>
 
-<p><div class="highlight"><pre><code class="pascal">    <span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
-                <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="err">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">then</span>
-                    <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">:=</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">;</span>
-</code></pre>
-</div>
-</p>
+<p>{% highlight pascal%}
+    for k := 1 to n
+        for i := 1 to n
+            for j := 1 to n
+                if path[i][k] + path[k][j] &lt; path[i][j] then
+                    path[i][j] := path[i][k]+path[k][j];
+{% endhighlight %}</p>
 
 <p>在每次迭代时，对于任意节点对(i, j)，如果(i, k)的路径长度加(k, j)的路径长度小于
 原来的(i, j)的路径长度，
@@ -760,9 +759,9 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
     <id>/clrs/2012/12/04/clrs-10-13</id>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<p></p>
+<p>{% include JB/setup %}</p>
 
 <h2 id="section">散列表中碰撞的解决</h2>
 <p>由于散列表的元素个数小于关键字的取值集合U,
@@ -1112,9 +1111,9 @@ $$</p>
     <id>/clrs/2012/12/01/clrs-8-9</id>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<p></p>
+<p>{% include JB/setup %}</p>
 
 <h3 id="section">比较排序的时间下界</h3>
 <p>合并排序和堆排序在最坏情况下能够在O(nlgn)时间内排序n个数，
