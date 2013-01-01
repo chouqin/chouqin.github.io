@@ -181,6 +181,10 @@
       
     
   
+    
+      
+    
+  
 
 
 
@@ -219,6 +223,79 @@
       <!--[> iterate through the posts on this page <]-->
       
         <div class="post">
+          <h1><a href="/clrs/2012/12/04/clrs-10-13">《算法导论》之基本数据结构</a></h1>
+          <p class="meta">December  4, 2012</p>
+            <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h2 id="section">散列表中碰撞的解决</h2>
+<p>由于散列表的元素个数小于关键字的取值集合U,
+因此会有两个不同的关键字映射到散列表的同一个槽上，
+这时就发生了碰撞。发生了碰撞时，
+书上给出了两种方法来解决，
+而且保证此时的散列表平均情况下的查找复杂度是O(1)。</p>
+
+<h3 id="section-1">链接法</h3>
+<p>在链接法中，关键字映射到同一个槽上的元素通过一个链表来保存，
+此时散列表T[0..m-1]的任意元素T[j]是一个链表，
+当插入一个元素时，将元素放在它所对应的槽所指向链表的头部。
+下面对链接法的性能进行分析。</p>
+
+<p>定义散列表T的装载因子<script type="math/tex"> \alpha = n / m </script>, 其中n是元素个数，m是散列表槽数,
+我们假设元素满足简单一致散列的条件：
+任何元素散列到m个槽中的每一个的可能性是相同的。</p>
+
+<p>用<script type="math/tex"> n_j </script>表示链表T[j]的长度，有
+$$
+E[n_j] = \alpha = n/m
+$$</p>
+
+<p>有如下性质成立：</p>
+
+<ol>
+  <li>
+    <p>链接方式散列表在简单一致假设下，查找一个不存在元素所需时间的期望为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
+
+    <p>假设查找的元素是k, 它所对应的槽为h(k)，链表T[h(k)]的长度<script type="math/tex"> E[n_{h(k)}] = \alpha </script>，
+ 所以平均情况下需要遍历一个长度为<script type="math/tex"> \alpha </script>的链表，外加常数的散列函数时间和寻址T[h(k)]的时间，
+ 总共为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
+  </li>
+  <li>
+    <p>链接方式散列表在简单一致假设下，平均查找一个已存在的元素所需的时间为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
+
+    <p>对于任意元素x，检查的元素个数等于x所在链表中，出现在x之前的元素个数加1。
+ 设<script type="math/tex"> x_i </script>是第i个插入的元素，i=1,2,..,n,
+ 定义：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+     X_{ij} =
+      \begin{cases}
+          1 & x_i\text{和}x_j\text{在同一槽中} \\
+          0 & \text{否则}
+      \end{cases}
+  %]]></script>
+
+    <p>由简单一致性假设，<script type="math/tex"> E[X_{ij}] = 1/m </script>，所以检查元素个数的期望为：</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+ \begin{array} {lcl}
+ E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
+     &=& 1 + \frac{n-1}{2m} \\
+     &=& 1 + \frac{\alpha}{2} - \frac{\alpha}{2n}
+ \end{array}
+  %]]></script>
+
+    <p>所以平均查找时间为: <script type="math/tex"> \Theta (2 + \frac{\alpha}{2} - \frac{\alpha}{2n}) = \Theta (1 + \alpha) </script></p>
+  </li>
+</ol>
+
+<p class='more'><a href='/clrs/2012/12/04/clrs-10-13'>More...</a></p>
+        </div>
+      
+        <div class="post">
           <h1><a href="/clrs/2012/12/01/clrs-8-9">算法导论8~9章读书笔记</a></h1>
           <p class="meta">December  1, 2012</p>
             <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
@@ -254,45 +331,6 @@ n! \leq 2^h \\
 <p class='more'><a href='/clrs/2012/12/01/clrs-8-9'>More...</a></p>
         </div>
       
-        <div class="post">
-          <h1><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></h1>
-          <p class="meta">November 19, 2012</p>
-            <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-
-<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<p>正如上一篇所说，我这几天都在学习《算法导论》这本书，
-也终于是下定决心要好好把这本书看出个所以然来。
-这几天看下来，发现最大的困扰并不是知识的难度，
-而是克服自己内心的浮躁。因为这本书并不像其他的工科教材，
-它讲得东西是比较偏理论一些，里面充满了各种数学公式，数学定理,
-包括一个算法正确性的证明，都采取了形式化的证明手段，
-力求证明的数学严格性。
-如果只是需要粗粗理解各种算法是什么样的以及如何实现的话，
-那么看这本书有点不太合适，
-因为这方面的东西并不是这本书的重点。</p>
-
-<p>而我，也是在粗粗了解了各种算法和实现的基础上学习这本书的，
-一开始扫了一下书的第一章，第二章和第六章，
-发现和其他的算法书还差不多嘛，
-直到看到第七章快速排序，
-看到作者在大概描述完快速排序算法之后
-（这个快速排序的划分函数还和我以前见过的都不一样，更加容易理解和实现），
-转而开始分析快速排序的性能和随机化版本，我才明白，
-我不能再这么浮躁地只是抱着了解了解算法的目的来学习这本书了。
-于是我又回过去仔仔细细地从头看到了第7章，
-虽然说这本书里的定理和数学公式很多，但是并不难理解，
-因为作者总是把每一个步骤解释地十分细致和透彻，
-每一步的证明没有很大的跨越，
-每一个结论的得出都会指明依据的定理或者是前面的结论。
-所以说好好看下去其实并没有很大难度，
-关键是要能够静得下心。</p>
-
-<p>下面是1～7章中我的几点体会：</p>
-
-<p class='more'><a href='/clrs/2012/11/19/clrs-1'>More...</a></p>
-        </div>
-      
 
       <!--[> links to prev and next pages for browsing thru archives <]-->
       
@@ -322,59 +360,167 @@ n! \leq 2^h \\
              <!---->
         <!---->
         
-        <!--<li><a href="/categories/clrs">clrs <span> 6 </span></a></li></span>-->
-        <li><a href="/categories/clrs">clrs <span> 6 </span></a></li>
-        
-        <!--<li><a href="/categories/mysql">mysql <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
-        
-        <!--<li><a href="/categories/Feelings">Feelings <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/Feelings">Feelings <span> 1 </span></a></li>
-        
         <!--<li><a href="/categories/linux">linux <span> 1 </span></a></li></span>-->
         <li><a href="/categories/linux">linux <span> 1 </span></a></li>
-        
-        <!--<li><a href="/categories/python">python <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/python">python <span> 1 </span></a></li>
         
         <!--<li><a href="/categories/lessons">lessons <span> 1 </span></a></li></span>-->
         <li><a href="/categories/lessons">lessons <span> 1 </span></a></li>
         
-        <!--Liquid error: undefined method `sort!' for #<Hash:0xb54dd07c>-->
+        <!--<li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li></span>-->
+        <li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li>
+        
+        <!--<li><a href="/categories/mysql">mysql <span> 1 </span></a></li></span>-->
+        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
+        
+        <!--<li><a href="/categories/python">python <span> 1 </span></a></li></span>-->
+        <li><a href="/categories/python">python <span> 1 </span></a></li>
+        
+        <!--<li><a href="/categories/clrs">clrs <span> 6 </span></a></li></span>-->
+        <li><a href="/categories/clrs">clrs <span> 6 </span></a></li>
+        
+        <!--Liquid error: undefined method `sort!' for #<Hash:0xb6067640>-->
             <!---->
             <!--
 
 
   
      
-    	<li><a href="/categories.html#clrs-ref">
-    		clrs <span>6</span>
+    	<li><a href="/categories.html#linux-ref">
+    		linux <span>1</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#lessons-ref">
+    		lessons <span>1</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#Feelings-ref">
+    		Feelings <span>2</span>
     	</a></li>
      
     	<li><a href="/categories.html#mysql-ref">
     		mysql <span>1</span>
     	</a></li>
      
-    	<li><a href="/categories.html#Feelings-ref">
-    		Feelings <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#linux-ref">
-    		linux <span>1</span>
-    	</a></li>
-     
     	<li><a href="/categories.html#python-ref">
     		python <span>1</span>
     	</a></li>
      
-    	<li><a href="/categories.html#lessons-ref">
-    		lessons <span>1</span>
+    	<li><a href="/categories.html#clrs-ref">
+    		clrs <span>6</span>
     	</a></li>
     
   
 
 -->
         </ul>
+        <!-- -->
+          <!--<h2 id="linux-ref">linux</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="lessons-ref">lessons</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="Feelings-ref">Feelings</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/Feelings/2013/01/01/new-2013">再见2012，你好2013</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="mysql-ref">mysql</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
+        <!-- -->
+          <!--<h2 id="python-ref">python</h2>-->
+          <!--<ul>-->
+            <!--  -->
+            <!--
+
+
+  
+    
+      
+      	
+      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
+      	
+      
+    
+  
+
+
+-->
+          <!--</ul>-->
         <!-- -->
           <!--<h2 id="clrs-ref">clrs</h2>-->
           <!--<ul>-->
@@ -427,106 +573,6 @@ n! \leq 2^h \\
       
       	
       	<li><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="mysql-ref">mysql</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="Feelings-ref">Feelings</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="linux-ref">linux</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="python-ref">python</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="lessons-ref">lessons</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
       	
       
     
