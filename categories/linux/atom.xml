@@ -4,10 +4,10 @@
   <title><![CDATA[Category: linux | Chouqin & Laoqi]]></title>
   <link href="/categories/linux/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:59:33+08:00</updated>
+  <updated>2013-01-07T21:50:11+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
+    <name><![CDATA[githubchouqinweiboatchouqinnameQiping Liemailliqiping1991@gmail.com]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,7 @@
     <link href="/linux/2012/09/14/archlinux-installation"/>
     <updated>2012-09-14T00:00:00+08:00</updated>
     <id>/linux/2012/09/14/archlinux-installation</id>
-    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
+    <content type="html"><![CDATA[<p></p>
 
 <p>因为实在受不了Ubuntu的更新繁琐，终于还是下定决心安装ArchLinux了。虽说安装起来要比Ubuntu的无脑安装要艰辛许多，
 可是成功之后的除了用起来爽很多之外，这其中的过程也是很有意义的。Arch的好处嘛，除了更新方便之外，源也比Ubuntu的

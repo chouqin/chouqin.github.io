@@ -4,21 +4,155 @@
   <title><![CDATA[Category: clrs | Chouqin & Laoqi]]></title>
   <link href="/categories/clrs/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:59:33+08:00</updated>
+  <updated>2013-01-07T21:50:11+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
+    <name><![CDATA[githubchouqinweiboatchouqinnameQiping Liemailliqiping1991@gmail.com]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
 
   
   <entry>
+    <title type="html"><![CDATA[最短路径与最大流]]></title>
+    <link href="/clrs/2013/01/06/clrs-24-26"/>
+    <updated>2013-01-06T00:00:00+08:00</updated>
+    <id>/clrs/2013/01/06/clrs-24-26</id>
+    <content type="html"><![CDATA[<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<p></p>
+
+<h2 id="section">最短路径</h2>
+
+<p>在最短路径问题中，
+希望在一个图中找出从一个节点到另外一个节点的最短路径，
+可能要找出从某一个特定节点到其他节点的最短路径，
+也可能是找出所有节点对之间的最短路径，
+图中边的权重可能为负值，甚至包含负的回路，
+因此，在不同的情况下，有不同的算法适合求解问题，
+关于求解所有节点之间的最短路径问题已经在动态规划时详细地解释过Floyd算法，
+现在就谈谈两个处理单源最短路径的算法, Dijkstra算法和Bellman-Ford算法。</p>
+
+<h3 id="dijkstra">Dijkstra算法</h3>
+
+<p>Dijkstra算法用于求解所有边的权重为非负值时的单源最短路径问题，
+它与Prim算法很相似，利用一个集合S保存已经求出最短路径的节点集合，
+开始是S只包含源节点s,
+每次从V-S中挑选出一个距离S中节点最近的节点u放入S，同时正确地设置u的邻居节点的路径长度，
+直到S为V。</p>
+
+<p>对于Dijkstra算法的正确性，只需要递归地证明下面的性质成立：</p>
+
+<pre><code>当节点u被加入到S时，u到s的最短路径已经被正确的设置, 而且u到s的最短路径上的前趋节点w已经被添加进S。
+</code></pre>
+
+<ul>
+  <li>初始化：一开始时，这个性质显然成立</li>
+  <li>保持：假设当u被添加到S时，u到s的最短路径已经被正确的设置，对于u的任何一个邻接节点v，
+如果s到v的最短路径是<script type="math/tex"> s \xrightarrow{p} u \xrightarrow{} v </script>，那么s到v的路径能够被正确的设置，
+而且从v到s最短路径上的前趋节点u已经被添加进S, 这样当v被添加进S时，上述的性质都是能够保持的。</li>
+</ul>
+
+<h3 id="bellman-ford">Bellman-Ford算法</h3>
+
+<p>Bellman-Ford算法用于求解权重可以为负值时的单源最短路径问题，
+而且它还可以用于判断图中是否存在s可达的负的回路。
+Bellman-Ford的执行过程就是运行|V|-1次更新操作，
+每次更新操作遍历每一条边(u, v)更新dist[v]，伪代码如下：</p>
+
+<p><div class="highlight"><pre><code class="pascal">    <span class="k">procedure</span> <span class="nf">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span><span class="o">:</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">,</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="err">|</span><span class="n">V</span><span class="err">|</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">in</span> <span class="n">E</span><span class="o">:</span>
+        <span class="n">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span> 
+</code></pre>
+</div>
+
+</code></pre>
+
+<!--more-->
+
+<p>要证明这个算法的正确性，先说明它的两个性质：</p>
+
+<ol>
+  <li>如果调用update((u, v))时，dist[u]已经被正确的设置，
+那么dist[v]也将会被正确地设置。</li>
+  <li>如果dist[v]已经被正确的设置，
+调用任意的update((u, v))都不会改变dist[v]的值，
+也就是说多次地执行update是安全的。</li>
+</ol>
+
+<p>有了这个性质，对于任意节点v, 
+通过对v到s的最短路径的长度做一个简单的归纳，
+就能够说明当算法结束时，dist[v]能够被正确的设置。</p>
+
+<p>在我看来，Bellman-Ford算法的价值并不在于这个算法本身，
+它给出求解一些问题的普遍思路。对于有着相互依赖的k个元素<script type="math/tex"> \{n_1, n_2, ..., n_k\} </script>,
+如果它们之间的关系很复杂，比如如果<script type="math/tex"> n_1 </script>和<script type="math/tex"> n_2 </script>之间有关系，那么<script type="math/tex"> n_1 </script>和<script type="math/tex"> n_3 </script>之间可能就会有关系，
+而且这种关系可能构成一个循环，如果每次找到了两个元素的关系就去更新其他元素的关系就会陷入一个死循环，
+但如果利用Bellman-Ford算法的思想，就能明白对于任意两个元素<script type="math/tex"> n_i </script>和<script type="math/tex"> n_j </script>，它们之间的关系最多隔着k-2个中间元素，
+第1次更新的时候可以把没有隔中间元素的两个元素的关系确立好，第2次更新的时候可以把只隔1个元素的两个元素确定好，
+依次类推，当k-1次更新的时候，所有元素的关系都能确定好。就不需要一确定两个元素的关系就去考虑要不要更新相关的元素，
+思路显得清晰。</p>
+
+<h2 id="section-1">最大流问题</h2>
+
+<p>最大流问题是图论中一类很重要的问题，因为它和线性规划也有着很强的关联，
+所以它的应用也十分广泛。在最大流问题中，对于图G，有两个特殊的节点s,t，
+它的任何一条边都有一个容量c，对每条边的一个特定赋值称为一个流f，
+流必须满足两个性质：</p>
+
+<ol>
+  <li>对于任意一条边e，<script type="math/tex"> 0 \leq f_e \leq c_e </script></li>
+  <li>对于除了s,t之外的任意节点u, 入流等于出流, 即: <script type="math/tex"> \sum\limits_{(w,u) \in E} f_{wu} = \sum\limits_{(u, z) \in E} f_{uz} </script></li>
+</ol>
+
+<p>最大流是想找出一个f，使得<script type="math/tex"> \sum\limits_{s,u \in E} f_{su} </script>最大。</p>
+
+<p>求解最大流的算法非常直观：</p>
+
+<ol>
+  <li>从零流量开始</li>
+  <li>每次从f的残留网络中选择一条从s到t的路径，在这条路径上增加流，
+重复这个过程直到残留网络中不存在从s到t的路径为止</li>
+</ol>
+
+<p>要证明这个算法的正确性，需要了解图的(s,t)-割，
+以及割的容量，一个图的(s,t)-割把图分成互不交叉的两个组L和R,
+使得s在L中，t在R中。该割的容量就是横跨L和R两个集合的所有边的容量之和，
+有如下性质成立：</p>
+
+<p>对于任意流f，任意(s,t)-割(L, R), <script type="math/tex"> size(f) \leq capacity(L, R) </script></p>
+
+<p>说明割的容量是任何流的大小的上限。</p>
+
+<p>下面说明最大流算法的正确性。当程序终止时，残留网络<script type="math/tex"> G^f </script>中不存在由s到t的路径，
+那么令L为<script type="math/tex"> G^f </script>中s可达的所有节点，R为其他的节点，那么此时size(f) = capacity(L, R)。
+这是因为对于任何从L到R的边e, 有</p>
+
+<script type="math/tex; mode=display"> 
+f_e = c_e 且 f_{e'} = 0 其中f_{e'}表示从e的反向流量 
+</script>
+
+<p>因为这其中任何一个违反都会导致e的终止节点在<script type="math/tex"> G^f </script>中从s可达。所以此时size(f) = capacity(L, R)。
+所以对于任意流f&#8217;, 都有<script type="math/tex"> size(f') \leq size(f) </script>，意味这f是一个最大流。</p>
+
+<p>关于最大流还有两个很重要的东西：</p>
+
+<ol>
+  <li>如果采用BFS在残留网络中寻找从s到t的最短路径，会使得迭代的次数不会超过O(VE)</li>
+  <li>最大流可用于二部图的匹配，关键是要证明容量为整数的图中找出的最大流给任意边的赋值都是整数。</li>
+</ol>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[图的基本算法]]></title>
     <link href="/clrs/2012/12/30/clrs-22-23"/>
     <updated>2012-12-30T00:00:00+08:00</updated>
     <id>/clrs/2012/12/30/clrs-22-23</id>
-    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
+    <content type="html"><![CDATA[<p></p>
 
 <h2 id="section">广度优先遍历</h2>
 
@@ -157,9 +291,9 @@ u还没开始遍历，此时不可能有v到u的边，因为如果有的话那�
     <id>/clrs/2012/12/18/clrs-1618</id>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<p>{% include JB/setup %}</p>
+<p></p>
 
 <h2 id="section">贪心算法</h2>
 <p>动态规划是一种解决问题的通用方法，
@@ -435,10 +569,10 @@ B树也正是实现了这样的思想，B树的深度不会太深，
     <link href="/clrs/2012/12/12/clrs-14-15"/>
     <updated>2012-12-12T00:00:00+08:00</updated>
     <id>/clrs/2012/12/12/clrs-14-15</id>
-    <content type="html"><![CDATA[<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <content type="html"><![CDATA[<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<p>{% include JB/setup %}</p>
+<p></p>
 
 <h2 id="section">红黑树的扩充</h2>
 
@@ -644,13 +778,14 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
 基本思想是通过n（n为节点个数）次循环更新所有节点对之间的最短路径，
 伪代码如下：</p>
 
-<p>{% highlight pascal%}
-    for k := 1 to n
-        for i := 1 to n
-            for j := 1 to n
-                if path[i][k] + path[k][j] &lt; path[i][j] then
-                    path[i][j] := path[i][k]+path[k][j];
-{% endhighlight %}</p>
+<p><div class="highlight"><pre><code class="pascal">    <span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
+                <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="err">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">then</span>
+                    <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">:=</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">;</span>
+</code></pre>
+</div>
+</p>
 
 <p>在每次迭代时，对于任意节点对(i, j)，如果(i, k)的路径长度加(k, j)的路径长度小于
 原来的(i, j)的路径长度，
@@ -759,9 +894,9 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
     <id>/clrs/2012/12/04/clrs-10-13</id>
     <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
-<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<p>{% include JB/setup %}</p>
+<p></p>
 
 <h2 id="section">散列表中碰撞的解决</h2>
 <p>由于散列表的元素个数小于关键字的取值集合U,
@@ -1101,164 +1236,6 @@ $$</p>
 <p>上面的情况的是不可能发生的，因为情况1会把p[x]设为红色，如果此时进入情况2，
 在新的循环开始时，新的x就是p[x]，它的颜色是红色，直接会退出循环，把x设为黑色，
 调整结束，不会再继续向上传递。所以旋转的次数不会超过3次。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[算法导论8~9章读书笔记]]></title>
-    <link href="/clrs/2012/12/01/clrs-8-9"/>
-    <updated>2012-12-01T00:00:00+08:00</updated>
-    <id>/clrs/2012/12/01/clrs-8-9</id>
-    <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-
-<script type="text/javascript" src="{{ ASSET_PATH }}/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<p>{% include JB/setup %}</p>
-
-<h3 id="section">比较排序的时间下界</h3>
-<p>合并排序和堆排序在最坏情况下能够在O(nlgn)时间内排序n个数，
-而快速排序则能够在平均情况下达到这个上界。
-这些算法在确定元素的次序时，
-都是基于元素间的比较。
-这类排序算法称为<strong>比较排序</strong>。</p>
-
-<p>比较排序的时间下界是O(nlgn)，
-这意味着所有的基于比较的排序算法，在最坏情况下都要用<script type="math/tex"> \Omega (n \lg n) </script>
-次比较来完成排序。</p>
-
-<p>这是因为比较排序可以被抽象为<strong>决策树</strong>，
-决策树是一棵满二叉数，
-它的每一条从根节点到叶节点的路径都对应于比较排序的一次执行过程，
-达到叶节点时，叶节点确定了这次排序的结果。
-所以比较排序算法的最坏情况的比较次数等于决策树的高度。
-n个数的排列总数有n!，每一种排列都必须在决策树的叶节点中出现，
-高度为h的决策树的叶节点个数最多为<script type="math/tex"> 2^h </script>，故有：</p>
-
-<script type="math/tex; mode=display">
-n! \leq 2^h \\
-\Longrightarrow   h \geq \lg (n!) = \Omega (n \lg n)
-</script>
-
-<p>所以比较排序的时间下界是O(nlgn)。</p>
-
-<!--more-->
-
-<h3 id="section-1">通过计数排序实现线性时间排序</h3>
-<p>如果已经知道n个元素都是来自于0到k的整数，
-其中<script type="math/tex"> k = O(n) </script>,
-那么可以通过统计0到k中的每一个数在n个元素中出现的次数来达到排序的目的。
-计数排序的运行时间为 <script type="math/tex"> \Theta (n) </script>。</p>
-
-<p>书上在实现计数排序时，</p>
-
-<ol>
-  <li>首先遍历一遍原数组A，将各个元素出现次数统计到数组C中,此时C[0..k]的每一项C[i]表示i在A中的出现次数</li>
-  <li>然后遍历一遍数组C, 使C[i]表示A中小于或等于i的元素个数</li>
-  <li>最后遍历A(逆向遍历)，把结果放到数组B中，把A[i]放到B的C[A[i]]位置上，同时把C[A[i]]减1
-(这是为了把重复的元素放到不同的位置上去)</li>
-</ol>
-
-<p>其实只需要让C[i]记录i在数组A中出现的次数，然后遍历一遍数组C就可以输出排序的结果。
-具体遍历方法如下：</p>
-
-<pre><code>j &lt;- 1
-for i &lt;- 1 to k
-    while C[i] &gt; 0
-        do C[i] &lt;- C[i] - 1 
-            A[j] = i
-            j &lt;- j + 1
-</code></pre>
-
-<p>就能把排序好的结果保存到A中，不需要另外的数组B。
-但是书上的这种方法有一个好处，它能保证排序是<strong>稳定</strong>的。
-也就是说，具有相同值的元素在输出数组中的相对次序与输入数组中的相对次序一样。
-因为是采取对A的逆向遍历，两个相同的元素中，位置靠前的元素后被遍历，此时C[i]已经变小了，
-所以也会被放在更靠前的位置。稳定排序的好处在于它能够保证基数排序的正确性。</p>
-
-<h3 id="section-2">基数排序：另一种线性时间排序</h3>
-<p>基数排序主要解决的问题是对于多位整数的排序问题。
-比如有n个d位数，每一位可以取k个不同的值，要对它进行排序，
-一般的想法是先对最高位进行排序，
-然后对于高位相同的子数组按次高位进行排序，依次类推。
-这种想法的好处在于如果两个数中高位较大的数一定较大，
-所以很容易把各个子数组的排序结果进行合并。比如排序10进制的三位数，
-3XX一定都大于2XX，所以把2XX的子数组放在3XX的子数组前面就能保证合并结果的有序性。
-但是它的不好的地方在于需要维护大量的子数组(随着递归的深度加深，子数组个数增多)，
-这对于原始的基于纸带的排序的是不可行的。</p>
-
-<p>那有没有一种排序方法，既能使后面的排序利用到前面排序的结果，
-而且能够不需要维护大量的子数组呢？基数排序就是这样一种排序方法，
-它先把数组按最低位进行排序，然后再对结果按次低位进行排序，依次类推。
-每一次的排序都必须是<strong>稳定排序</strong>，这样能保证在按某位进行排序之后，
-整个数组在从该位到最低位的子序列上都是有序的，可以通过一个简单的归纳加以证明。</p>
-
-<p>同时，在对n个b位数进行排序时，每次可以按r位进行排序，
-而不仅仅是1位，这样能够在<script type="math/tex"> \Omega ((b/r)(n + 2^r)) </script>的时间内完成对数组的排序。
-可以选取适当的r达到最好的时间性能。</p>
-
-<h3 id="section-3">同时找出数组中的最大值和最小值</h3>
-<p>从一个数组中找出最大值或者最小值需要n-1次比较，
-比如寻找最大值，首先将最大值设为第一个元素的值，
-然后让n-1个元素和最大值进行比较，如果大于最大值，
-就将最大值设为它，一共需要n-1次比较。</p>
-
-<p>而如果是同时找出最大值和最小值呢，
-当然可以分别按上面的方法找出最大值和最小值，
-一共需要的比较次数是2n-2。</p>
-
-<p>书上给出了另外一种方法：
-成对的处理元素，将较小者与最小值相比，较大者与最大值相比，
-这样能将比较次数降为<script type="math/tex">  3 \lceil n/2 \rceil </script>。</p>
-
-<h3 id="i">在线性时间内选出数组中的第i小元素</h3>
-<p>书上给出了两种方法：</p>
-
-<p>第一种方法利用随机化快速排序算法中的RANDOMIZED-PARTITION函数对数组进行划分，然后根据
-i是在哪一个部分中去相应部分中进行查找，这种方法能保证运行时间的期望是线性，代码如下：</p>
-
-<pre><code>def RANDOMIZED-SELECT(A, p, r, i)
-    q &lt;- RANDOMIZED-PARTITION(A, p, r)
-    k &lt;- q - p + 1
-    if i = k
-        then return A[q]
-    elseif i &lt; k
-        then return RANDOMIZED-SELECT(A, p, q-1, i)
-    else return RANDOMIZED-SELECT(A, q+1, r, i-k)
-</code></pre>
-
-<p>简单说明一下在划分的两个子数组中，如果有一个长度为0，
-为什么不会它调用RANDOMIZED-SELECT:</p>
-
-<ul>
-  <li>如果子数组A[p..q-1]长度为0，则q = p，k = q - p + 1 = 1，<script type="math/tex"> i \geq k </script>, 不会对这个子数组调用RANDOMIZED-SELECT</li>
-  <li>如果子数组A[q+1..r]长度为0，则q = r，k = r - p + 1 = length[A]，<script type="math/tex"> i \leq k </script>, 不会对这个子数组调用RANDOMIZED-SELECT</li>
-</ul>
-
-<p>第二种方法通过保证每次的划分是一个好的划分保证算法的线性时间。
-具体的划分方式是：</p>
-
-<ol>
-  <li>将数组的n个元素划分为 <script type="math/tex"> \lceil n/5 \rceil </script>组，除最后一组之外，其余都有5个元素</li>
-  <li>对每一组找到其中位数, 首先对每个数组进行插入排序，然后找到其中的中位数</li>
-  <li>通过递归调用SELECT函数(就是找出数组中第i小元素的函数)，找到这些中位数中的中位数x</li>
-  <li>以x作为划分元素对数组进行划分</li>
-</ol>
-
-<p>这个划分是一个好的划分，
-因为能保证划分出来的两个子数组中任意一个的长度都不会超过某一个特定值。
-在<script type="math/tex"> \lceil n/5 \rceil </script>个组中，
-假设所有的中位数组成数组B[1..m]，其中 <script type="math/tex"> m = \lceil n/5 \rceil </script>,
-假设x = B[k]，k = <script type="math/tex"> \lceil \frac{1}{2} \lceil \frac{n}{5} \rceil \rceil </script>,
-在所有中位数在A[k..m]的组中，除去最后一组和x所在的组之外，其他的组至少有3个元素大于x，
-所以大于x的元素个数至少为：</p>
-
-<script type="math/tex; mode=display">
-3(\lceil \frac{1}{2} \lceil \frac{n}{5} \rceil \rceil - 2) \geq \frac{3n}{10} - 6
-</script>
-
-<p>类似的小于x的元素个数至少有<script type="math/tex"> \frac{3n}{10} - 6 </script>个，
-所以至多有<script type="math/tex"> \frac{7n}{10} + 6 </script>个元素被递归的调用SELECT，
-有了这个结论之后就能保证SELECT函数可以在线性的时间内完成。</p>
 ]]></content>
   </entry>
   

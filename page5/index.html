@@ -177,14 +177,6 @@
       
     
   
-    
-      
-    
-  
-    
-      
-    
-  
 
 
 
@@ -223,6 +215,34 @@
       <!--[> iterate through the posts on this page <]-->
       
         <div class="post">
+          <h1><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></h1>
+          <p class="meta">November 15, 2012</p>
+            
+<p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
+才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,
+使它能够具有很强的稳定性同时具有很快的相应速度，
+这其中涉及的东西远远不是数据库的课上写几条sql语句那么简单。
+而在这篇博客中，我也仅就mysql的一些基本优化知识谈谈我的看法，
+待以后更加深入研究之后，再继续分享。</p>
+
+<h2 id="mysql">MySQL的表的设计</h2>
+
+<h3 id="normalized-schema-or-denormalized-schema">Normalized Schema Or Denormalized Schema?</h3>
+<p>在一般的数据库教材中，讲到设计库表结构的设计，
+都是将数据库设计范式作为设计的准则，因为这样设计的数据库表重复很少，
+这样就会减少存储空间，
+同时因为重复的内容少，维护起来也很方便，
+因为如果很多的重复的话一个信息的更改可能会需要在多处进行更改才能保证数据的一致性。
+然而，数据库范式并不是万能的，这样设计出来的数据库会造成查找时间的加长，
+因为要查找一些数据往往需要将多个表join起来，而join是比较费时间的数据库操作，
+同时，一些有关系的列被分散到各个表中，不好组合在一起建成一个索引，
+这样也会减低查找的速度。
+所以在设计数据库的表的结构时，要结合应用的实际情况，平衡考虑。</p>
+
+<p class='more'><a href='/mysql/2012/11/15/mysql-basic'>More...</a></p>
+        </div>
+      
+        <div class="post">
           <h1><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></h1>
           <p class="meta">November 11, 2012</p>
             
@@ -258,26 +278,6 @@ E4B8AD转化为“中”。</p>
 <p class='more'><a href='/python/2012/11/11/chinese-encoding'>More...</a></p>
         </div>
       
-        <div class="post">
-          <h1><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></h1>
-          <p class="meta">October 27, 2012</p>
-            
-
-<h2>来由</h2>
-
-<p>这段时间真的很忙，忙得都没时间好好看书，好好写博客。</p>
-
-<p>每天都要上班，还要忙着保研的各种事情，有时还在保研和直接工作中纠结，
-导致一有一点空闲时间，就什么事情也没想干了。</p>
-
-<p>还好，现在这些事情也终于告一段落，也不用再去纠结什么了，终于可以静下心来
-去做自己喜欢做的事，踏踏实实地学习某些东西了。</p>
-
-<p>但是总结一番还是有点必要的，不然这些日子的纠结不是白费了吗。</p>
-
-<p class='more'><a href='/Feelings/2012/10/27/feeling'>More...</a></p>
-        </div>
-      
 
       <!--[> links to prev and next pages for browsing thru archives <]-->
       
@@ -303,18 +303,16 @@ E4B8AD转化为“中”。</p>
              <!---->
         <!-- -->
              <!---->
-        <!-- -->
-             <!---->
         <!---->
         
-        <!--<li><a href="/categories/clrs">clrs <span> 6 </span></a></li></span>-->
-        <li><a href="/categories/clrs">clrs <span> 6 </span></a></li>
+        <!--<li><a href="/categories/clrs">clrs <span> 7 </span></a></li></span>-->
+        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
         
         <!--<li><a href="/categories/mysql">mysql <span> 1 </span></a></li></span>-->
         <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
         
-        <!--<li><a href="/categories/lessons">lessons <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/lessons">lessons <span> 1 </span></a></li>
+        <!--<li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li></span>-->
+        <li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li>
         
         <!--<li><a href="/categories/python">python <span> 1 </span></a></li></span>-->
         <li><a href="/categories/python">python <span> 1 </span></a></li>
@@ -322,10 +320,7 @@ E4B8AD转化为“中”。</p>
         <!--<li><a href="/categories/linux">linux <span> 1 </span></a></li></span>-->
         <li><a href="/categories/linux">linux <span> 1 </span></a></li>
         
-        <!--<li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li></span>-->
-        <li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li>
-        
-        <!--Liquid error: undefined method `sort!' for #<Hash:0xb6d02440>-->
+        <!--Liquid error: undefined method `sort!' for #<Hash:0xb61d011c>-->
             <!---->
             <!--
 
@@ -333,15 +328,15 @@ E4B8AD转化为“中”。</p>
   
      
     	<li><a href="/categories.html#clrs-ref">
-    		clrs <span>6</span>
+    		clrs <span>7</span>
     	</a></li>
      
     	<li><a href="/categories.html#mysql-ref">
     		mysql <span>1</span>
     	</a></li>
      
-    	<li><a href="/categories.html#lessons-ref">
-    		lessons <span>1</span>
+    	<li><a href="/categories.html#Feelings-ref">
+    		Feelings <span>2</span>
     	</a></li>
      
     	<li><a href="/categories.html#python-ref">
@@ -350,10 +345,6 @@ E4B8AD转化为“中”。</p>
      
     	<li><a href="/categories.html#linux-ref">
     		linux <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#Feelings-ref">
-    		Feelings <span>2</span>
     	</a></li>
     
   
@@ -367,6 +358,14 @@ E4B8AD转化为“中”。</p>
             <!--
 
 
+  
+    
+      
+      	
+      	<li><a href="/clrs/2013/01/06/clrs-24-26">最短路径与最大流</a></li>
+      	
+      
+    
   
     
       
@@ -441,7 +440,7 @@ E4B8AD转化为“中”。</p>
 -->
           <!--</ul>-->
         <!-- -->
-          <!--<h2 id="lessons-ref">lessons</h2>-->
+          <!--<h2 id="Feelings-ref">Feelings</h2>-->
           <!--<ul>-->
             <!--  -->
             <!--
@@ -451,7 +450,15 @@ E4B8AD转化为“中”。</p>
     
       
       	
-      	<li><a href="/lessons/2011/12/29/jekyll-introduction">Jekyll Introduction</a></li>
+      	<li><a href="/Feelings/2013/01/01/new-2013">再见2012，你好2013</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
       	
       
     
@@ -492,34 +499,6 @@ E4B8AD转化为“中”。</p>
       
       	
       	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="Feelings-ref">Feelings</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2013/01/01/new-2013">再见2012，你好2013</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
       	
       
     

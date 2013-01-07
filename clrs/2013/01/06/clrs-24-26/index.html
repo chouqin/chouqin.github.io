@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>
       
-        Blog - 
+        最短路径与最大流 - 
       
       Chouqin & Laoqi
     </title>
-    
+    <meta name="description" content="">
     <meta name="author" content="Qiping Li">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
@@ -210,14 +210,17 @@
 
     <div class="container">
       <div class="content">
-        <div class="row">
-    <div class="span8" style="margin-top:20px;">
-      <!--[> iterate through the posts on this page <]-->
-      
-        <div class="post">
-          <h1><a href="/clrs/2013/01/06/clrs-24-26">最短路径与最大流</a></h1>
-          <p class="meta">January  6, 2013</p>
-            <script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+<div class="page-header">
+  <h1>
+    最短路径与最大流
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <h2 id="section">最短路径</h2>
 
@@ -266,293 +269,154 @@ Bellman-Ford的执行过程就是运行|V|-1次更新操作，
 </code></pre>
 </div>
 
-<p class='more'><a href='/clrs/2013/01/06/clrs-24-26'>More...</a></p>
-        </div>
-      
-        <div class="post">
-          <h1><a href="/Feelings/2013/01/01/new-2013">再见2012，你好2013</a></h1>
-          <p class="meta">January  1, 2013</p>
-            
-<p>看着网络上各路牛人的年末总结，也想跟风自己来写一个，
-只可惜拖的时间有点长，到现在才开始发表。</p>
+<!--more-->
 
-<p>2012年对我来说绝对是不一样的一年，求职，面试，外推，实习，
-以前对我来说很遥远的事情在这一年真真切切的发生。
-有成功，也有失败，有欢笑，也有泪水，有面临抉择时的犹豫不决，
-也有选择之后的淡定从容。这些经历，大多是艰辛的，
-却没有将我击垮，能让自己觉得人生的充实。世界末日都照样过了，
-还有什么挺不过呢？</p>
-
-<p>在学习方面，2012年学习了很多新技术，新的语言，
-对于算法，也有了更深入的理解。总的来说，还是广度有余，深度不足。
-多多接触一些新的东西当然是有必要的，无论是对于开阔视野还是为了选择一个自己感兴趣的方向，
-可是一个人必须要有所专长，在一个方面成为专家，这样才能体现个人的价值，
-我在这方面仍然有所欠缺，希望在未来几年能够再某一个方面深入研究下去。
-为什么是几年，因为我觉得有所建树，必须经过几年的积累。</p>
-
-<p>在其他方面，相对来说就做得太少了一点，生活显得略微单调了一些。
-空闲时间除了打打球，打打dota，似乎就没有干过别的什么事。更让我觉得愧疚的事，
-很少看专业方面的其他书，思考的方式也越来越朝着计算机那个非0即1的方向去转了。
-现在的情商好像是在下降，在2013年中一定要强迫自己多读书，多读与专业无关的书籍。</p>
-
-<p>今年最好用的工具还是微博，在这上面可以很好地打发时间，
-同时可以获取很多很有意思的信息。虽然说能学到的东西很少，
-但它确实能很大程度地开阔视野，你能了解到很多你在现实生活中很难碰到的一些人和事。
-喜欢微博，喜欢它带给我的快节奏信息。</p>
-
-<p>今年最深的几点感触：</p>
+<p>要证明这个算法的正确性，先说明它的两个性质：</p>
 
 <ol>
-  <li>在面临选择时，不要过分地去权衡利弊，在做出选择之后坚定地超前走才是最重要的。</li>
-  <li>不要固执地去争论一个观点的正确性，这并不是一个非黑即白的世界</li>
-  <li>严于律己，宽以待人</li>
-  <li>多看书，多思考，思考和学习一个都不能落下</li>
-  <li>珍惜别人给自己的每一条建议</li>
+  <li>如果调用update((u, v))时，dist[u]已经被正确的设置，
+那么dist[v]也将会被正确地设置。</li>
+  <li>如果dist[v]已经被正确的设置，
+调用任意的update((u, v))都不会改变dist[v]的值，
+也就是说多次地执行update是安全的。</li>
 </ol>
 
-<p>2013 To-Do-List:</p>
+<p>有了这个性质，对于任意节点v, 
+通过对v到s的最短路径的长度做一个简单的归纳，
+就能够说明当算法结束时，dist[v]能够被正确的设置。</p>
+
+<p>在我看来，Bellman-Ford算法的价值并不在于这个算法本身，
+它给出求解一些问题的普遍思路。对于有着相互依赖的k个元素<script type="math/tex"> \{n_1, n_2, ..., n_k\} </script>,
+如果它们之间的关系很复杂，比如如果<script type="math/tex"> n_1 </script>和<script type="math/tex"> n_2 </script>之间有关系，那么<script type="math/tex"> n_1 </script>和<script type="math/tex"> n_3 </script>之间可能就会有关系，
+而且这种关系可能构成一个循环，如果每次找到了两个元素的关系就去更新其他元素的关系就会陷入一个死循环，
+但如果利用Bellman-Ford算法的思想，就能明白对于任意两个元素<script type="math/tex"> n_i </script>和<script type="math/tex"> n_j </script>，它们之间的关系最多隔着k-2个中间元素，
+第1次更新的时候可以把没有隔中间元素的两个元素的关系确立好，第2次更新的时候可以把只隔1个元素的两个元素确定好，
+依次类推，当k-1次更新的时候，所有元素的关系都能确定好。就不需要一确定两个元素的关系就去考虑要不要更新相关的元素，
+思路显得清晰。</p>
+
+<h2 id="section-1">最大流问题</h2>
+
+<p>最大流问题是图论中一类很重要的问题，因为它和线性规划也有着很强的关联，
+所以它的应用也十分广泛。在最大流问题中，对于图G，有两个特殊的节点s,t，
+它的任何一条边都有一个容量c，对每条边的一个特定赋值称为一个流f，
+流必须满足两个性质：</p>
 
 <ol>
-  <li>多看书，多感受生活，开阔自己的胸襟</li>
-  <li>学习一门新的编程语言，可能是go或者erlang</li>
-  <li>学完完有关数据挖掘的基础知识</li>
-  <li>为github上的一个库提交代码</li>
+  <li>对于任意一条边e，<script type="math/tex"> 0 \leq f_e \leq c_e </script></li>
+  <li>对于除了s,t之外的任意节点u, 入流等于出流, 即: <script type="math/tex"> \sum\limits_{(w,u) \in E} f_{wu} = \sum\limits_{(u, z) \in E} f_{uz} </script></li>
 </ol>
 
-<p>祝愿我的亲人和朋友身体健康，考研的同学考上好的学校，
-工作的同学工作顺心。</p>
+<p>最大流是想找出一个f，使得<script type="math/tex"> \sum\limits_{s,u \in E} f_{su} </script>最大。</p>
 
-        </div>
-      
+<p>求解最大流的算法非常直观：</p>
 
-      <!--[> links to prev and next pages for browsing thru archives <]-->
-      
-      
-        <span id="older"><a href="/page2">Older Entries &raquo;&raquo;</a></span>
-      
+<ol>
+  <li>从零流量开始</li>
+  <li>每次从f的残留网络中选择一条从s到t的路径，在这条路径上增加流，
+重复这个过程直到残留网络中不存在从s到t的路径为止</li>
+</ol>
 
+<p>要证明这个算法的正确性，需要了解图的(s,t)-割，
+以及割的容量，一个图的(s,t)-割把图分成互不交叉的两个组L和R,
+使得s在L中，t在R中。该割的容量就是横跨L和R两个集合的所有边的容量之和，
+有如下性质成立：</p>
+
+<p>对于任意流f，任意(s,t)-割(L, R), <script type="math/tex"> size(f) \leq capacity(L, R) </script></p>
+
+<p>说明割的容量是任何流的大小的上限。</p>
+
+<p>下面说明最大流算法的正确性。当程序终止时，残留网络<script type="math/tex"> G^f </script>中不存在由s到t的路径，
+那么令L为<script type="math/tex"> G^f </script>中s可达的所有节点，R为其他的节点，那么此时size(f) = capacity(L, R)。
+这是因为对于任何从L到R的边e, 有</p>
+
+<script type="math/tex; mode=display"> 
+f_e = c_e 且 f_{e'} = 0 其中f_{e'}表示从e的反向流量 
+</script>
+
+<p>因为这其中任何一个违反都会导致e的终止节点在<script type="math/tex"> G^f </script>中从s可达。所以此时size(f) = capacity(L, R)。
+所以对于任意流f&#8217;, 都有<script type="math/tex"> size(f') \leq size(f) </script>，意味这f是一个最大流。</p>
+
+<p>关于最大流还有两个很重要的东西：</p>
+
+<ol>
+  <li>如果采用BFS在残留网络中寻找从s到t的最短路径，会使得迭代的次数不会超过O(VE)</li>
+  <li>最大流可用于二部图的匹配，关键是要证明容量为整数的图中找出的最大流给任意边的赋值都是整数。</li>
+</ol>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/Feelings/2013/01/01/new-2013" title="再见2012，你好2013">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next disabled">Next &rarr;</a>
+      
     </div>
+    <hr>
+    
 
-    <div class="span4" style="margin-top:20px;">
-        <h3>所有分类</h3>
-        <ul class="categories">
-        <!--<ul class="tag_box">-->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!---->
-        
-        <!--<li><a href="/categories/clrs">clrs <span> 7 </span></a></li></span>-->
-        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
-        
-        <!--<li><a href="/categories/mysql">mysql <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
-        
-        <!--<li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li></span>-->
-        <li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li>
-        
-        <!--<li><a href="/categories/python">python <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/python">python <span> 1 </span></a></li>
-        
-        <!--<li><a href="/categories/linux">linux <span> 1 </span></a></li></span>-->
-        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
-        
-        <!--Liquid error: undefined method `sort!' for #<Hash:0xb6169318>-->
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>06 January 2013</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+            <a class='category' href='/categories/clrs/'>clrs</a>
+            <!--<li><a href="/categories/clrs">clrs   page.category 0</a></li>-->
             <!---->
-            <!--
+            <!--<li><a href="/categories/clrs">clrs   page.category 0</a></li>-->
+            <!--<li><a href="/categories/"> <span> 0 </span></a></li>-->
+            <!---->
+            <!--<a href="/categories/">clrs</a>-->
+          <!--clrs-->
+        </span>
+      </section>
+    
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
 
 
   
      
-    	<li><a href="/categories.html#clrs-ref">
-    		clrs <span>7</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#mysql-ref">
-    		mysql <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#Feelings-ref">
-    		Feelings <span>2</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#python-ref">
-    		python <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#linux-ref">
-    		linux <span>1</span>
-    	</a></li>
+    	<li><a href="/tags.html#clrs-ref">clrs <span>7</span></a></li>
     
   
 
--->
+
+
         </ul>
-        <!-- -->
-          <!--<h2 id="clrs-ref">clrs</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
+      </section>
     
-      
-      	
-      	<li><a href="/clrs/2013/01/06/clrs-24-26">最短路径与最大流</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/30/clrs-22-23">图的基本算法</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/18/clrs-1618">贪心算法和B树</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/12/clrs-14-15">红黑树扩充与动态规划</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/04/clrs-10-13">《算法导论》之基本数据结构</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/01/clrs-8-9">算法导论8~9章读书笔记</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="mysql-ref">mysql</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="Feelings-ref">Feelings</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2013/01/01/new-2013">再见2012，你好2013</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="python-ref">python</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="linux-ref">linux</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!---->
-    </div>
+  </div>
 </div>
 
 

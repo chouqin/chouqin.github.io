@@ -4,10 +4,10 @@
   <title><![CDATA[Category: Feelings | Chouqin & Laoqi]]></title>
   <link href="/categories/Feelings/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-01T15:59:33+08:00</updated>
+  <updated>2013-01-07T21:50:11+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[weiboatchouqingithubchouqinemailliqiping1991@gmail.comnameQiping Li]]></name>
+    <name><![CDATA[githubchouqinweiboatchouqinnameQiping Liemailliqiping1991@gmail.com]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,7 @@
     <link href="/Feelings/2013/01/01/new-2013"/>
     <updated>2013-01-01T00:00:00+08:00</updated>
     <id>/Feelings/2013/01/01/new-2013</id>
-    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
+    <content type="html"><![CDATA[<p></p>
 
 <p>看着网络上各路牛人的年末总结，也想跟风自己来写一个，
 只可惜拖的时间有点长，到现在才开始发表。</p>
@@ -76,7 +76,7 @@
     <link href="/Feelings/2012/10/27/feeling"/>
     <updated>2012-10-27T00:00:00+08:00</updated>
     <id>/Feelings/2012/10/27/feeling</id>
-    <content type="html"><![CDATA[<p>{% include JB/setup %}</p>
+    <content type="html"><![CDATA[<p></p>
 
 <h2>来由</h2>
 
