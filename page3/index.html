@@ -215,11 +215,72 @@
       <!--[> iterate through the posts on this page <]-->
       
         <div class="post">
+          <h1><a href="/clrs/2012/12/18/clrs-1618">贪心算法和B树</a></h1>
+          <p class="meta">December 18, 2012</p>
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<h2 id="section">贪心算法</h2>
+<p>动态规划是一种解决问题的通用方法，
+在求解最优化问题的时候，
+动态规划能够综合考虑到各种情况然后做出最优的选择。
+可是，对于一些特殊的问题，
+在从子问题中做出选择时，可以不用考虑所有的子问题，
+而只需要考虑一个子问题，
+因为选择这个子问题一定可以达到一个最优解，
+在这种情况下，就可以采用贪心算法来解决。
+贪心算法的好处在于，不需要考虑所有的子问题，
+只需要考虑一种情况，这时求解的子问题的数目就减少了，
+同时，可以采用一种自顶向下的方法解决问题，
+逐步地把问题转化为更小的子问题，直到可以轻易解决。</p>
+
+<h3 id="section-1">从动态规划到贪心</h3>
+<p>书上给出了一个这样的例子来说明从动态规划算法转化到贪心算法。</p>
+
+<p>有n个活动组成集合<script type="math/tex"> S = \{a_1, a_2, ..., a_n\} </script>，它们需要占用同一个资源，
+这个资源在同一个时间只能被一个活动占用，每一个活动<script type="math/tex"> a_i </script>使用资源的起始时间和结束时间分别为
+<script type="math/tex"> s_n, f_n </script>，如果区间<script type="math/tex"> [s_i, f_i) </script>与区间<script type="math/tex"> [s_j, f_j) </script>不重叠，
+就称活动<script type="math/tex"> a_i </script>与活动<script type="math/tex"> a_j </script>是兼容的，求S的一个由互相兼容的活动组成的最大子集，
+假设活动已经按结束时间排好序。</p>
+
+<p>对于这个问题，可以定义如下子问题<script type="math/tex"> S_{ij} </script>，
+表示从S的子集<script type="math/tex"> S_{ij} </script>中得到的最大兼容子集，
+其中<script type="math/tex">% <![CDATA[
+ S_{ij} = \{ a_k \in S: s_k \geq f_i and f_k < s_j \} %]]></script>，
+也就是说，<script type="math/tex"> S_{ij} </script>是由所有在<script type="math/tex"> a_i </script>结束之后开始，
+在<script type="math/tex"> a_j </script>开始之前结束的活动组成的集合。
+通过定义这样一个子问题，
+就可以很容易地得出如下递推公式，</p>
+
+<script type="math/tex; mode=display">
+A_{ij} = A_{ik} \bigcup \{a_k\} \bigcup A_{kj}, 其中A_{ij}表示子问题S_{ij}的解
+</script>
+
+<p>从而利用动态规划解决这个问题。</p>
+
+<p>然而，动态规划并不是一个最优的解法，
+因为要求解的子问题的个数为<script type="math/tex"> O(n^2) </script>个，
+而且求解每个子问题时选择的个数也有<script type="math/tex"> O(n) </script>个，
+这就导致了通过动态规划求解问题所需的复杂度为<script type="math/tex"> O(n^3) </script>。</p>
+
+<p>如果采用贪心的算法，每次通过选取<script type="math/tex"> S_{ij} </script>中具有最早结束时间的活动<script type="math/tex"> a_m </script>作为划分元素的话，
+那么就可以通过</p>
+
+<script type="math/tex; mode=display">
+A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
+</script>
+
+<p>得到一个最优的解，而不用考虑其它元素作为划分元素时的子问题。</p>
+
+<p class='more'><a href='/clrs/2012/12/18/clrs-1618'>More...</a></p>
+        </div>
+      
+        <div class="post">
           <h1><a href="/clrs/2012/12/12/clrs-14-15">红黑树扩充与动态规划</a></h1>
           <p class="meta">December 12, 2012</p>
-            <script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+            <!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <h2 id="section">红黑树的扩充</h2>
 
@@ -300,79 +361,6 @@ low[k] \geq low[j] > high[i] \text{第一个不等式成立是根据红黑树关
 <p class='more'><a href='/clrs/2012/12/12/clrs-14-15'>More...</a></p>
         </div>
       
-        <div class="post">
-          <h1><a href="/clrs/2012/12/04/clrs-10-13">《算法导论》之基本数据结构</a></h1>
-          <p class="meta">December  4, 2012</p>
-            <!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-
-<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<h2 id="section">散列表中碰撞的解决</h2>
-<p>由于散列表的元素个数小于关键字的取值集合U,
-因此会有两个不同的关键字映射到散列表的同一个槽上，
-这时就发生了碰撞。发生了碰撞时，
-书上给出了两种方法来解决，
-而且保证此时的散列表平均情况下的查找复杂度是O(1)。</p>
-
-<h3 id="section-1">链接法</h3>
-<p>在链接法中，关键字映射到同一个槽上的元素通过一个链表来保存，
-此时散列表T[0..m-1]的任意元素T[j]是一个链表，
-当插入一个元素时，将元素放在它所对应的槽所指向链表的头部。
-下面对链接法的性能进行分析。</p>
-
-<p>定义散列表T的装载因子<script type="math/tex"> \alpha = n / m </script>, 其中n是元素个数，m是散列表槽数,
-我们假设元素满足简单一致散列的条件：
-任何元素散列到m个槽中的每一个的可能性是相同的。</p>
-
-<p>用<script type="math/tex"> n_j </script>表示链表T[j]的长度，有
-$$
-E[n_j] = \alpha = n/m
-$$</p>
-
-<p>有如下性质成立：</p>
-
-<ol>
-  <li>
-    <p>链接方式散列表在简单一致假设下，查找一个不存在元素所需时间的期望为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
-
-    <p>假设查找的元素是k, 它所对应的槽为h(k)，链表T[h(k)]的长度<script type="math/tex"> E[n_{h(k)}] = \alpha </script>，
- 所以平均情况下需要遍历一个长度为<script type="math/tex"> \alpha </script>的链表，外加常数的散列函数时间和寻址T[h(k)]的时间，
- 总共为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
-  </li>
-  <li>
-    <p>链接方式散列表在简单一致假设下，平均查找一个已存在的元素所需的时间为<script type="math/tex"> \Theta (1 + \alpha) </script></p>
-
-    <p>对于任意元素x，检查的元素个数等于x所在链表中，出现在x之前的元素个数加1。
- 设<script type="math/tex"> x_i </script>是第i个插入的元素，i=1,2,..,n,
- 定义：</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
-     X_{ij} =
-      \begin{cases}
-          1 & x_i\text{和}x_j\text{在同一槽中} \\
-          0 & \text{否则}
-      \end{cases}
-  %]]></script>
-
-    <p>由简单一致性假设，<script type="math/tex"> E[X_{ij}] = 1/m </script>，所以检查元素个数的期望为：</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-
- \begin{array} {lcl}
- E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
-     &=& 1 + \frac{n-1}{2m} \\
-     &=& 1 + \frac{\alpha}{2} - \frac{\alpha}{2n}
- \end{array}
-  %]]></script>
-
-    <p>所以平均查找时间为: <script type="math/tex"> \Theta (2 + \frac{\alpha}{2} - \frac{\alpha}{2n}) = \Theta (1 + \alpha) </script></p>
-  </li>
-</ol>
-
-<p class='more'><a href='/clrs/2012/12/04/clrs-10-13'>More...</a></p>
-        </div>
-      
 
       <!--[> links to prev and next pages for browsing thru archives <]-->
       
@@ -387,222 +375,18 @@ $$</p>
     <div class="span4" style="margin-top:20px;">
         <h3>所有分类</h3>
         <ul class="categories">
-        <!--<ul class="tag_box">-->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!-- -->
-             <!---->
-        <!---->
         
-        <!--<li><a href="/categories/clrs">clrs <span> 7 </span></a></li></span>-->
-        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
-        
-        <!--<li><a href="/categories/mysql">mysql <span> 1 </span></a></li></span>-->
         <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
         
-        <!--<li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li></span>-->
-        <li><a href="/categories/Feelings">Feelings <span> 2 </span></a></li>
-        
-        <!--<li><a href="/categories/python">python <span> 1 </span></a></li></span>-->
         <li><a href="/categories/python">python <span> 1 </span></a></li>
         
-        <!--<li><a href="/categories/linux">linux <span> 1 </span></a></li></span>-->
+        <li><a href="/categories/Feelings">Feelings <span> 3 </span></a></li>
+        
+        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
+        
         <li><a href="/categories/linux">linux <span> 1 </span></a></li>
         
-        <!--Liquid error: undefined method `sort!' for #<Hash:0xb62a531c>-->
-            <!---->
-            <!--
-
-
-  
-     
-    	<li><a href="/categories.html#clrs-ref">
-    		clrs <span>7</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#mysql-ref">
-    		mysql <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#Feelings-ref">
-    		Feelings <span>2</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#python-ref">
-    		python <span>1</span>
-    	</a></li>
-     
-    	<li><a href="/categories.html#linux-ref">
-    		linux <span>1</span>
-    	</a></li>
-    
-  
-
--->
         </ul>
-        <!-- -->
-          <!--<h2 id="clrs-ref">clrs</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/clrs/2013/01/06/clrs-24-26">最短路径与最大流</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/30/clrs-22-23">图的基本算法</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/18/clrs-1618">贪心算法和B树</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/12/clrs-14-15">红黑树扩充与动态规划</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/04/clrs-10-13">《算法导论》之基本数据结构</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/12/01/clrs-8-9">算法导论8~9章读书笔记</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="mysql-ref">mysql</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/mysql/2012/11/15/mysql-basic">MySQL 基本优化</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="Feelings-ref">Feelings</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2013/01/01/new-2013">再见2012，你好2013</a></li>
-      	
-      
-    
-  
-    
-      
-      	
-      	<li><a href="/Feelings/2012/10/27/feeling">最近的总结与感悟</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="python-ref">python</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/python/2012/11/11/chinese-encoding">浅谈中文编码</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!-- -->
-          <!--<h2 id="linux-ref">linux</h2>-->
-          <!--<ul>-->
-            <!--  -->
-            <!--
-
-
-  
-    
-      
-      	
-      	<li><a href="/linux/2012/09/14/archlinux-installation">ArchLinux 安装经过</a></li>
-      	
-      
-    
-  
-
-
--->
-          <!--</ul>-->
-        <!---->
     </div>
 </div>
 

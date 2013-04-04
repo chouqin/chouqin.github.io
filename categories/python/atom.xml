@@ -4,10 +4,10 @@
   <title><![CDATA[Category: python | Chouqin & Laoqi]]></title>
   <link href="/categories/python/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-07T21:50:11+08:00</updated>
+  <updated>2013-04-04T17:37:37+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[githubchouqinweiboatchouqinnameQiping Liemailliqiping1991@gmail.com]]></name>
+    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqinnameQiping Ligithubchouqin]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -46,9 +46,7 @@ E4B8AD转化为“中”。</p>
     <span class="nb">str</span>
    <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;len(a)</span>
     <span class="mi">9</span>
-</code></pre>
-</div>
-</p>
+</code></pre></div></p>
 
 <!--more-->
 
@@ -79,23 +77,17 @@ E4B8AD转化为“中”。</p>
    <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;b = ua.encode(&amp;#8220;utf-8&amp;#8221;)</span>
    <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;b</span>
     <span class="o">&amp;</span><span class="c">#8216;\xe6\x88\x91\xe6\x98\xaf123&amp;#8217;</span>
-</code></pre>
-</div>
-</p>
+</code></pre></div></p>
 
 <p>将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：</p>
 
 <p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="o">&amp;</span><span class="c">#8220;我是123&amp;#8221;, &amp;#8220;utf-8&amp;#8221;)</span>
-</code></pre>
-</div>
-</p>
+</code></pre></div></p>
 
 <p>或者是</p>
 
 <p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="n">u</span><span class="o">&amp;</span><span class="c">#8221;我是123&amp;#8221;</span>
-</code></pre>
-</div>
-</p>
+</code></pre></div></p>
 
 <p>得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，
 都当作同样的字符来进行处理，这样一个unicode的长度就是所有字符的个数，而不管这些字符是中文

@@ -4,10 +4,10 @@
   <title><![CDATA[Category: clrs | Chouqin & Laoqi]]></title>
   <link href="/categories/clrs/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-01-07T21:50:11+08:00</updated>
+  <updated>2013-04-04T17:37:37+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[githubchouqinweiboatchouqinnameQiping Liemailliqiping1991@gmail.com]]></name>
+    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqinnameQiping Ligithubchouqin]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -18,7 +18,8 @@
     <link href="/clrs/2013/01/06/clrs-24-26"/>
     <updated>2013-01-06T00:00:00+08:00</updated>
     <id>/clrs/2013/01/06/clrs-24-26</id>
-    <content type="html"><![CDATA[<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <content type="html"><![CDATA[<!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <p></p>
 
@@ -66,9 +67,7 @@ Bellman-Ford的执行过程就是运行|V|-1次更新操作，
 <span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="err">|</span><span class="n">V</span><span class="err">|</span><span class="o">-</span><span class="mi">1</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">in</span> <span class="n">E</span><span class="o">:</span>
         <span class="n">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span> 
-</code></pre>
-</div>
-
+</code></pre></div>
 </code></pre>
 
 <!--more-->
@@ -289,9 +288,9 @@ u还没开始遍历，此时不可能有v到u的边，因为如果有的话那�
     <link href="/clrs/2012/12/18/clrs-1618"/>
     <updated>2012-12-18T00:00:00+08:00</updated>
     <id>/clrs/2012/12/18/clrs-1618</id>
-    <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+    <content type="html"><![CDATA[<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
 <p></p>
 
@@ -569,9 +568,9 @@ B树也正是实现了这样的思想，B树的深度不会太深，
     <link href="/clrs/2012/12/12/clrs-14-15"/>
     <updated>2012-12-12T00:00:00+08:00</updated>
     <id>/clrs/2012/12/12/clrs-14-15</id>
-    <content type="html"><![CDATA[<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <content type="html"><![CDATA[<!--<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 <p></p>
 
 <h2 id="section">红黑树的扩充</h2>
@@ -783,9 +782,7 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
             <span class="k">for</span> <span class="n">j</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="n">n</span>
                 <span class="k">if</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="err">&amp;</span><span class="n">lt</span><span class="o">;</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">then</span>
                     <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">:=</span> <span class="n">path</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">path</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">;</span>
-</code></pre>
-</div>
-</p>
+</code></pre></div></p>
 
 <p>在每次迭代时，对于任意节点对(i, j)，如果(i, k)的路径长度加(k, j)的路径长度小于
 原来的(i, j)的路径长度，
@@ -892,10 +889,9 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
     <link href="/clrs/2012/12/04/clrs-10-13"/>
     <updated>2012-12-04T00:00:00+08:00</updated>
     <id>/clrs/2012/12/04/clrs-10-13</id>
-    <content type="html"><![CDATA[<!--<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+    <content type="html"><![CDATA[<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+<!--<script type="text/javascript" src="/assets/themes//assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 <p></p>
 
 <h2 id="section">散列表中碰撞的解决</h2>

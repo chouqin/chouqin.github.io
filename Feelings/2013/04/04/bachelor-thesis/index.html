@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>
       
-        Blog - 
+        毕业论文点滴 - 
       
       Chouqin & Laoqi
     </title>
-    
+    <meta name="description" content="">
     <meta name="author" content="Qiping Li">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
@@ -210,14 +210,17 @@
 
     <div class="container">
       <div class="content">
-        <div class="row">
-    <div class="span8" style="margin-top:20px;">
-      <!--[> iterate through the posts on this page <]-->
-      
-        <div class="post">
-          <h1><a href="/Feelings/2013/04/04/bachelor-thesis">毕业论文点滴</a></h1>
-          <p class="meta">April  4, 2013</p>
-            
+        
+<div class="page-header">
+  <h1>
+    毕业论文点滴
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
 <p>已经好久没写博客了，因为寒假一个多月都没看书，
 而一回到学校，又要忙着毕业论文的事，所以也无暇顾及这个。
 大部分牛人的博客，都是记载着自己正在研究的方面，
@@ -299,88 +302,73 @@ Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stan
   </li>
 </ol>
 
-        </div>
+    <hr>
+    <div class="pagination btn-group">
       
-        <div class="post">
-          <h1><a href="/clrs/2013/01/06/clrs-24-26">最短路径与最大流</a></h1>
-          <p class="meta">January  6, 2013</p>
-            <!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<h2 id="section">最短路径</h2>
-
-<p>在最短路径问题中，
-希望在一个图中找出从一个节点到另外一个节点的最短路径，
-可能要找出从某一个特定节点到其他节点的最短路径，
-也可能是找出所有节点对之间的最短路径，
-图中边的权重可能为负值，甚至包含负的回路，
-因此，在不同的情况下，有不同的算法适合求解问题，
-关于求解所有节点之间的最短路径问题已经在动态规划时详细地解释过Floyd算法，
-现在就谈谈两个处理单源最短路径的算法, Dijkstra算法和Bellman-Ford算法。</p>
-
-<h3 id="dijkstra">Dijkstra算法</h3>
-
-<p>Dijkstra算法用于求解所有边的权重为非负值时的单源最短路径问题，
-它与Prim算法很相似，利用一个集合S保存已经求出最短路径的节点集合，
-开始是S只包含源节点s,
-每次从V-S中挑选出一个距离S中节点最近的节点u放入S，同时正确地设置u的邻居节点的路径长度，
-直到S为V。</p>
-
-<p>对于Dijkstra算法的正确性，只需要递归地证明下面的性质成立：</p>
-
-<pre><code>当节点u被加入到S时，u到s的最短路径已经被正确的设置, 而且u到s的最短路径上的前趋节点w已经被添加进S。
-</code></pre>
-
-<ul>
-  <li>初始化：一开始时，这个性质显然成立</li>
-  <li>保持：假设当u被添加到S时，u到s的最短路径已经被正确的设置，对于u的任何一个邻接节点v，
-如果s到v的最短路径是<script type="math/tex"> s \xrightarrow{p} u \xrightarrow{} v </script>，那么s到v的路径能够被正确的设置，
-而且从v到s最短路径上的前趋节点u已经被添加进S, 这样当v被添加进S时，上述的性质都是能够保持的。</li>
-</ul>
-
-<h3 id="bellman-ford">Bellman-Ford算法</h3>
-
-<p>Bellman-Ford算法用于求解权重可以为负值时的单源最短路径问题，
-而且它还可以用于判断图中是否存在s可达的负的回路。
-Bellman-Ford的执行过程就是运行|V|-1次更新操作，
-每次更新操作遍历每一条边(u, v)更新dist[v]，伪代码如下：</p>
-
-<div class="highlight"><pre><code class="pascal">    <span class="k">procedure</span> <span class="nf">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span><span class="o">:</span>
-        <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">,</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span>
-
-    <span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="err">|</span><span class="n">V</span><span class="err">|</span><span class="o">-</span><span class="mi">1</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">in</span> <span class="n">E</span><span class="o">:</span>
-            <span class="n">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span>
-</code></pre></div>
-
-<p class='more'><a href='/clrs/2013/01/06/clrs-24-26'>More...</a></p>
-        </div>
+        <a class="btn prev" href="/clrs/2013/01/06/clrs-24-26" title="最短路径与最大流">&larr; Previous</a>
       
-
-      <!--[> links to prev and next pages for browsing thru archives <]-->
+        <a class="btn" href="/archive.html">Archive</a>
       
+        <a class="btn next disabled">Next &rarr;</a>
       
-        <span id="older"><a href="/page2">Older Entries &raquo;&raquo;</a></span>
-      
-
     </div>
+    <hr>
+    
 
-    <div class="span4" style="margin-top:20px;">
-        <h3>所有分类</h3>
-        <ul class="categories">
-        
-        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
-        
-        <li><a href="/categories/python">python <span> 1 </span></a></li>
-        
-        <li><a href="/categories/Feelings">Feelings <span> 3 </span></a></li>
-        
-        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
-        
-        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
-        
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>04 April 2013</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+            <li><a href="/categories/Feelings">Feelings</a></li>
+        </span>
+      </section>
+    
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#Feelings-ref">Feelings <span>2</span></a></li>
+    
+  
+
+
+
         </ul>
-    </div>
+      </section>
+    
+  </div>
 </div>
 
 

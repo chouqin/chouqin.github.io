@@ -4,7 +4,7 @@
  <title>Chouqin & Laoqi</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2013-01-07T21:50:11+08:00</updated>
+ <updated>2013-04-04T17:37:37+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Qiping Li</name>
@@ -13,11 +13,101 @@
 
  
  <entry>
+   <title>毕业论文点滴</title>
+   <link href="http://username.github.com/Feelings/2013/04/04/bachelor-thesis"/>
+   <updated>2013-04-04T00:00:00+08:00</updated>
+   <id>http://username.github.com/Feelings/2013/04/04/bachelor-thesis</id>
+   <content type="html">
+&lt;p&gt;已经好久没写博客了，因为寒假一个多月都没看书，
+而一回到学校，又要忙着毕业论文的事，所以也无暇顾及这个。
+大部分牛人的博客，都是记载着自己正在研究的方面，
+在博客中也是向读者传达着一些知识，我们总是可以从其中学到某种东西。
+而我，要达到这样的程度要有很长的一段路需要走，
+由于技术水平较低，现在的博客记录的仍然还是自己在&lt;strong&gt;学习&lt;/strong&gt;过程中的一些心得和体会，
+很大程度上是描述自己的坎坷经历，希望能给某些人一些借鉴，少走一些弯路。&lt;/p&gt;
+
+&lt;p&gt;好了，言归正传，这一个月，都在忙着做毕业设计，
+包括看论文，写代码，找数据，做实验。一个月的时间，
+就完成了这么一件事，效率确实不算高，
+主要原因在于对于搞科研还是新手，
+很多情况下都是在尝试了各种可能之后才找到方法，
+有时一个人的蛮干还不如直接通过其他方式获得出路。
+哎，科研就是要耐得住寂寞，不停地调参数，不停地跑数据，
+把各种可能性都尝试一遍，之后才有好的结果。&lt;/p&gt;
+
+&lt;p&gt;先简单介绍一下我这个论文的要求，论文的题目叫
+&lt;code&gt;信息缺失情况下的社区挖掘&lt;/code&gt;，其实就是一个聚类算法，
+根据节点的某些属性和节点之间的边的关系，把图中的比较接近的节点聚到一起，
+形成一个社区。而信息缺失，是指节点中的某些边的关系并不知道，
+在这样的情况下进行聚类。采用的办法是首先利用节点之间的属性和边的关系，
+通过机器学习方法获取所有节点之间的距离，然后再根据这个距离对节点进行聚类。
+下面我来说一下整个的过程。&lt;/p&gt;
+
+&lt;p&gt;首先是准备数据。一开始准备爬微博的数据，
+所以就去网上搜各种微博的爬虫，
+然后终于找到了这个&lt;a href=&quot;https://bitbucket.org/chineking/weibocrawler&quot;&gt;一个简单的分布式新浪微博爬虫&lt;/a&gt;，
+在这个基础上进行了一点小修改，弄了一个简单的单节点爬虫。
+这个爬虫可以抓取用户的微博，用户的个人资料以及用户之间的关注关系。
+然后，又使用&lt;a href=&quot;http://ictclas.nlpir.org/&quot;&gt;NLPIR&lt;/a&gt;对微博进行分词，
+提取出关键字作为用户的属性，同时以用户之间的关注关系作为边，这样就开始实验。
+可是，不知道是实验室的网络不稳定还是新浪微博的限制，这个爬虫很难稳定地抓取微博的数据，
+最后实在没办法，学长建议我去网上直接找别人爬取到的数据集。
+于是，我先后使用了Google+, Facebook, 
+Twitter(这三个数据集都是在&lt;a href=&quot;http://snap.stanford.edu/data/&quot;&gt;Stanford Large Network Dataset Collection&lt;/a&gt;上找到的),
+和Flixter数据集做实验。其中使用Flixter数据集做出来的结果也还可以，可是师兄说一定要有&lt;strong&gt;Ground Truth&lt;/strong&gt;用于验证，
+所以我又只好去找其他的数据集，
+最后终于&lt;a href=&quot;http://dmml.asu.edu/users/xufei/datasets.html&quot;&gt;在这&lt;/a&gt;找到了可以用于实验的数据集。&lt;/p&gt;
+
+&lt;p&gt;然后是实现代码去做实验。这个代码其实两部分，第一部分要利用机器学习去学习一个距离，
+第二部分是基于距离进行聚类。为了学习距离，需要求解一个最优化函数，
+而这里面涉及的数学的公式好复杂，实现起来也非常困难，
+找到了一份和这个论文比较相似的论文的源代码，却发现里面错误好多，有些地方也不知道从哪里开始改。
+大概修改了一下就把这个距离拿到第二步去聚类，发现结果非常差，
+然后也不知道是第一步的问题还是第二步的问题，但是我就只会改第二步的代码:P。
+终于在第二步实在找不出什么错误然后第一步的结果又不好之后，我去问老师，
+老师让我使用谱聚类算法来验证距离是不是正确的，
+因为谱聚类算法也是基于距离的聚类算法，如果谱聚类算法得不到正确的结果，那就是距离的问题了。
+多好的主意啊，我当时怎么就没想到呢，因为我当时还没听说过谱聚类算法。
+于是我就拿谱聚类算法去验证，果然是距离没学对，而除了代码没写对之外，
+有一个重要的步骤没有做，&lt;strong&gt;对Feature做Normalize&lt;/strong&gt;，
+这个步骤对于使用节点的属性来说非常重要，它保证了所有属性的作用是均等的。
+而后，我又在&lt;a href=&quot;http://www.cs.cmu.edu/~liuy/distlearn.htm&quot;&gt;这里&lt;/a&gt;找到了一些其他的学习距离的算法，
+我使用了其中的DCA算法来作为我的第一步，相当靠谱。
+通过谱聚类算法验证之后，我发现我的第二步算法就几乎没有什么问题了，
+跑出的结果也比较让人满意。&lt;/p&gt;
+
+&lt;p&gt;大概就是这么一个比较纠结的过程，总结出一些经验吧:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;import this
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;写代码还是要多检查，一个bug除了导致几个小时的结果无效，还要浪费更多的时间去找到它。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在一个步骤保证正确之前，不要急于开展下一步，这样只会增加更多的复杂性。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;沉下心来研究论文，尽量采用和别人一样的方法，得到的结果总是好些，虽然不知道为什么好。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;不要畏惧实验和失败，说不定下一次就是成功的那一次。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;真爱生命，远离科研。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>最短路径与最大流</title>
    <link href="http://username.github.com/clrs/2013/01/06/clrs-24-26"/>
    <updated>2013-01-06T00:00:00+08:00</updated>
    <id>http://username.github.com/clrs/2013/01/06/clrs-24-26</id>
-   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+   <content type="html">&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;最短路径&lt;/h2&gt;
 
@@ -63,8 +153,7 @@ Bellman-Ford的执行过程就是运行|V|-1次更新操作，
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;!--more--&gt;
 
@@ -340,9 +429,9 @@ u还没开始遍历，此时不可能有v到u的边，因为如果有的话那�
    <link href="http://username.github.com/clrs/2012/12/18/clrs-1618"/>
    <updated>2012-12-18T00:00:00+08:00</updated>
    <id>http://username.github.com/clrs/2012/12/18/clrs-1618</id>
-   <content type="html">&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;贪心算法&lt;/h2&gt;
 &lt;p&gt;动态规划是一种解决问题的通用方法，
@@ -618,9 +707,8 @@ B树也正是实现了这样的思想，B树的深度不会太深，
    <link href="http://username.github.com/clrs/2012/12/12/clrs-14-15"/>
    <updated>2012-12-12T00:00:00+08:00</updated>
    <id>http://username.github.com/clrs/2012/12/12/clrs-14-15</id>
-   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
-
-&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+   <content type="html">&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;红黑树的扩充&lt;/h2&gt;
 
@@ -831,8 +919,7 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
             &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;
                 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
                     &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;在每次迭代时，对于任意节点对(i, j)，如果(i, k)的路径长度加(k, j)的路径长度小于
 原来的(i, j)的路径长度，
@@ -939,9 +1026,9 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
    <link href="http://username.github.com/clrs/2012/12/04/clrs-10-13"/>
    <updated>2012-12-04T00:00:00+08:00</updated>
    <id>http://username.github.com/clrs/2012/12/04/clrs-10-13</id>
-   <content type="html">&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;散列表中碰撞的解决&lt;/h2&gt;
 &lt;p&gt;由于散列表的元素个数小于关键字的取值集合U,
@@ -1289,9 +1376,9 @@ $$&lt;/p&gt;
    <link href="http://username.github.com/clrs/2012/12/01/clrs-8-9"/>
    <updated>2012-12-01T00:00:00+08:00</updated>
    <id>http://username.github.com/clrs/2012/12/01/clrs-8-9</id>
-   <content type="html">&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
 
 &lt;h3 id=&quot;section&quot;&gt;比较排序的时间下界&lt;/h3&gt;
 &lt;p&gt;合并排序和堆排序在最坏情况下能够在O(nlgn)时间内排序n个数，
@@ -1445,9 +1532,9 @@ i是在哪一个部分中去相应部分中进行查找，这种方法能保证�
    <link href="http://username.github.com/clrs/2012/11/19/clrs-1"/>
    <updated>2012-11-19T00:00:00+08:00</updated>
    <id>http://username.github.com/clrs/2012/11/19/clrs-1</id>
-   <content type="html">&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
+   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
-&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+&lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
 
 &lt;p&gt;正如上一篇所说，我这几天都在学习《算法导论》这本书，
 也终于是下定决心要好好把这本书看出个所以然来。
@@ -1790,8 +1877,7 @@ E4B8AD转化为“中”。&lt;/p&gt;
     &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;!--more--&gt;
 
@@ -1822,20 +1908,17 @@ E4B8AD转化为“中”。&lt;/p&gt;
     &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\xe6\x88\x91\xe6\x98\xaf&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;123&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;unicode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;我是123&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;或者是&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;    &lt;span class=&quot;n&quot;&gt;ua&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;u&amp;quot;我是123&amp;quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，
 都当作同样的字符来进行处理，这样一个unicode的长度就是所有字符的个数，而不管这些字符是中文
