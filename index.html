@@ -177,6 +177,18 @@
       
     
   
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
 
 
 
@@ -213,6 +225,54 @@
         <div class="row">
     <div class="span8" style="margin-top:20px;">
       <!--[> iterate through the posts on this page <]-->
+      
+        <div class="post">
+          <h1><a href="/tools/2013/04/20/markup-lang">使用markdown和reStructuredText生成文档</a></h1>
+          <p class="meta">April 20, 2013</p>
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h3 id="section">基本介绍</h3>
+<p><a href="http://daringfireball.net/projects/markdown/">Markdown</a>和
+<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>(下面简称rst)
+是现在比较流行的<a href="http://en.wikipedia.org/wiki/Lightweight_markup_language">轻量级标注语言</a>，
+这些语言拥有比较强大的表现力，可以通过简单的书写代码就可以写出包含代码，图片，数学公式等各种格式的文档。
+这样，我们不用把心思花在各种格式的调节，而只需要专注于文档的内容就行了。
+我们通过标记语言写成的文本文件能够被转化为html, tex, pdf，epub, word等各种格式，
+我们只需要利用标记语言提供的语法把文本文件写好，相应的转换器会为你转换为特定的文档格式。
+我的博客其实都是使用markdown一个特定版本<a href="http://kramdown.rubyforge.org/">kramdown</a>写的，
+然后转换为html来发布。</p>
+
+<p>学习这些标记语言其实很简单，远远比学习latex简单，把它提供的一些语法都写一遍，比如说怎么写标题，
+怎么写列表，怎么插入代码，怎么插入数学符号等等。知道怎么写了之后，
+就多练习，写得多了，熟悉之后就会发现，确实能够省去你控制格式的很多烦恼。</p>
+
+<h3 id="pandoc">使用pandoc</h3>
+
+<p>Markdown有很多超集，比如上面提到的kramdown，这些超集在markdown的基础之上有提供了一些功能，
+比如说原生的markdown是不支持数学公式的，但kramdown支持，
+它可以把你写在两个在源文件中的这样一段markdown代码:</p>
+
+<pre><code>$$
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+$$
+</code></pre>
+
+<p>转化为这样一段html:</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;math/tex; mode=display&quot;</span><span class="nt">&gt;</span>
+    <span class="nx">O</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span><span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="o">:</span> <span class="err">\</span><span class="nx">exists</span> <span class="nx">c</span><span class="p">,</span><span class="nx">n</span><span class="err">，</span> <span class="err">\</span><span class="nx">forall</span> <span class="nx">n</span> <span class="err">\</span><span class="nx">geq</span> <span class="nx">n_0</span><span class="p">,</span>  <span class="mi">0</span> <span class="err">\</span><span class="nx">leq</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="err">\</span><span class="nx">leq</span> <span class="nx">cg</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="err">\</span><span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+
+<p>包含这个的html<strong>如果里面包含<a href="http://www.mathjax.org/">MathJax</a>这个js库</strong>的话，
+MathJax就会把上述的一段html转换为如下的数学公式呈现给你。</p>
+
+<script type="math/tex; mode=display">
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+</script>
+
+<p class='more'><a href='/tools/2013/04/20/markup-lang'>More...</a></p>
+        </div>
       
         <div class="post">
           <h1><a href="/Feelings/2013/04/04/bachelor-thesis">毕业论文点滴</a></h1>
@@ -301,61 +361,6 @@ Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stan
 
         </div>
       
-        <div class="post">
-          <h1><a href="/clrs/2013/01/06/clrs-24-26">最短路径与最大流</a></h1>
-          <p class="meta">January  6, 2013</p>
-            <!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<h2 id="section">最短路径</h2>
-
-<p>在最短路径问题中，
-希望在一个图中找出从一个节点到另外一个节点的最短路径，
-可能要找出从某一个特定节点到其他节点的最短路径，
-也可能是找出所有节点对之间的最短路径，
-图中边的权重可能为负值，甚至包含负的回路，
-因此，在不同的情况下，有不同的算法适合求解问题，
-关于求解所有节点之间的最短路径问题已经在动态规划时详细地解释过Floyd算法，
-现在就谈谈两个处理单源最短路径的算法, Dijkstra算法和Bellman-Ford算法。</p>
-
-<h3 id="dijkstra">Dijkstra算法</h3>
-
-<p>Dijkstra算法用于求解所有边的权重为非负值时的单源最短路径问题，
-它与Prim算法很相似，利用一个集合S保存已经求出最短路径的节点集合，
-开始是S只包含源节点s,
-每次从V-S中挑选出一个距离S中节点最近的节点u放入S，同时正确地设置u的邻居节点的路径长度，
-直到S为V。</p>
-
-<p>对于Dijkstra算法的正确性，只需要递归地证明下面的性质成立：</p>
-
-<pre><code>当节点u被加入到S时，u到s的最短路径已经被正确的设置, 而且u到s的最短路径上的前趋节点w已经被添加进S。
-</code></pre>
-
-<ul>
-  <li>初始化：一开始时，这个性质显然成立</li>
-  <li>保持：假设当u被添加到S时，u到s的最短路径已经被正确的设置，对于u的任何一个邻接节点v，
-如果s到v的最短路径是<script type="math/tex"> s \xrightarrow{p} u \xrightarrow{} v </script>，那么s到v的路径能够被正确的设置，
-而且从v到s最短路径上的前趋节点u已经被添加进S, 这样当v被添加进S时，上述的性质都是能够保持的。</li>
-</ul>
-
-<h3 id="bellman-ford">Bellman-Ford算法</h3>
-
-<p>Bellman-Ford算法用于求解权重可以为负值时的单源最短路径问题，
-而且它还可以用于判断图中是否存在s可达的负的回路。
-Bellman-Ford的执行过程就是运行|V|-1次更新操作，
-每次更新操作遍历每一条边(u, v)更新dist[v]，伪代码如下：</p>
-
-<div class="highlight"><pre><code class="pascal">    <span class="k">procedure</span> <span class="nf">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span><span class="o">:</span>
-        <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">,</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span>
-
-    <span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="err">|</span><span class="n">V</span><span class="err">|</span><span class="o">-</span><span class="mi">1</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">in</span> <span class="n">E</span><span class="o">:</span>
-            <span class="n">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span>
-</code></pre></div>
-
-<p class='more'><a href='/clrs/2013/01/06/clrs-24-26'>More...</a></p>
-        </div>
-      
 
       <!--[> links to prev and next pages for browsing thru archives <]-->
       
@@ -369,15 +374,17 @@ Bellman-Ford的执行过程就是运行|V|-1次更新操作，
         <h3>所有分类</h3>
         <ul class="categories">
         
-        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
+        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
+        
+        <li><a href="/categories/tools">tools <span> 1 </span></a></li>
         
         <li><a href="/categories/python">python <span> 1 </span></a></li>
         
-        <li><a href="/categories/Feelings">Feelings <span> 3 </span></a></li>
-        
-        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
-        
         <li><a href="/categories/linux">linux <span> 1 </span></a></li>
+        
+        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
+        
+        <li><a href="/categories/Feelings">Feelings <span> 3 </span></a></li>
         
         </ul>
     </div>

@@ -4,13 +4,186 @@
  <title>Chouqin & Laoqi</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2013-04-04T17:37:37+08:00</updated>
+ <updated>2013-04-20T21:53:00+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Qiping Li</name>
    <email>liqiping1991@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>使用markdown和reStructuredText生成文档</title>
+   <link href="http://username.github.com/tools/2013/04/20/markup-lang"/>
+   <updated>2013-04-20T00:00:00+08:00</updated>
+   <id>http://username.github.com/tools/2013/04/20/markup-lang</id>
+   <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;基本介绍&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown&lt;/a&gt;和
+&lt;a href=&quot;http://docutils.sourceforge.net/rst.html&quot;&gt;reStructuredText&lt;/a&gt;(下面简称rst)
+是现在比较流行的&lt;a href=&quot;http://en.wikipedia.org/wiki/Lightweight_markup_language&quot;&gt;轻量级标注语言&lt;/a&gt;，
+这些语言拥有比较强大的表现力，可以通过简单的书写代码就可以写出包含代码，图片，数学公式等各种格式的文档。
+这样，我们不用把心思花在各种格式的调节，而只需要专注于文档的内容就行了。
+我们通过标记语言写成的文本文件能够被转化为html, tex, pdf，epub, word等各种格式，
+我们只需要利用标记语言提供的语法把文本文件写好，相应的转换器会为你转换为特定的文档格式。
+我的博客其实都是使用markdown一个特定版本&lt;a href=&quot;http://kramdown.rubyforge.org/&quot;&gt;kramdown&lt;/a&gt;写的，
+然后转换为html来发布。&lt;/p&gt;
+
+&lt;p&gt;学习这些标记语言其实很简单，远远比学习latex简单，把它提供的一些语法都写一遍，比如说怎么写标题，
+怎么写列表，怎么插入代码，怎么插入数学符号等等。知道怎么写了之后，
+就多练习，写得多了，熟悉之后就会发现，确实能够省去你控制格式的很多烦恼。&lt;/p&gt;
+
+&lt;h3 id=&quot;pandoc&quot;&gt;使用pandoc&lt;/h3&gt;
+
+&lt;p&gt;Markdown有很多超集，比如上面提到的kramdown，这些超集在markdown的基础之上有提供了一些功能，
+比如说原生的markdown是不支持数学公式的，但kramdown支持，
+它可以把你写在两个在源文件中的这样一段markdown代码:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$$
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+$$
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;转化为这样一段html:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;math/tex; mode=display&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;O&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exists&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;，&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forall&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;geq&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n_0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;leq&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;leq&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;包含这个的html&lt;strong&gt;如果里面包含&lt;a href=&quot;http://www.mathjax.org/&quot;&gt;MathJax&lt;/a&gt;这个js库&lt;/strong&gt;的话，
+MathJax就会把上述的一段html转换为如下的数学公式呈现给你。&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+&lt;/script&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;如果你使用了kramdown去处理一个包含数学公式的markdown，却发现没有转化为数学公式，
+那么极有可能是没有把MathJax的库包含到这个markdown中，需要通过下面这一行代码引用:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;下面我介绍一个转换模板语言的神器——&lt;a href=&quot;http://johnmacfarlane.net/pandoc/&quot;&gt;Pandoc&lt;/a&gt;，
+它能够在各种格式的文本之间进行转换，而且支持的格式非常多。
+我觉得使用pandoc比较适用的场景是你要写一个几页的文档，这个文档里包含了代码，数学公式等。
+在这种情况下，你先写成一个markdown的文本文件，然后利用pandoc转换成需要的格式(pdf, html等)。
+而如果写比较大型的文档，或者是写书，我觉得待会我要介绍的Sphinx可能更加合适。
+当然，也有很多人使用markdown来写书。&lt;/p&gt;
+
+&lt;p&gt;使用这些标记语言，包括我下面提到的rst, 转换为pdf，
+最大的不好就是如果里面包含了中文，就需要一些比较麻烦的处理。
+因为这些标记语言在转换为pdf时，都是先转换为latex，而latex对中文的支持又不是那么的好。
+对于pandoc，如果需要转换为中文的话，需要另外提供一个模板，
+这个模板引入了一些中文需要的包，还声明了一些中文的字体。
+需要注意两点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;模板里面的声明的字体，一定要是系统已经安装好的字体。
+可以通过&lt;code&gt;fc-list :lang=zh&lt;/code&gt;查看已经安装的中文字体。&lt;/li&gt;
+  &lt;li&gt;使用&lt;code&gt;xelatex&lt;/code&gt;作为latex引擎。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;我&lt;a href=&quot;https://gist.github.com/chouqin/5412396&quot;&gt;这里&lt;/a&gt;有一个我自己写的一个用于转化简单pdf的模板。
+记得修改成你已经安装好的字体。这样就能通过下面的命令生成pdf：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pandoc -o solution.pdf solution.md --latex-engine=xelatex\
+--template=mytemplate.tex
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;sphinx&quot;&gt;使用Sphinx来制作文档&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://sphinx-doc.org/&quot;&gt;Sphinx&lt;/a&gt;是一个很强大的用于制作文档的工具，
+几乎所有的Python文档都是用Sphinx这个工具生成的，
+在Python代码里面的注释能够很方便的转换为相应的API文档。
+但是它并不仅仅局限于Python，它现在也能够支持C/C++，
+而且在朝着更多的语言发展。除去和语言相关的成分，
+它本身就十分适合写文档。&lt;/p&gt;
+
+&lt;p&gt;Sphinx使用rst作为它的标记语言，而且扩充了一些rst的模块，
+用于更方便的书写文档，比如说&lt;code&gt;toctree&lt;/code&gt;。
+而且它还有很多的html主题可以使用，能够让你生成的html比较美观。&lt;/p&gt;
+
+&lt;p&gt;很多人拿Sphinx用来写书，同样的，如果要生成pdf，还是会面临中文问题，
+好在还是有方法可以解决一些比较简单的问题，
+在&lt;a href=&quot;http://hyry.dip.jp:8000/pydoc/pydoc_write_tools.html&quot;&gt;这个文档&lt;/a&gt;中,
+作者比较详细地介绍了一些它在写这本书时遇到的一些问题，
+虽然还有些许问题没有解决，但已经能解决大部分的问题了,
+从作者生成书籍的质量可以看出。&lt;/p&gt;
+
+&lt;p&gt;我其实就是打算用Sphinx来记录一些学习的笔记，
+暂时还没有出书的打算，因此针对于我的需求，
+我使用这两个步骤达到生成pdf的目的:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在conf.py中，设置&lt;code&gt;latex_elements.preamble&lt;/code&gt;：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;python&quot;&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;preamble&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;r&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \usepackage{float}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \usepackage{xeCJK}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \usepackage{indentfirst}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \setlength{\parindent}{2em}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \textwidth 6.5in&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \oddsidemargin -0.2in&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \evensidemargin -0.2in&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \usepackage{ccaption}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \usepackage{fontspec,xunicode,xltxtra}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \setmonofont[Mapping={}]{Source Code Pro}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \setCJKmainfont[ItalicFont={Adobe Kaiti Std R}, BoldFont={Adobe Heiti Std}]{Adobe Song Std}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \setCJKmonofont[BoldFont={WenQuanYi Zen Hei Mono}]{Adobe Fangsong Std}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \setCJKsansfont[ItalicFont={Adobe Kaiti Std R},BoldFont={Adobe Heiti Std}]{Adobe Song Std}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \XeTeXlinebreaklocale &amp;quot;zh&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \XeTeXlinebreakskip = 0pt plus 1pt&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \renewcommand{\baselinestretch}{1.3}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \captiontitlefont{\small\sffamily}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \captiondelim{ - }&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \renewcommand\today{\number\year年\number\month月\number\day日}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \makeatletter&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \renewcommand*\l@subsection{\@dottedtocline{2}{2.0em}{4.0em}}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \renewcommand*\l@subsubsection{\@dottedtocline{3}{3em}{5em}}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \makeatother&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \titleformat{\chapter}[display]&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    {\bfseries\Huge}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    {\filleft \Huge 第 \hspace{2 mm} \thechapter \hspace{4 mm} 章}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    {4ex}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    {\titlerule&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \vspace{2ex}%&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \filright}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    [\vspace{2ex}%&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \titlerule]&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    %\definecolor{VerbatimBorderColor}{rgb}{0.2,0.2,0.2}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;    \definecolor{VerbatimColor}{rgb}{0.95,0.95,0.95}&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在index.rst的开始加上:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;rst&quot;&gt;&lt;span class=&quot;p&quot;&gt;..&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;raw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;::&lt;/span&gt; latex
+
+    \renewcommand\partname{部分}
+    \renewcommand{\chaptermark}[1]{\markboth{第 \thechapter\ 章 \hspace{4mm} #1}{}}
+    \fancyhead[LE,RO]{学习笔记}
+    \renewcommand{\figurename}{\textsc{图}}
+    \renewcommand\contentsname{目 录}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这样就能生成看上去还比较不错的pdf了。
+注意不能直接通过&lt;code&gt;make latexpdf&lt;/code&gt;去生成pdf，
+而是需要先通过&lt;code&gt;make latex&lt;/code&gt; 生成tex文件，
+再使用&lt;code&gt;xelatex&lt;/code&gt;去编译tex文件生成pdf.&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;总结&lt;/h3&gt;
+&lt;p&gt;我在这边博客中主要总结了一些编译中文pdf的经验，
+至于这些标记语言的语法，应该不难，
+多写写，就会熟练的，我就不在这赘述了。&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>毕业论文点滴</title>
