@@ -3,7 +3,6 @@ http://username.github.com/index.html
 http://username.github.com/archive.html
 http://username.github.com/tags.html
 http://username.github.com/pages.html
-http://username.github.com/index.html.bak
 http://username.github.com/atom.xml
 http://username.github.com/categories.html
 http://username.github.com/about.html
@@ -15,18 +14,18 @@ http://username.github.com/page5/index.html
 http://username.github.com/page6/index.html
 http://username.github.com/page7/index.html
 http://username.github.com/page8/index.html
-http://username.github.comcategories/clrs/index.html
-http://username.github.comcategories/clrs/atom.xml
-http://username.github.comcategories/tools/index.html
-http://username.github.comcategories/tools/atom.xml
-http://username.github.comcategories/python/index.html
-http://username.github.comcategories/python/atom.xml
-http://username.github.comcategories/linux/index.html
-http://username.github.comcategories/linux/atom.xml
 http://username.github.comcategories/mysql/index.html
 http://username.github.comcategories/mysql/atom.xml
+http://username.github.comcategories/python/index.html
+http://username.github.comcategories/python/atom.xml
+http://username.github.comcategories/clrs/index.html
+http://username.github.comcategories/clrs/atom.xml
 http://username.github.comcategories/Feelings/index.html
 http://username.github.comcategories/Feelings/atom.xml
+http://username.github.comcategories/linux/index.html
+http://username.github.comcategories/linux/atom.xml
+http://username.github.comcategories/tools/index.html
+http://username.github.comcategories/tools/atom.xml
 
 http://username.github.com/tools/2013/04/20/markup-lang
 http://username.github.com/Feelings/2013/04/04/bachelor-thesis

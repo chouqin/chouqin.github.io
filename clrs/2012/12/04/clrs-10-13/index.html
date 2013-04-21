@@ -91,10 +91,6 @@
   
     
       
-    
-  
-    
-      
       	
       	<li><a href="/categories.html">Categories</a></li>
       	
@@ -234,6 +230,12 @@
   <div class="span8">
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+<script type="text/javascript">    
+    MathJax.Hub.Config({    
+        "HTML-CSS": { scale: 80}    
+    });    
+</script>
+
 <!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 
 <h2 id="section">散列表中碰撞的解决</h2>
@@ -315,30 +317,30 @@ $$</p>
 
 <p>在一致散列的假设下，有如下性质成立：</p>
 
-<ol>
-  <li>
-    <p>对于装载因子为<script type="math/tex">% <![CDATA[
- \alpha = n/m < 1  %]]></script>的开放散列表，查找一个不存在的元素所需的探查数期望至多为<script type="math/tex"> \frac{1}{1-\alpha} </script></p>
-
-    <p>定义随机变量X为探查数，<script type="math/tex"> A_i </script>为进行了第i次探查，有:</p>
+<ul>
+  <li>对于装载因子为<script type="math/tex">% <![CDATA[
+ \alpha = n/m < 1  %]]></script>的开放散列表，查找一个不存在的元素所需的探查数期望至多为<script type="math/tex"> \frac{1}{1-\alpha} </script>
+定义随机变量X为探查数，<script type="math/tex"> A_i </script>为进行了第i次探查，有:</li>
+</ul>
 
 <script type="math/tex; mode=display">% <![CDATA[
 
- \begin{array} {lcl}
-     E[X] &=& \sum_{i=1}^{\infty} i \bullet Pr\{X = i\} \\
-            &=& (Pr\{X=1\} + Pr\{X=2\} + ...) + (Pr\{X=2\} + Pr\{X=3\} + ...) + ... \\
-            &=& \sum_{i=1}^{\infty}Pr\{ X \geq i \} \\
-     Pr\{ X \geq i \} &=& Pr\{ A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-1} \} \\
-         &=& Pr\{A_1\} \bullet Pr\{ A_2 | A_1 \} \bullet ... \bullet Pr\{ A_{i-1} | A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-2} \} \\
-     Pr\{ A_1 \} &=& \frac{n}{m} = \alpha \\
-     Pr\{ A_j | A_1 \bigcap A_2 \bigcap ... \bigcap A_{j-1} \} &=& \frac{n-j+1}{m-j+1} \leq \frac{n}{m} = \alpha \\
-     Pr\{X \geq i \} &=& \frac{n}{m} \bullet \frac{n-1}{m-1} \bullet \frac{n-2}{m-2} \bullet ... \bullet \frac{n-i+2}{m-i+2}
-         \leq (\frac{n}{m})^{i-1} = \alpha^{i-1} \\
-     E[X] &=& \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1}
-         = \sum_{i=1}^{\infty} \alpha^{i-1} = \frac{1}{1-\alpha}
- \end{array}
-  %]]></script>
-  </li>
+\begin{align}
+E[X] &= \sum_{i=1}^{\infty} i \bullet Pr\{X = i\} \\
+    &= (Pr\{X=1\} + Pr\{X=2\} + ...) + (Pr\{X=2\} + Pr\{X=3\} + ...) + ... \\
+       &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \\
+Pr\{ X \geq i \} &= Pr\{ A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-1} \} \\
+    &= Pr\{A_1\} \bullet Pr\{ A_2 | A_1 \} \bullet ... \bullet Pr\{ A_{i-1} | A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-2} \} \\
+Pr\{ A_1 \} &= \frac{n}{m} = \alpha \\
+Pr\{ A_j | A_1 \bigcap A_2 \bigcap ... \bigcap A_{j-1} \} &= \frac{n-j+1}{m-j+1} \leq \frac{n}{m} = \alpha \\
+Pr\{X \geq i \} &= \frac{n}{m} \bullet \frac{n-1}{m-1} \bullet \frac{n-2}{m-2} \bullet ... \bullet \frac{n-i+2}{m-i+2} \\
+    &\leq (\frac{n}{m})^{i-1} = \alpha^{i-1} \\
+E[X] &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1} \\
+    &= \sum_{i=1}^{\infty} \alpha^{i-1} = \frac{1}{1-\alpha}
+\end{align}
+ %]]></script>
+
+<ul>
   <li>
     <p>向一个装载因子为<script type="math/tex"> \alpha </script>的开放寻址散列表中插入一个元素，平均情况下最多进行<script type="math/tex"> \frac{1}{1-\alpha} </script>次探查。</p>
 
@@ -348,15 +350,15 @@ $$</p>
     <p>一个装载因子为<script type="math/tex"> \alpha </script>的开放散列表中查找一个存在的元素的期望探查次数至多为<script type="math/tex"> \frac{1}{\alpha} \ln \frac{1}{1-\alpha} </script></p>
 
     <p>对于每一个元素x，查找它所需要的探查次数与插入它所需要的探查次数相同，
- 对于第i个插入的元素x, 所需的探查次数最多为<script type="math/tex"> \frac{1}{1-\frac{i}{m}} = \frac{m}{m-i} </script>，
- 所以平均的探查次数最多为：</p>
+  对于第i个插入的元素x, 所需的探查次数最多为<script type="math/tex"> \frac{1}{1-\frac{i}{m}} = \frac{m}{m-i} </script>，
+  所以平均的探查次数最多为：</p>
 
 <script type="math/tex; mode=display">
- \frac{1}{n} \sum_{i=0}^{n-1} \frac{m}{m-i} = \frac{m}{n} \sum_{i=0}^{n-1}\frac{1}{m-i}
-     \leq \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
- </script>
+  \frac{1}{n} \sum_{i=0}^{n-1} \frac{m}{m-i} = \frac{m}{n} \sum_{i=0}^{n-1}\frac{1}{m-i}
+      \leq \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
+  </script>
   </li>
-</ol>
+</ul>
 
 <p>对比开放寻址法与链接法，链接法能够支持装载因子<script type="math/tex"> \alpha > 1 </script>的情况，
 而开放寻址法不能支持。</p>

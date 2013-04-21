@@ -4,7 +4,7 @@
  <title>Chouqin & Laoqi</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2013-04-20T21:53:00+08:00</updated>
+ <updated>2013-04-21T10:45:38+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Qiping Li</name>
@@ -1201,6 +1201,12 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
    <id>http://username.github.com/clrs/2012/12/04/clrs-10-13</id>
    <content type="html">&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;
 
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    MathJax.Hub.Config({    
+        &quot;HTML-CSS&quot;: { scale: 80}    
+    });    
+&lt;/script&gt;
+
 &lt;!--&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;&lt;/script&gt;--&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;散列表中碰撞的解决&lt;/h2&gt;
@@ -1282,30 +1288,30 @@ $$&lt;/p&gt;
 
 &lt;p&gt;在一致散列的假设下，有如下性质成立：&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;对于装载因子为&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
- \alpha = n/m &lt; 1  %]]&gt;&lt;/script&gt;的开放散列表，查找一个不存在的元素所需的探查数期望至多为&lt;script type=&quot;math/tex&quot;&gt; \frac{1}{1-\alpha} &lt;/script&gt;&lt;/p&gt;
-
-    &lt;p&gt;定义随机变量X为探查数，&lt;script type=&quot;math/tex&quot;&gt; A_i &lt;/script&gt;为进行了第i次探查，有:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;对于装载因子为&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+ \alpha = n/m &lt; 1  %]]&gt;&lt;/script&gt;的开放散列表，查找一个不存在的元素所需的探查数期望至多为&lt;script type=&quot;math/tex&quot;&gt; \frac{1}{1-\alpha} &lt;/script&gt;
+定义随机变量X为探查数，&lt;script type=&quot;math/tex&quot;&gt; A_i &lt;/script&gt;为进行了第i次探查，有:&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
 
- \begin{array} {lcl}
-     E[X] &amp;=&amp; \sum_{i=1}^{\infty} i \bullet Pr\{X = i\} \\
-            &amp;=&amp; (Pr\{X=1\} + Pr\{X=2\} + ...) + (Pr\{X=2\} + Pr\{X=3\} + ...) + ... \\
-            &amp;=&amp; \sum_{i=1}^{\infty}Pr\{ X \geq i \} \\
-     Pr\{ X \geq i \} &amp;=&amp; Pr\{ A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-1} \} \\
-         &amp;=&amp; Pr\{A_1\} \bullet Pr\{ A_2 | A_1 \} \bullet ... \bullet Pr\{ A_{i-1} | A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-2} \} \\
-     Pr\{ A_1 \} &amp;=&amp; \frac{n}{m} = \alpha \\
-     Pr\{ A_j | A_1 \bigcap A_2 \bigcap ... \bigcap A_{j-1} \} &amp;=&amp; \frac{n-j+1}{m-j+1} \leq \frac{n}{m} = \alpha \\
-     Pr\{X \geq i \} &amp;=&amp; \frac{n}{m} \bullet \frac{n-1}{m-1} \bullet \frac{n-2}{m-2} \bullet ... \bullet \frac{n-i+2}{m-i+2}
-         \leq (\frac{n}{m})^{i-1} = \alpha^{i-1} \\
-     E[X] &amp;=&amp; \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1}
-         = \sum_{i=1}^{\infty} \alpha^{i-1} = \frac{1}{1-\alpha}
- \end{array}
-  %]]&gt;&lt;/script&gt;
-  &lt;/li&gt;
+\begin{align}
+E[X] &amp;= \sum_{i=1}^{\infty} i \bullet Pr\{X = i\} \\
+    &amp;= (Pr\{X=1\} + Pr\{X=2\} + ...) + (Pr\{X=2\} + Pr\{X=3\} + ...) + ... \\
+       &amp;= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \\
+Pr\{ X \geq i \} &amp;= Pr\{ A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-1} \} \\
+    &amp;= Pr\{A_1\} \bullet Pr\{ A_2 | A_1 \} \bullet ... \bullet Pr\{ A_{i-1} | A_1 \bigcap A_2 \bigcap ... \bigcap A_{i-2} \} \\
+Pr\{ A_1 \} &amp;= \frac{n}{m} = \alpha \\
+Pr\{ A_j | A_1 \bigcap A_2 \bigcap ... \bigcap A_{j-1} \} &amp;= \frac{n-j+1}{m-j+1} \leq \frac{n}{m} = \alpha \\
+Pr\{X \geq i \} &amp;= \frac{n}{m} \bullet \frac{n-1}{m-1} \bullet \frac{n-2}{m-2} \bullet ... \bullet \frac{n-i+2}{m-i+2} \\
+    &amp;\leq (\frac{n}{m})^{i-1} = \alpha^{i-1} \\
+E[X] &amp;= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1} \\
+    &amp;= \sum_{i=1}^{\infty} \alpha^{i-1} = \frac{1}{1-\alpha}
+\end{align}
+ %]]&gt;&lt;/script&gt;
+
+&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;向一个装载因子为&lt;script type=&quot;math/tex&quot;&gt; \alpha &lt;/script&gt;的开放寻址散列表中插入一个元素，平均情况下最多进行&lt;script type=&quot;math/tex&quot;&gt; \frac{1}{1-\alpha} &lt;/script&gt;次探查。&lt;/p&gt;
 
@@ -1315,15 +1321,15 @@ $$&lt;/p&gt;
     &lt;p&gt;一个装载因子为&lt;script type=&quot;math/tex&quot;&gt; \alpha &lt;/script&gt;的开放散列表中查找一个存在的元素的期望探查次数至多为&lt;script type=&quot;math/tex&quot;&gt; \frac{1}{\alpha} \ln \frac{1}{1-\alpha} &lt;/script&gt;&lt;/p&gt;
 
     &lt;p&gt;对于每一个元素x，查找它所需要的探查次数与插入它所需要的探查次数相同，
- 对于第i个插入的元素x, 所需的探查次数最多为&lt;script type=&quot;math/tex&quot;&gt; \frac{1}{1-\frac{i}{m}} = \frac{m}{m-i} &lt;/script&gt;，
- 所以平均的探查次数最多为：&lt;/p&gt;
+  对于第i个插入的元素x, 所需的探查次数最多为&lt;script type=&quot;math/tex&quot;&gt; \frac{1}{1-\frac{i}{m}} = \frac{m}{m-i} &lt;/script&gt;，
+  所以平均的探查次数最多为：&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;
- \frac{1}{n} \sum_{i=0}^{n-1} \frac{m}{m-i} = \frac{m}{n} \sum_{i=0}^{n-1}\frac{1}{m-i}
-     \leq \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
- &lt;/script&gt;
+  \frac{1}{n} \sum_{i=0}^{n-1} \frac{m}{m-i} = \frac{m}{n} \sum_{i=0}^{n-1}\frac{1}{m-i}
+      \leq \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
+  &lt;/script&gt;
   &lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;对比开放寻址法与链接法，链接法能够支持装载因子&lt;script type=&quot;math/tex&quot;&gt; \alpha &gt; 1 &lt;/script&gt;的情况，
 而开放寻址法不能支持。&lt;/p&gt;
