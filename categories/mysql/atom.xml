@@ -4,10 +4,10 @@
   <title><![CDATA[Category: mysql | Chouqin & Laoqi]]></title>
   <link href="/categories/mysql/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-04-21T10:45:38+08:00</updated>
+  <updated>2013-09-06T00:03:28+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqingithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[{"name"=>"Qiping Li", "email"=>"liqiping1991@gmail.com", "github"=>"chouqin", "weibo"=>"atchouqin"}]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -117,7 +117,7 @@ explain sql的输出结果中，除了包含索引选择等信息，
 
 <ul>
   <li>尽量使用join来代替子查询语句，因为它能够更好地利用索引。</li>
-  <li>使用&#8217;deferred join&#8217;来优化limit offset,具体可参照《High Performance MySQL》的6.7.5节。</li>
+  <li>使用’deferred join’来优化limit offset,具体可参照《High Performance MySQL》的6.7.5节。</li>
   <li>优化join:
     <ul>
       <li>确保被join的字段在第二个表中被索引</li>

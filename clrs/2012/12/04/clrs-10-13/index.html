@@ -63,13 +63,13 @@
   
     
       
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
     
   
     
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
       
     
   
@@ -92,7 +92,7 @@
     
       
       	
-      	<li><a href="/categories.html">Categories</a></li>
+      	<li><a href="/archive.html">Archive</a></li>
       	
       
     
@@ -100,7 +100,7 @@
     
       
       	
-      	<li><a href="/about.html">About Me</a></li>
+      	<li><a href="/categories.html">Categories</a></li>
       	
       
     
@@ -277,7 +277,7 @@ $$</p>
  设<script type="math/tex"> x_i </script>是第i个插入的元素，i=1,2,..,n,
  定义：</p>
 
-<script type="math/tex; mode=display">% <![CDATA[
+    <script type="math/tex; mode=display">% <![CDATA[
 
      X_{ij} =
       \begin{cases}
@@ -288,7 +288,7 @@ $$</p>
 
     <p>由简单一致性假设，<script type="math/tex"> E[X_{ij}] = 1/m </script>，所以检查元素个数的期望为：</p>
 
-<script type="math/tex; mode=display">% <![CDATA[
+    <script type="math/tex; mode=display">% <![CDATA[
 
  \begin{array} {lcl}
  E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
@@ -305,15 +305,15 @@ $$</p>
 
 <h3 id="section-2">开放寻址法</h3>
 <p>在开放寻址法中，对于每一个关键字k，定义探查序列
-    &lt;h(k, 0), h(k, 1),&#8230;, h(k, m-1)&gt;
-是&lt;0, 1, &#8230;, m-1&gt;的一个排列。在插入某一个元素x时，如果它的关键字是k,
+    &lt;h(k, 0), h(k, 1),…, h(k, m-1)&gt;
+是&lt;0, 1, …, m-1&gt;的一个排列。在插入某一个元素x时，如果它的关键字是k,
 按照它所对应的探查序列从h(k, 0)到h(k, m-1)依次检查散列表，如果h(k,i)是空槽，
 那么将x插入到这个槽，否则检查h(k, i+1)。在查找时，
 也是沿着探查序列开始寻找。</p>
 
 <p>探查序列的计算方法有很多，比如说线性探查法，二次探查法，双重散列法。
 但是这些技术都不能保证一致散列的假设：
-对于每一个关键字k, &lt;h(k, 0), h(k, 1),&#8230;, h(k, m-1)&gt;是&lt;0, 1, &#8230;, m-1&gt;的任何一种排列的可能性是相同的。</p>
+对于每一个关键字k, &lt;h(k, 0), h(k, 1),…, h(k, m-1)&gt;是&lt;0, 1, …, m-1&gt;的任何一种排列的可能性是相同的。</p>
 
 <p>在一致散列的假设下，有如下性质成立：</p>
 
@@ -353,7 +353,7 @@ E[X] &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1
   对于第i个插入的元素x, 所需的探查次数最多为<script type="math/tex"> \frac{1}{1-\frac{i}{m}} = \frac{m}{m-i} </script>，
   所以平均的探查次数最多为：</p>
 
-<script type="math/tex; mode=display">
+    <script type="math/tex; mode=display">
   \frac{1}{n} \sum_{i=0}^{n-1} \frac{m}{m-i} = \frac{m}{n} \sum_{i=0}^{n-1}\frac{1}{m-i}
       \leq \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
   </script>
@@ -570,7 +570,7 @@ E[X] &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1
 
 <p>情况1会有旋转，如果进入了情况3或情况4，将导致循环终止，此时旋转次数不超过3次，
 但如果进入进入情况2，那么将会进入新的循环，此时有可能碰到情况1然后再次旋转，
-然后进入再进入情况2&#8230;这样一直向上到根，旋转的次数可能会超过3次，
+然后进入再进入情况2…这样一直向上到根，旋转的次数可能会超过3次，
 是这样吗？</p>
 
 <p>上面的情况的是不可能发生的，因为情况1会把p[x]设为红色，如果此时进入情况2，

@@ -63,13 +63,13 @@
   
     
       
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
     
   
     
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
       
     
   
@@ -92,7 +92,7 @@
     
       
       	
-      	<li><a href="/categories.html">Categories</a></li>
+      	<li><a href="/archive.html">Archive</a></li>
       	
       
     
@@ -100,7 +100,7 @@
     
       
       	
-      	<li><a href="/about.html">About Me</a></li>
+      	<li><a href="/categories.html">Categories</a></li>
       	
       
     
@@ -327,7 +327,7 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 
     <p>有了这两点，就能得出：</p>
 
-<script type="math/tex; mode=display">
+    <script type="math/tex; mode=display">
  A_{ij} = \{a_m\} \bigcup A_{mj} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}, 第二个等式成立是因为A_{im} = \emptyset
  </script>
 
@@ -351,7 +351,7 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 令c[i]表示集合<script type="math/tex"> \{a_1, ..., a_i \} </script>中，包含元素<script type="math/tex"> a[i] </script>的最大兼容子集的元素个数，
 那么有如下递归公式成立</p>
 
-<script type="math/tex; mode=display">% <![CDATA[
+    <script type="math/tex; mode=display">% <![CDATA[
 
  c[i] = \max \{\max_{j < i}_{s_i > f_j } \{c[j] + 1\}, 1 \}
   %]]></script>
@@ -376,7 +376,7 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 然后得到一个不差于最优解的解，就能证明。</p>
   </li>
   <li>
-    <p>最优子结构，这和动态规划一样，可以通过&#8221;剪切，粘贴&#8221;的方法证明。</p>
+    <p>最优子结构，这和动态规划一样，可以通过”剪切，粘贴”的方法证明。</p>
   </li>
 </ol>
 

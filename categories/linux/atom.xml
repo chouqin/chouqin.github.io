@@ -4,10 +4,10 @@
   <title><![CDATA[Category: linux | Chouqin & Laoqi]]></title>
   <link href="/categories/linux/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-04-21T10:45:38+08:00</updated>
+  <updated>2013-09-06T00:03:28+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqingithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[{"name"=>"Qiping Li", "email"=>"liqiping1991@gmail.com", "github"=>"chouqin", "weibo"=>"atchouqin"}]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -32,12 +32,12 @@
 <!--more-->
 
 <h2 id="section-1">基本安装</h2>
-<p>能够正确引导的话就可以进行安装了，安装的时候我完全是照着Wiki上的<a href="https://wiki.archlinux.org/index.php/Beginners'_Guide">Beginner&#8217;s Guide</a>一步步过来的。
+<p>能够正确引导的话就可以进行安装了，安装的时候我完全是照着Wiki上的<a href="https://wiki.archlinux.org/index.php/Beginners'_Guide">Beginner’s Guide</a>一步步过来的。
 只是有几点需要注意：</p>
 
 <ul>
   <li>因为在开始安装基础包的时候需要网络链接，在网络连接的时候我采用的是static IP的有线连接，在设置网络的时候只需要正确设置有线连接即可。</li>
-  <li>在设置硬盘的时候一定要小心，一般情况下用于安装arch的硬盘已经排到了sda4以后，不要照着Beginner&#8217;s Guide上面敲sda1等，稍不注意就会把windows给格掉。</li>
+  <li>在设置硬盘的时候一定要小心，一般情况下用于安装arch的硬盘已经排到了sda4以后，不要照着Beginner’s Guide上面敲sda1等，稍不注意就会把windows给格掉。</li>
   <li>在设置mirrorlist时，建议把China的几个server单独选出作为新的mirrorlist文件,这样比较稳定。</li>
   <li>
     <p>在Configure BootLoader时，我用的是GRUB，同时要安装os-prober,这样能够自动检测其他系统然后会为这些系统建立引导项。命令也就几行:</p>

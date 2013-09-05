@@ -4,10 +4,10 @@
   <title><![CDATA[Category: python | Chouqin & Laoqi]]></title>
   <link href="/categories/python/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-04-21T10:45:38+08:00</updated>
+  <updated>2013-09-06T00:03:28+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqingithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[{"name"=>"Qiping Li", "email"=>"liqiping1991@gmail.com", "github"=>"chouqin", "weibo"=>"atchouqin"}]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -39,19 +39,19 @@ E4B8AD转化为“中”。</p>
 
 <p>下面通过代码来对解释一下pytho中的编码问题。</p>
 
-<p><div class="highlight"><pre><code class="python">   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;a = &amp;#8220;我是123&amp;#8221;</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;a</span>
-    <span class="o">&amp;</span><span class="c">#8216;\xe6\x88\x91\xe6\x98\xaf123&amp;#8217;</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;type(a)</span>
+<p><div class="highlight"><pre><code class="python">   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">a</span> <span class="o">=</span> <span class="err">“我是</span><span class="mi">123</span><span class="err">”</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">a</span>
+    <span class="err">‘</span>\<span class="n">xe6</span>\<span class="n">x88</span>\<span class="n">x91</span>\<span class="n">xe6</span>\<span class="n">x98</span>\<span class="n">xaf123</span><span class="err">’</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="nb">str</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;len(a)</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
     <span class="mi">9</span>
 </code></pre></div></p>
 
 <!--more-->
 
-<p>从上面的代码可以看到，python把&#8221;我是123&#8221;这个字符串当成是str类型，其实只是把这个字符串的编码
-二进制当成中文来处理。当我们通过输入法输入&#8221;我是123&#8221;时，输入法会根据我们系统的LACALE值将&#8221;我是123&#8221;
+<p>从上面的代码可以看到，python把”我是123”这个字符串当成是str类型，其实只是把这个字符串的编码
+二进制当成中文来处理。当我们通过输入法输入”我是123”时，输入法会根据我们系统的LACALE值将”我是123”
 编码成相应的二进制，而python遇到二进制值时的处理也是要根据系统的编码方式，如果是一个python的脚本，
 我们可以通过再脚本的头部通过</p>
 
@@ -60,33 +60,33 @@ E4B8AD转化为“中”。</p>
 
 <p>设置python处理编码的方式。</p>
 
-<p>同时可以看到&#8221;我是123&#8221;这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
+<p>同时可以看到”我是123”这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
 一共占了9个字节，python的len()函数对于字符串就是计算它占了多少个byte,所以:len(a) = 9。</p>
 
 <p>下面看如何与unicode进行相互转化:(此时采用的编码是utf8，其他的编码也是一样的处理):</p>
 
-<p><div class="highlight"><pre><code class="python">   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;ua = a.decode(&amp;#8220;utf-8&amp;#8221;)</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;ua</span>
-    <span class="n">u</span><span class="o">&amp;</span><span class="c">#8217;\u6211\u662f123&amp;#8217;</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;print ua</span>
+<p><div class="highlight"><pre><code class="python">   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">ua</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="err">“</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="err">”</span><span class="p">)</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">ua</span>
+    <span class="n">u</span><span class="err">’</span>\<span class="n">u6211</span>\<span class="n">u662f123</span><span class="err">’</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="k">print</span> <span class="n">ua</span>
     <span class="err">我是</span><span class="mi">123</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;type(ua)</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="nb">type</span><span class="p">(</span><span class="n">ua</span><span class="p">)</span>
     <span class="nb">unicode</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;len(ua)</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="nb">len</span><span class="p">(</span><span class="n">ua</span><span class="p">)</span>
     <span class="mi">5</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;b = ua.encode(&amp;#8220;utf-8&amp;#8221;)</span>
-   <span class="o">&amp;</span><span class="c">#160;&amp;#187;&amp;gt;b</span>
-    <span class="o">&amp;</span><span class="c">#8216;\xe6\x88\x91\xe6\x98\xaf123&amp;#8217;</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">b</span> <span class="o">=</span> <span class="n">ua</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="err">“</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="err">”</span><span class="p">)</span>
+   <span class="err"> »</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">b</span>
+    <span class="err">‘</span>\<span class="n">xe6</span>\<span class="n">x88</span>\<span class="n">x91</span>\<span class="n">xe6</span>\<span class="n">x98</span>\<span class="n">xaf123</span><span class="err">’</span>
 </code></pre></div></p>
 
 <p>将字符串转换为unicode通过decode()函数，反过来通过encode()函数。同时也可以通过：</p>
 
-<p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="o">&amp;</span><span class="c">#8220;我是123&amp;#8221;, &amp;#8220;utf-8&amp;#8221;)</span>
+<p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="err">“我是</span><span class="mi">123</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="err">”</span><span class="p">)</span>
 </code></pre></div></p>
 
 <p>或者是</p>
 
-<p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="n">u</span><span class="o">&amp;</span><span class="c">#8221;我是123&amp;#8221;</span>
+<p><div class="highlight"><pre><code class="python">    <span class="n">ua</span> <span class="o">=</span> <span class="n">u</span><span class="err">”我是</span><span class="mi">123</span><span class="err">”</span>
 </code></pre></div></p>
 
 <p>得到同样的unicode。可以看到ua的长度为5，因为在unicode中不管是汉字还是字母或者是数字，

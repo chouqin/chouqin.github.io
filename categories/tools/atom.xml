@@ -4,10 +4,10 @@
   <title><![CDATA[Category: tools | Chouqin & Laoqi]]></title>
   <link href="/categories/tools/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-04-21T10:45:38+08:00</updated>
+  <updated>2013-09-06T00:03:28+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqingithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[{"name"=>"Qiping Li", "email"=>"liqiping1991@gmail.com", "github"=>"chouqin", "weibo"=>"atchouqin"}]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -125,7 +125,7 @@ O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
   <li>在conf.py中，设置<code>latex_elements.preamble</code>：</li>
 </ol>
 
-<p><div class="highlight"><pre><code class="python"><span class="o">&amp;</span><span class="c">#8216;preamble&amp;#8217; : r&amp;#8221;&amp;#8221;&amp;#8221;</span>
+<p><div class="highlight"><pre><code class="python"><span class="err">‘</span><span class="n">preamble</span><span class="err">’</span> <span class="p">:</span> <span class="n">r</span><span class="err">”””</span>
     \<span class="n">usepackage</span><span class="p">{</span><span class="nb">float</span><span class="p">}</span>
     \<span class="n">usepackage</span><span class="p">{</span><span class="n">xeCJK</span><span class="p">}</span>
     \<span class="n">usepackage</span><span class="p">{</span><span class="n">indentfirst</span><span class="p">}</span>
@@ -139,7 +139,7 @@ O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
     \<span class="n">setCJKmainfont</span><span class="p">[</span><span class="n">ItalicFont</span><span class="o">=</span><span class="p">{</span><span class="n">Adobe</span> <span class="n">Kaiti</span> <span class="n">Std</span> <span class="n">R</span><span class="p">},</span> <span class="n">BoldFont</span><span class="o">=</span><span class="p">{</span><span class="n">Adobe</span> <span class="n">Heiti</span> <span class="n">Std</span><span class="p">}]{</span><span class="n">Adobe</span> <span class="n">Song</span> <span class="n">Std</span><span class="p">}</span>
     \<span class="n">setCJKmonofont</span><span class="p">[</span><span class="n">BoldFont</span><span class="o">=</span><span class="p">{</span><span class="n">WenQuanYi</span> <span class="n">Zen</span> <span class="n">Hei</span> <span class="n">Mono</span><span class="p">}]{</span><span class="n">Adobe</span> <span class="n">Fangsong</span> <span class="n">Std</span><span class="p">}</span>
     \<span class="n">setCJKsansfont</span><span class="p">[</span><span class="n">ItalicFont</span><span class="o">=</span><span class="p">{</span><span class="n">Adobe</span> <span class="n">Kaiti</span> <span class="n">Std</span> <span class="n">R</span><span class="p">},</span><span class="n">BoldFont</span><span class="o">=</span><span class="p">{</span><span class="n">Adobe</span> <span class="n">Heiti</span> <span class="n">Std</span><span class="p">}]{</span><span class="n">Adobe</span> <span class="n">Song</span> <span class="n">Std</span><span class="p">}</span>
-    \<span class="n">XeTeXlinebreaklocale</span> <span class="o">&amp;</span><span class="c">#8220;zh&amp;#8221;</span>
+    \<span class="n">XeTeXlinebreaklocale</span> <span class="err">“</span><span class="n">zh</span><span class="err">”</span>
     \<span class="n">XeTeXlinebreakskip</span> <span class="o">=</span> <span class="mi">0</span><span class="n">pt</span> <span class="n">plus</span> <span class="mi">1</span><span class="n">pt</span>
     \<span class="n">renewcommand</span><span class="p">{</span>\<span class="n">baselinestretch</span><span class="p">}{</span><span class="mf">1.3</span><span class="p">}</span>
     \<span class="n">captiontitlefont</span><span class="p">{</span>\<span class="n">small</span>\<span class="n">sffamily</span><span class="p">}</span>
@@ -160,7 +160,7 @@ O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
     \<span class="n">titlerule</span><span class="p">]</span>
     <span class="o">%</span>\<span class="n">definecolor</span><span class="p">{</span><span class="n">VerbatimBorderColor</span><span class="p">}{</span><span class="n">rgb</span><span class="p">}{</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">}</span>
     \<span class="n">definecolor</span><span class="p">{</span><span class="n">VerbatimColor</span><span class="p">}{</span><span class="n">rgb</span><span class="p">}{</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">0.95</span><span class="p">,</span><span class="mf">0.95</span><span class="p">}</span>
-<span class="o">&amp;</span><span class="c">#8220;&amp;#8221;&amp;#8220;.decode(&amp;#8220;utf-8&amp;#8221;)</span>
+<span class="err">“”“</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="err">“</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="err">”</span><span class="p">)</span>
 </code></pre></div></p>
 
 <ol>

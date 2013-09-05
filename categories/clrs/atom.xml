@@ -4,10 +4,10 @@
   <title><![CDATA[Category: clrs | Chouqin & Laoqi]]></title>
   <link href="/categories/clrs/atom.xml" rel="self"/>
   <link href="/"/>
-  <updated>2013-04-21T10:45:38+08:00</updated>
+  <updated>2013-09-06T00:03:28+08:00</updated>
   <id>/</id>
   <author>
-    <name><![CDATA[emailliqiping1991@gmail.comweiboatchouqingithubchouqinnameQiping Li]]></name>
+    <name><![CDATA[{"name"=>"Qiping Li", "email"=>"liqiping1991@gmail.com", "github"=>"chouqin", "weibo"=>"atchouqin"}]]></name>
     
   </author>
   <generator uri="https://github.com/recurser/jekyll-plugins">Recurser</generator>
@@ -135,7 +135,7 @@ f_e = c_e 且 f_{e'} = 0 其中f_{e'}表示从e的反向流量
 </script>
 
 <p>因为这其中任何一个违反都会导致e的终止节点在<script type="math/tex"> G^f </script>中从s可达。所以此时size(f) = capacity(L, R)。
-所以对于任意流f&#8217;, 都有<script type="math/tex"> size(f') \leq size(f) </script>，意味这f是一个最大流。</p>
+所以对于任意流f’, 都有<script type="math/tex"> size(f') \leq size(f) </script>，意味这f是一个最大流。</p>
 
 <p>关于最大流还有两个很重要的东西：</p>
 
@@ -389,7 +389,7 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 
     <p>有了这两点，就能得出：</p>
 
-<script type="math/tex; mode=display">
+    <script type="math/tex; mode=display">
  A_{ij} = \{a_m\} \bigcup A_{mj} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}, 第二个等式成立是因为A_{im} = \emptyset
  </script>
 
@@ -413,7 +413,7 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 令c[i]表示集合<script type="math/tex"> \{a_1, ..., a_i \} </script>中，包含元素<script type="math/tex"> a[i] </script>的最大兼容子集的元素个数，
 那么有如下递归公式成立</p>
 
-<script type="math/tex; mode=display">% &lt;![CDATA[
+    <script type="math/tex; mode=display">% &lt;![CDATA[
 
  c[i] = \max \{\max_{j < i}_{s_i > f_j } \{c[j] + 1\}, 1 \}
   %]]&gt;</script>
@@ -438,7 +438,7 @@ A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
 然后得到一个不差于最优解的解，就能证明。</p>
   </li>
   <li>
-    <p>最优子结构，这和动态规划一样，可以通过&#8221;剪切，粘贴&#8221;的方法证明。</p>
+    <p>最优子结构，这和动态规划一样，可以通过”剪切，粘贴”的方法证明。</p>
   </li>
 </ol>
 
@@ -662,7 +662,7 @@ low[k] \geq low[j] > high[i] \text{第一个不等式成立是根据红黑树关
 
 <ol>
   <li>最优子结构。一个问题的最优解包含子问题的最优解。
-通常可以通过&#8221;剪切-粘贴&#8221;的方法证明最优子结构，也就是说，
+通常可以通过”剪切-粘贴”的方法证明最优子结构，也就是说，
 假设一个问题的最优解没有包含子问题的最优解，
 那么把相应的子问题的解替换成最优解将得到一个更好的解，
 从而得出矛盾。</li>
@@ -716,7 +716,7 @@ n的最长子序列的长度就是这个长度加1。</p>
 定义c[i, j]为序列<script type="math/tex"> X_i </script>和<script type="math/tex"> Y_j </script>的LCS的长度，
 有如下递推公式成立</p>
 
-<script type="math/tex; mode=display">% &lt;![CDATA[
+    <script type="math/tex; mode=display">% &lt;![CDATA[
  
       c[i, j] = 
           \begin{cases}
@@ -753,7 +753,7 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
   有如下递推关系成立：</li>
     </ul>
 
-<script type="math/tex; mode=display">% &lt;![CDATA[
+    <script type="math/tex; mode=display">% &lt;![CDATA[
 
   K(w) = max\{K(w-w_i) + v_i\}, i=1..n, w_i < w
    %]]&gt;</script>
@@ -764,7 +764,7 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
   定义K(w, i)为重量为w的背包在装载商品1..i时的最大价值，有如下递推关系成立：</li>
     </ul>
 
-<script type="math/tex; mode=display">% &lt;![CDATA[
+    <script type="math/tex; mode=display">% &lt;![CDATA[
 
   K(w, i) = max\{K(w-w_i, i-1) + v_i, K(w, i-1)\}, i=1..n, w_i < w
    %]]&gt;</script>
@@ -791,7 +791,7 @@ c[i-1, j-1] + 1 \geq c[i-1, j]
 算法的时间复杂度为<script type="math/tex"> O(n^3) </script>。</p>
 
 <p>动态规划对于这个算法的理解是，在迭代k结束之后，
-此时(i, j)的最短路径为仅使用{1, 2, &#8230;, k}作为中间节点的最短路径，
+此时(i, j)的最短路径为仅使用{1, 2, …, k}作为中间节点的最短路径，
 当循环结束时，k=n, 此时(i, j)的最短路径为使用任意节点作为中间节点的最短路径，
 也就是(i, j)之间的最短路径。</p>
 
@@ -825,16 +825,16 @@ i \rightarrow ... \rightarrow k_1 \rightarrow ... \rightarrow k_2 \rightarrow ..
 <ol>
   <li>初始化：在开始时，k=1, 此时的最短的路径为不使用任何中间节点的最短路径。</li>
   <li>保持：在第k轮迭代开始时，
-此时(i, j)之间的最短路径为使用{1，2，&#8230;, k-1}作为中间节点的最短路径，
-令p为(i, j)之间使用{1, 2, &#8230;, k}的最短路径：
+此时(i, j)之间的最短路径为使用{1，2，…, k-1}作为中间节点的最短路径，
+令p为(i, j)之间使用{1, 2, …, k}的最短路径：
     <ul>
       <li>如果path[i][k] + path[k][j] &lt; path[i][j]，
  那么此时p一定为<script type="math/tex"> i \xrightarrow{p_1} k \xrightarrow{p_2} j </script>，
- 其中<script type="math/tex"> p_1 </script>为(i, k)之间使用{1, 2, &#8230;, k-1}作为中间节点的最短路径，
- <script type="math/tex"> p_2 </script>为(k, j)之间使用{1, 2, &#8230;, k-1}作为中间节点的最短路径。
+ 其中<script type="math/tex"> p_1 </script>为(i, k)之间使用{1, 2, …, k-1}作为中间节点的最短路径，
+ <script type="math/tex"> p_2 </script>为(k, j)之间使用{1, 2, …, k-1}作为中间节点的最短路径。
  所以此时p的长度为path[i][k] + path[k][j]，不变式得以保持</li>
       <li>如果path[i][k] + path[k][j] &gt;= path[i][j]，
- 那么此时p一定也是(i, j)仅经过{1, 2, &#8230;, k-1}的最短路径(也就是说，
+ 那么此时p一定也是(i, j)仅经过{1, 2, …, k-1}的最短路径(也就是说，
  此时p一定不经过k)，p的长度就是path[i][j], 不变式同样可以保持</li>
     </ul>
   </li>
@@ -842,7 +842,7 @@ i \rightarrow ... \rightarrow k_1 \rightarrow ... \rightarrow k_2 \rightarrow ..
 也就是(i, j)的最短路径。</li>
 </ol>
 
-<p>对于这个循环不变式，定义<script type="math/tex"> path^{(k)}(i, j) </script>表示(i, j)之间仅使用节点1,&#8230;,k作为中间节点的最短路径的长度，
+<p>对于这个循环不变式，定义<script type="math/tex"> path^{(k)}(i, j) </script>表示(i, j)之间仅使用节点1,…,k作为中间节点的最短路径的长度，
 利用这个递推公式：</p>
 
 <script type="math/tex; mode=display">
@@ -939,7 +939,7 @@ $$</p>
  设<script type="math/tex"> x_i </script>是第i个插入的元素，i=1,2,..,n,
  定义：</p>
 
-<script type="math/tex; mode=display">% &lt;![CDATA[
+    <script type="math/tex; mode=display">% &lt;![CDATA[
 
      X_{ij} =
       \begin{cases}
@@ -950,7 +950,7 @@ $$</p>
 
     <p>由简单一致性假设，<script type="math/tex"> E[X_{ij}] = 1/m </script>，所以检查元素个数的期望为：</p>
 
-<script type="math/tex; mode=display">% &lt;![CDATA[
+    <script type="math/tex; mode=display">% &lt;![CDATA[
 
  \begin{array} {lcl}
  E[\frac{1}{n} \sum_{i=1}^{n} (1 + \sum_{j=0}^{i-1}X_{ij})]
@@ -967,15 +967,15 @@ $$</p>
 
 <h3 id="section-2">开放寻址法</h3>
 <p>在开放寻址法中，对于每一个关键字k，定义探查序列
-    &lt;h(k, 0), h(k, 1),&#8230;, h(k, m-1)&gt;
-是&lt;0, 1, &#8230;, m-1&gt;的一个排列。在插入某一个元素x时，如果它的关键字是k,
+    &lt;h(k, 0), h(k, 1),…, h(k, m-1)&gt;
+是&lt;0, 1, …, m-1&gt;的一个排列。在插入某一个元素x时，如果它的关键字是k,
 按照它所对应的探查序列从h(k, 0)到h(k, m-1)依次检查散列表，如果h(k,i)是空槽，
 那么将x插入到这个槽，否则检查h(k, i+1)。在查找时，
 也是沿着探查序列开始寻找。</p>
 
 <p>探查序列的计算方法有很多，比如说线性探查法，二次探查法，双重散列法。
 但是这些技术都不能保证一致散列的假设：
-对于每一个关键字k, &lt;h(k, 0), h(k, 1),&#8230;, h(k, m-1)&gt;是&lt;0, 1, &#8230;, m-1&gt;的任何一种排列的可能性是相同的。</p>
+对于每一个关键字k, &lt;h(k, 0), h(k, 1),…, h(k, m-1)&gt;是&lt;0, 1, …, m-1&gt;的任何一种排列的可能性是相同的。</p>
 
 <p>在一致散列的假设下，有如下性质成立：</p>
 
@@ -1015,7 +1015,7 @@ E[X] &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1
   对于第i个插入的元素x, 所需的探查次数最多为<script type="math/tex"> \frac{1}{1-\frac{i}{m}} = \frac{m}{m-i} </script>，
   所以平均的探查次数最多为：</p>
 
-<script type="math/tex; mode=display">
+    <script type="math/tex; mode=display">
   \frac{1}{n} \sum_{i=0}^{n-1} \frac{m}{m-i} = \frac{m}{n} \sum_{i=0}^{n-1}\frac{1}{m-i}
       \leq \frac{1}{\alpha} \ln \frac{1}{1-\alpha}
   </script>
@@ -1232,7 +1232,7 @@ E[X] &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1
 
 <p>情况1会有旋转，如果进入了情况3或情况4，将导致循环终止，此时旋转次数不超过3次，
 但如果进入进入情况2，那么将会进入新的循环，此时有可能碰到情况1然后再次旋转，
-然后进入再进入情况2&#8230;这样一直向上到根，旋转的次数可能会超过3次，
+然后进入再进入情况2…这样一直向上到根，旋转的次数可能会超过3次，
 是这样吗？</p>
 
 <p>上面的情况的是不可能发生的，因为情况1会把p[x]设为红色，如果此时进入情况2，

@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>
       
-        Blog - 
+        毕业论文点滴 - 
       
       Chouqin & Laoqi
     </title>
-    
+    <meta name="description" content="">
     <meta name="author" content="Qiping Li">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- HTML5 shim, for IE6-8 support of HTML elements -->
@@ -218,62 +218,17 @@
 
     <div class="container">
       <div class="content">
-        <div class="row">
-    <div class="span8" style="margin-top:20px;">
-      <!--[> iterate through the posts on this page <]-->
-      
-        <div class="post">
-          <h1><a href="/tools/2013/04/20/markup-lang">使用markdown和reStructuredText生成文档</a></h1>
-          <p class="meta">April 20, 2013</p>
-            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+<div class="page-header">
+  <h1>
+    毕业论文点滴
+    
+  </h1>
+</div>
 
-<h3 id="section">基本介绍</h3>
-<p><a href="http://daringfireball.net/projects/markdown/">Markdown</a>和
-<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>(下面简称rst)
-是现在比较流行的<a href="http://en.wikipedia.org/wiki/Lightweight_markup_language">轻量级标注语言</a>，
-这些语言拥有比较强大的表现力，可以通过简单的书写代码就可以写出包含代码，图片，数学公式等各种格式的文档。
-这样，我们不用把心思花在各种格式的调节，而只需要专注于文档的内容就行了。
-我们通过标记语言写成的文本文件能够被转化为html, tex, pdf，epub, word等各种格式，
-我们只需要利用标记语言提供的语法把文本文件写好，相应的转换器会为你转换为特定的文档格式。
-我的博客其实都是使用markdown一个特定版本<a href="http://kramdown.rubyforge.org/">kramdown</a>写的，
-然后转换为html来发布。</p>
-
-<p>学习这些标记语言其实很简单，远远比学习latex简单，把它提供的一些语法都写一遍，比如说怎么写标题，
-怎么写列表，怎么插入代码，怎么插入数学符号等等。知道怎么写了之后，
-就多练习，写得多了，熟悉之后就会发现，确实能够省去你控制格式的很多烦恼。</p>
-
-<h3 id="pandoc">使用pandoc</h3>
-
-<p>Markdown有很多超集，比如上面提到的kramdown，这些超集在markdown的基础之上有提供了一些功能，
-比如说原生的markdown是不支持数学公式的，但kramdown支持，
-它可以把你写在两个在源文件中的这样一段markdown代码:</p>
-
-<pre><code>$$
-O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
-$$
-</code></pre>
-
-<p>转化为这样一段html:</p>
-
-<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;math/tex; mode=display&quot;</span><span class="nt">&gt;</span>
-    <span class="nx">O</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span><span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="o">:</span> <span class="err">\</span><span class="nx">exists</span> <span class="nx">c</span><span class="p">,</span><span class="nx">n</span><span class="err">，</span> <span class="err">\</span><span class="nx">forall</span> <span class="nx">n</span> <span class="err">\</span><span class="nx">geq</span> <span class="nx">n_0</span><span class="p">,</span>  <span class="mi">0</span> <span class="err">\</span><span class="nx">leq</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="err">\</span><span class="nx">leq</span> <span class="nx">cg</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="err">\</span><span class="p">}</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div>
-
-<p>包含这个的html<strong>如果里面包含<a href="http://www.mathjax.org/">MathJax</a>这个js库</strong>的话，
-MathJax就会把上述的一段html转换为如下的数学公式呈现给你。</p>
-
-<script type="math/tex; mode=display">
-O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
-</script>
-
-<p class='more'><a href='/tools/2013/04/20/markup-lang'>More...</a></p>
-        </div>
-      
-        <div class="post">
-          <h1><a href="/feelings/2013/04/04/bachelor-thesis">毕业论文点滴</a></h1>
-          <p class="meta">April  4, 2013</p>
-            
+<div class="row">
+  <div class="span8">
+    
 <p>已经好久没写博客了，因为寒假一个多月都没看书，
 而一回到学校，又要忙着毕业论文的事，所以也无暇顾及这个。
 大部分牛人的博客，都是记载着自己正在研究的方面，
@@ -355,35 +310,73 @@ Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stan
   </li>
 </ol>
 
-        </div>
+    <hr>
+    <div class="pagination btn-group">
       
-
-      <!--[> links to prev and next pages for browsing thru archives <]-->
+        <a class="btn prev" href="/clrs/2013/01/06/clrs-24-26" title="最短路径与最大流">&larr; Previous</a>
       
+        <a class="btn" href="/archive.html">Archive</a>
       
-        <span id="older"><a href="/page2">Older Entries &raquo;&raquo;</a></span>
+        <a class="btn next" href="/tools/2013/04/20/markup-lang" title="使用markdown和reStructuredText生成文档">Next &rarr;</a>
       
-
     </div>
+    <hr>
+    
 
-    <div class="span4" style="margin-top:20px;">
-        <h3>所有分类</h3>
-        <ul class="categories">
-        
-        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
-        
-        <li><a href="/categories/feelings">feelings <span> 3 </span></a></li>
-        
-        <li><a href="/categories/python">python <span> 1 </span></a></li>
-        
-        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
-        
-        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
-        
-        <li><a href="/categories/tools">tools <span> 1 </span></a></li>
-        
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>04 April 2013</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+            <li><a href="/categories/Feelings">Feelings</a></li>
+        </span>
+      </section>
+    
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#Feelings-ref">Feelings <span>2</span></a></li>
+    
+  
+
+
+
         </ul>
-    </div>
+      </section>
+    
+  </div>
 </div>
 
 

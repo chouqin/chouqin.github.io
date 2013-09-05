@@ -63,13 +63,13 @@
   
     
       
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
     
   
     
-      
-      	
-      	<li><a href="/archive.html">Archive</a></li>
-      	
       
     
   
@@ -92,7 +92,7 @@
     
       
       	
-      	<li><a href="/categories.html">Categories</a></li>
+      	<li><a href="/archive.html">Archive</a></li>
       	
       
     
@@ -100,7 +100,7 @@
     
       
       	
-      	<li><a href="/about.html">About Me</a></li>
+      	<li><a href="/categories.html">Categories</a></li>
       	
       
     
@@ -259,8 +259,8 @@ E4B8AD转化为“中”。</p>
 
 <!--more-->
 
-<p>从上面的代码可以看到，python把&#8221;我是123&#8221;这个字符串当成是str类型，其实只是把这个字符串的编码
-二进制当成中文来处理。当我们通过输入法输入&#8221;我是123&#8221;时，输入法会根据我们系统的LACALE值将&#8221;我是123&#8221;
+<p>从上面的代码可以看到，python把”我是123”这个字符串当成是str类型，其实只是把这个字符串的编码
+二进制当成中文来处理。当我们通过输入法输入”我是123”时，输入法会根据我们系统的LACALE值将”我是123”
 编码成相应的二进制，而python遇到二进制值时的处理也是要根据系统的编码方式，如果是一个python的脚本，
 我们可以通过再脚本的头部通过</p>
 
@@ -269,7 +269,7 @@ E4B8AD转化为“中”。</p>
 
 <p>设置python处理编码的方式。</p>
 
-<p>同时可以看到&#8221;我是123&#8221;这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
+<p>同时可以看到”我是123”这个字符串的长度是9，这是因为字符串a在utf8编码时的二进制表示为<code>'\xe6\x88\x91\xe6\x98\xaf\x21\x22\x23'</code>,
 一共占了9个字节，python的len()函数对于字符串就是计算它占了多少个byte,所以:len(a) = 9。</p>
 
 <p>下面看如何与unicode进行相互转化:(此时采用的编码是utf8，其他的编码也是一样的处理):</p>
@@ -309,7 +309,7 @@ E4B8AD转化为“中”。</p>
     <hr>
     <div class="pagination btn-group">
       
-        <a class="btn prev" href="/Feelings/2012/10/27/feeling" title="最近的总结与感悟">&larr; Previous</a>
+        <a class="btn prev" href="/feelings/2012/10/27/feeling" title="最近的总结与感悟">&larr; Previous</a>
       
         <a class="btn" href="/archive.html">Archive</a>
       
