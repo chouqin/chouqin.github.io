@@ -22,11 +22,14 @@ http://username.github.com/categories/mysql/index.html
 http://username.github.com/categories/mysql/atom.xml
 http://username.github.com/categories/tools/index.html
 http://username.github.com/categories/tools/atom.xml
+http://username.github.com/categories/bigdata/index.html
+http://username.github.com/categories/bigdata/atom.xml
 http://username.github.com/categories/linux/index.html
 http://username.github.com/categories/linux/atom.xml
 http://username.github.com/categories/python/index.html
 http://username.github.com/categories/python/atom.xml
 
+http://username.github.com/bigdata/2013/10/10/gfs
 http://username.github.com/tools/2013/04/20/markup-lang
 http://username.github.com/feelings/2013/04/04/bachelor-thesis
 http://username.github.com/clrs/2013/01/06/clrs-24-26
