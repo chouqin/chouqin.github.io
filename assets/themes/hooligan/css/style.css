@@ -55,6 +55,11 @@ h1, h2 {
   margin: 0 0 15px;
 }
 
+/* added by chouqin to let a section feel like a block*/
+h3 {
+  margin-top: 10px;
+}
+
 /* line 53, ../_sass/_base.scss */
 h1 {
   font-size: 40px;
@@ -64,6 +69,12 @@ h1 {
 h2 {
   font-size: 30px;
 }
+
+/* added by chouqin to fit font size*/
+h3 {
+  font-size: 22px;
+}
+
 
 /* line 61, ../_sass/_base.scss */
 pre, code {

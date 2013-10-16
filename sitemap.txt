@@ -14,6 +14,7 @@ http://username.github.com/page5/index.html
 http://username.github.com/page6/index.html
 http://username.github.com/page7/index.html
 http://username.github.com/page8/index.html
+http://username.github.com/page9/index.html
 http://username.github.com/categories/feelings/index.html
 http://username.github.com/categories/feelings/atom.xml
 http://username.github.com/categories/clrs/index.html
@@ -29,6 +30,7 @@ http://username.github.com/categories/linux/atom.xml
 http://username.github.com/categories/python/index.html
 http://username.github.com/categories/python/atom.xml
 
+http://username.github.com/bigdata/2013/10/16/mapreduce
 http://username.github.com/bigdata/2013/10/10/gfs
 http://username.github.com/tools/2013/04/20/markup-lang
 http://username.github.com/feelings/2013/04/04/bachelor-thesis
