@@ -1,7 +1,7 @@
 {
-    "access_key": "rJmY6dFFvVA6aPdm6vDCmR3ft_KY5Og_P3UrOaQ3",
-    "secret_key": "E5V0_gZwivLoWP1WlxTS9wqcYry7AeKktFc-q5d5",
-    "bucket": "chouqin-octopress",
+    "access_key": "Your Access Key",
+    "secret_key": "Your Secret Key",
+    "bucket": "Your Bucket At Qiniu",
     "sync_dir": "public",
     "async_ops": "",
     "debug_level": 1
