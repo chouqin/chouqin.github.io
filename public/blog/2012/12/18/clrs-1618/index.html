@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>贪心算法和B树 - Chouqin's Blog</title>
+  <meta name="author" content="chouqin">
+
+  
+  <meta name="description" content="">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yanhah.github.io/blog/2012/12/18/clrs-1618">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Chouqin's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	    tex2jax: {
+	      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	      processEscapes: true
+	    }
+	  });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+	      }
+	    });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Queue(function() {
+		var all = MathJax.Hub.getAllJax(), i;
+		for(i=0; i < all.length; i += 1) {
+		    all[i].SourceElement().parentNode.className += ' has-jax';
+		}
+	    });
+	</script>
+
+	<script type="text/javascript"
+	   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chouqin's Blog</a></h1>
+  
+    <h2>A blog for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yanhah.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/about">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">贪心算法和B树</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-18T00:00:00+08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2 id="section">贪心算法</h2>
+<p>动态规划是一种解决问题的通用方法，
+在求解最优化问题的时候，
+动态规划能够综合考虑到各种情况然后做出最优的选择。
+可是，对于一些特殊的问题，
+在从子问题中做出选择时，可以不用考虑所有的子问题，
+而只需要考虑一个子问题，
+因为选择这个子问题一定可以达到一个最优解，
+在这种情况下，就可以采用贪心算法来解决。
+贪心算法的好处在于，不需要考虑所有的子问题，
+只需要考虑一种情况，这时求解的子问题的数目就减少了，
+同时，可以采用一种自顶向下的方法解决问题，
+逐步地把问题转化为更小的子问题，直到可以轻易解决。</p>
+
+<h3 id="section-1">从动态规划到贪心</h3>
+<p>书上给出了一个这样的例子来说明从动态规划算法转化到贪心算法。</p>
+
+<p>有n个活动组成集合<script type="math/tex"> S = \{a_1, a_2, ..., a_n\} </script>，它们需要占用同一个资源，
+这个资源在同一个时间只能被一个活动占用，每一个活动<script type="math/tex"> a_i </script>使用资源的起始时间和结束时间分别为
+<script type="math/tex"> s_n, f_n </script>，如果区间<script type="math/tex"> [s_i, f_i) </script>与区间<script type="math/tex"> [s_j, f_j) </script>不重叠，
+就称活动<script type="math/tex"> a_i </script>与活动<script type="math/tex"> a_j </script>是兼容的，求S的一个由互相兼容的活动组成的最大子集，
+假设活动已经按结束时间排好序。</p>
+
+<p>对于这个问题，可以定义如下子问题<script type="math/tex"> S_{ij} </script>，
+表示从S的子集<script type="math/tex"> S_{ij} </script>中得到的最大兼容子集，
+其中<script type="math/tex">% <![CDATA[
+ S_{ij} = \{ a_k \in S: s_k \geq f_i and f_k < s_j \} %]]></script>，
+也就是说，<script type="math/tex"> S_{ij} </script>是由所有在<script type="math/tex"> a_i </script>结束之后开始，
+在<script type="math/tex"> a_j </script>开始之前结束的活动组成的集合。
+通过定义这样一个子问题，
+就可以很容易地得出如下递推公式，</p>
+
+<script type="math/tex; mode=display">
+A_{ij} = A_{ik} \bigcup \{a_k\} \bigcup A_{kj}, 其中A_{ij}表示子问题S_{ij}的解
+</script>
+
+<p>从而利用动态规划解决这个问题。</p>
+
+<p>然而，动态规划并不是一个最优的解法，
+因为要求解的子问题的个数为<script type="math/tex"> O(n^2) </script>个，
+而且求解每个子问题时选择的个数也有<script type="math/tex"> O(n) </script>个，
+这就导致了通过动态规划求解问题所需的复杂度为<script type="math/tex"> O(n^3) </script>。</p>
+
+<p>如果采用贪心的算法，每次通过选取<script type="math/tex"> S_{ij} </script>中具有最早结束时间的活动<script type="math/tex"> a_m </script>作为划分元素的话，
+那么就可以通过</p>
+
+<script type="math/tex; mode=display">
+A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
+</script>
+
+<p>得到一个最优的解，而不用考虑其它元素作为划分元素时的子问题。</p>
+
+<!--more-->
+
+<p>定义函数递归函数RECURSIVE-ACTIVITY-SELECTOR(S, f, i, n)求取子问题<script type="math/tex"> S_{i(n+1)} </script>的解，
+伪代码如下：</p>
+
+<pre><code>def RECURSIVE-ACTIVITY-SELECTOR(s, f, i, n)
+    m := i + 1
+    while m &lt;= n and s[m] &lt; f[i]
+        do m := m + 1
+    if m &lt;= n
+        then return {a[m]} union RECURSIVE-ACTIVITY-SELECTOR(s, f, m, n)
+        else return EMPTY_SET
+</code></pre>
+
+<p>求解原问题就可以通过调用RECURSIVE-ACTIVITY-SELECTOR(s, f, 0, n)来完成。
+从代码中可以看出，每个活动都只被检查过一次，如果函数调用的时间可以忽略不计的话(
+这个递归地算法可以通过迭代来实现，所以算法本身可以不用考虑这个问题)，
+那么整个算法的时间复杂度为<script type="math/tex"> \Theta(n) </script>。相比于动态规划，效率要提高很多。</p>
+
+<h4 id="section-2">关于这个问题的几点解释</h4>
+
+<ol>
+  <li>
+    <p>关于为什么可以将<script type="math/tex"> a_m </script>选作分界元素需要说明两点：</p>
+
+    <ol>
+      <li>
+        <p>一定有某一个最大兼容子集包含元素<script type="math/tex"> a_m </script>，也就是说，
+ 如果要挑选出一些元素组成最大兼容子集，
+ 那么先把<script type="math/tex"> a_m </script>选中放入这个集合中肯定能导致一个最优解。
+ 关于这种命题的证明，普遍的方式是假设有一个最优解没有包含这个元素，
+ 那么把这个元素和某个元素替换后会导致一个不会比原来差的解。
+ 书上也是采取这样的证明方式。以后在证明最小生成树的贪心算法时也是采取这样的方式。</p>
+      </li>
+      <li>
+        <p>把<script type="math/tex"> a_m </script>放入最大兼容子集后，这个最大兼容子集的其余元素一定是子问题<script type="math/tex"> S_{mj} </script>的一个解。
+ 这个比较好证明，只需要证明对于任意和<script type="math/tex"> a_m </script>兼容的元素<script type="math/tex"> a_k </script>, 一定有
+ <script type="math/tex"> s_k \geq f_m </script>即可。</p>
+      </li>
+    </ol>
+
+    <p>有了这两点，就能得出：</p>
+
+<script type="math/tex; mode=display">
+ A_{ij} = \{a_m\} \bigcup A_{mj} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}, 第二个等式成立是因为A_{im} = \emptyset
+ </script>
+
+    <p>也就是将<script type="math/tex"> a_m </script>选作分界元素, 同时可以不需要求解<script type="math/tex"> S_{im} </script>。</p>
+  </li>
+  <li>
+    <p>需要注意的是<script type="math/tex"> S_{ij} \neq \{a_{i+1}, a_{i+2}, ..., a_{j-1} \}</script>，
+这个等式只有在<script type="math/tex"> i=0, j=n+1 </script>时成立，
+但是从代码中我们可以看到，
+在调用RECURSIVE-ACTIVITY-SELECTOR(S, f, i, n)时，
+此时可能被添加进最大兼容子集的元素集合是<script type="math/tex"> \{a_{i+1}, a_{i+2}, ..., a_{n} \} </script>,
+而不是<script type="math/tex"> S_{i(n+1)} </script>，然而这并不会导致什么问题，因为在选取<script type="math/tex"> a_m </script>时，已经过滤掉了开始时间小于<script type="math/tex"> f_i </script>的元素，
+随着迭代次数的加深，那些开始时间小于<script type="math/tex"> f_i </script>的元素也会被过滤掉，因为开始时间小于<script type="math/tex"> f_i </script>也一定会小于<script type="math/tex"> f_m </script>，
+在更深的迭代时同样会被过滤。</p>
+
+    <p>采取这样的方式实现代码能够降低时间和空间的复杂度，因为如果每次求解子问题时都需要求出<script type="math/tex"> S_{ij} </script>这个集合的话，
+ 需要<script type="math/tex"> O(n) </script>的时间来求出，同时也需要一个数组来保存这个子集，显然不如书上的这个实现简单。</p>
+  </li>
+  <li>
+    <p>这个问题如果用动态规划的话可以采用另外一种思路，
+令c[i]表示集合<script type="math/tex"> \{a_1, ..., a_i \} </script>中，包含元素<script type="math/tex"> a[i] </script>的最大兼容子集的元素个数，
+那么有如下递归公式成立</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+
+ c[i] = \max \{\max_{j < i}_{s_i > f_j } \{c[j] + 1\}, 1 \}
+  %]]></script>
+
+    <p>利用这个递归公式求解的话，时间复杂度可以降到<script type="math/tex"> O(n^2) </script>。</p>
+  </li>
+</ol>
+
+<h3 id="section-3">贪心算法的基本条件</h3>
+<p>总的来说，贪心算法比动态规划效率要高，实现起来也相对简单一些，
+同时也是一般人比较容易想到的算法。但是这并不意味着它比较简单，
+因为并不是所有的问题都能够使用贪心法得到解决，
+它比动态规划有更多的限制条件，
+它必须满足两个基本条件：</p>
+
+<ol>
+  <li>
+    <p>贪心选择性质：一个全局最优解可以通过局部最有解得到。
+这是贪心算法与动态规划的不同之处。
+证明贪心选择性质一般用上面提到的修改最优解，
+使其包含局部最优解，
+然后得到一个不差于最优解的解，就能证明。</p>
+  </li>
+  <li>
+    <p>最优子结构，这和动态规划一样，可以通过”剪切，粘贴”的方法证明。</p>
+  </li>
+</ol>
+
+<h3 id="section-4">哈夫曼编码</h3>
+
+<p>贪心算法可以用于求解很多问题，
+在图算法中的最小生成树算法，
+单源最短路径算法等都是利用贪心法解决，
+关于这些算法，我在图算法时再详细阐述，
+现在说另外一个比较典型的贪心算法的例子。</p>
+
+<p>哈夫曼编码，这个基本是任何算法书都需要提及的使用贪心算法的例子。
+有n个不同字符，知道它们的出现的出现次数，
+如何设计一个前缀编码使得整个文件的编码最短。利用一个优先级队列，
+每次把队列的频率最小的两个元素出队，组成一个新的元素然后入队，直到队列只剩一个元素为止。
+这个算法贪心选择性质的证明也比较简单。</p>
+
+<h3 id="section-5">另一种贪心算法</h3>
+
+<p>前面说到的贪心算法都是用于求解最优化问题，
+在应用贪心算法的时候，看问题是否具备贪心选择的性质，
+如果具备，就通过贪心法求解。
+有另外一种问题也可以归入贪心算法的范畴，这样的问题不是求最优解，
+而只是需要正确地的解决某一个问题，在这种问题中，没有最优解可言，
+只是求出问题的正确的解就可以。在解决问题的过程中，可能会有很多选择，
+类似于要不要选择某个元素，要不要把某个变量设成True，
+这许多的选择组合起来就会导致解有很多种可能性，
+目的就在于从这许多的解中找出满足指定条件的一个解，如果存在的话。
+这就类似于走迷宫，有许多的分叉路口，就很多种走法，
+从这些走法中找出一个能走到出口的就可以。</p>
+
+<p>对于这些问题，暴力搜索每一种可能性显然不是一种好方法，
+动态规划也可以用于解决这样的问题，
+在解决一个问题时利用一个子问题是否满足条件来决定当前的问题是否满足条件。
+而贪心算法在解决这种问题时采取了一种更加直观的想法: 必须要做某一个选择，
+否则就是不满足条件的解。如果问题具有这样的性质，就可以很容易地选出一个解，
+因此每次的选择都是唯一的，然后再看这个选择是否满足条件即可。如果满足条件，
+那么就找到了一个解，如果不满足，那么就没有解，因为其他的解肯定不满足条件。
+下面通过Horn公式来更详细的说明。</p>
+
+<p>在Horn公式中，我们指定了一些布尔变量(比如x，y, z)必须满足的性质，通过两种公式给出:</p>
+
+<ol>
+  <li>蕴含式：在这种公式中，左边为合取范式，右边为单一变量, 所有变量必须不含否定，比如<script type="math/tex"> (z \bigwedge w)  \Longrightarrow u </script>
+或者<script type="math/tex"> \Longrightarrow x </script>,
+而<script type="math/tex"> (z \bigwedge \bar w)  \Longrightarrow u </script>就不是这种蕴含式</li>
+  <li>完全由变量的否定组成的析取范式, 比如 <script type="math/tex"> (\bar u \bigvee \bar v \bigvee \bar y )</script>。</li>
+</ol>
+
+<p>问题是给定一个Horn公式，确定是否可以给公式中出现的变量赋予合适的布尔值，使所有的这些公式都能得到满足。
+很显然，要满足蕴含式，需要要把一些变量设为True, 而要满足析取范式，需要把一些变量设为False。
+对于每一个变量，赋值的方式都有两种，遍历所有的可能性显然是效率不高的。</p>
+
+<p>贪心算法通过这样的思路来解决：</p>
+
+<ol>
+  <li>首先把变量都设为False，</li>
+  <li>如果有蕴含式不满足，就把蕴含式右边的变量设成True，然后继续这个步骤直到所有的蕴含式都满足为止, 否则到步骤3。</li>
+  <li>查看是否有析取范式不满足，如果全满足，那么就找到了一个解，否则，无解。</li>
+</ol>
+
+<p>说明两点：</p>
+
+<ol>
+  <li>
+    <p>为什么这个算法是正确的。如果找到了一个解，显然是正确的。
+如果没找到解，为什么就无解呢？因为前面的把变量设为True是“必须”的，
+也就是说，一个变量被设为True，那么在任何正确的解中，它必须被设为True，
+所有在这些必须的步骤都完成之后，如果不满足条件，也就没有解可以满足条件了。</p>
+  </li>
+  <li>
+    <p>重复检查所有蕴含式是否满足的次数的不超过n+1次，其中n为变量的个数。
+因为除了第一次检查，其余每一次检查都是因为前一次有变量被设为True，
+(否则如果没有变量被设为True, 那么所有的蕴含式都满足，就不会再去检查了),
+而变量被设为True的次数不超过n次，所以检查次数不超过n+1次，
+这就保证了检查所有蕴含式是否满足并不是一个复杂度非常高的过程。</p>
+  </li>
+</ol>
+
+<p>在这种贪心算法中，解决思路是找出那些必须要执行的步骤，一步一步，将问题简化，
+最终解决。</p>
+
+<h2 id="b">B树</h2>
+
+<p>B树也是一种平衡地二叉查找树，类似于红黑树，
+它也能够支持动态地插入，删除和查找数据。
+B树主要用于保存数据到磁盘中，
+比如很多数据库的索引就是通过B树进行保存。
+由于磁盘的读取速度相对于内存要慢得多，
+所以尽量地减少IO的次数显得非常重要，
+B树也正是实现了这样的思想，B树的深度不会太深，
+这样查找数据所需要遍历的节点数就会很少，
+相应的IO次数也会减少。</p>
+
+<p>在B树中，一个非根的节点至少包含t-1个关键字，
+这样每一个非根的节点就至少有t个子女，这样一棵包含n个关键字的B树的高度h至多为
+<script type="math/tex"> \log t \frac{n+1}{2} </script>。但是一个节点包含的关键字又不能太多，
+一方面是因为一次IO只能读取指定数量的字节，
+另一方面太多的关键字会导致定位一个关键字比较耗时，所以B树的每个节点包含至多2t-1个关键字。</p>
+
+<p>这些性质能够保证B树查找的性能，但是在插入和删除的时候就需要维护这些性质。
+具体表现在：</p>
+
+<ul>
+  <li>
+    <p>当插入一个关键字到一个已经满了节点（包含2t-1个关键字），就需要把这个节点分裂成两个，
+同时把这个节点中间关键字插入到它的父节点，这样可能会导致父节点的关键字超过2t-1，
+所以需要一直向上到根来进行维护。</p>
+  </li>
+  <li>
+    <p>当删除一个关键字时，会导致只有t-1个关键字的节点不满足性质，这时可以通过向它的兄弟“借”一个关键字，
+如果兄弟包含至少t个关键字的话，否则，就和兄弟合并，然后从父节点删除一个关键字，
+同样的，此时需要一直向上到根来进行维护。</p>
+  </li>
+</ul>
+
+<p>书上在插入和删除节点的时候为了避免向上过滤来进行维护，
+在遍历到某一个节点的时候，就把性质维护好，这样当一个节点遍历到的时候，
+就能保证它的父节点不需要再去维护了。这样的方法，对于插入还好，
+对于删除操作就显得有点复杂，考虑了好多种情况，
+我觉得还是向上过滤进行维护比较好，并没有增加复杂度。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">chouqin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-18T00:00:00+08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/clrs/'>clrs</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/12/clrs-14-15/" title="Previous Post: 红黑树扩充与动态规划">&laquo; 红黑树扩充与动态规划</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/30/clrs-22-23/" title="Next Post: 图的基本算法">图的基本算法 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/16/mapreduce/">MapReduce学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/10/gfs/">GFS学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/markup-lang/">使用markdown和reStructuredText生成文档</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/04/bachelor-thesis/">毕业论文点滴</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/06/clrs-24-26/">最短路径与最大流</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/chouqin">@chouqin</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'chouqin',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - chouqin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chouqinblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yanhah.github.io/blog/2012/12/18/clrs-1618/';
+        var disqus_url = 'http://yanhah.github.io/blog/2012/12/18/clrs-1618/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

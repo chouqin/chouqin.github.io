@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>最短路径与最大流 - Chouqin's Blog</title>
+  <meta name="author" content="chouqin">
+
+  
+  <meta name="description" content="">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yanhah.github.io/blog/2013/01/06/clrs-24-26">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Chouqin's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	    tex2jax: {
+	      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	      processEscapes: true
+	    }
+	  });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+	      }
+	    });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Queue(function() {
+		var all = MathJax.Hub.getAllJax(), i;
+		for(i=0; i < all.length; i += 1) {
+		    all[i].SourceElement().parentNode.className += ' has-jax';
+		}
+	    });
+	</script>
+
+	<script type="text/javascript"
+	   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chouqin's Blog</a></h1>
+  
+    <h2>A blog for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yanhah.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/about">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">最短路径与最大流</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-06T00:00:00+08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2 id="section">最短路径</h2>
+
+<p>在最短路径问题中，
+希望在一个图中找出从一个节点到另外一个节点的最短路径，
+可能要找出从某一个特定节点到其他节点的最短路径，
+也可能是找出所有节点对之间的最短路径，
+图中边的权重可能为负值，甚至包含负的回路，
+因此，在不同的情况下，有不同的算法适合求解问题，
+关于求解所有节点之间的最短路径问题已经在动态规划时详细地解释过Floyd算法，
+现在就谈谈两个处理单源最短路径的算法, Dijkstra算法和Bellman-Ford算法。</p>
+
+<h3 id="dijkstra">Dijkstra算法</h3>
+
+<p>Dijkstra算法用于求解所有边的权重为非负值时的单源最短路径问题，
+它与Prim算法很相似，利用一个集合S保存已经求出最短路径的节点集合，
+开始是S只包含源节点s,
+每次从V-S中挑选出一个距离S中节点最近的节点u放入S，同时正确地设置u的邻居节点的路径长度，
+直到S为V。</p>
+
+<p>对于Dijkstra算法的正确性，只需要递归地证明下面的性质成立：</p>
+
+<pre><code>当节点u被加入到S时，u到s的最短路径已经被正确的设置, 而且u到s的最短路径上的前趋节点w已经被添加进S。
+</code></pre>
+
+<ul>
+  <li>初始化：一开始时，这个性质显然成立</li>
+  <li>保持：假设当u被添加到S时，u到s的最短路径已经被正确的设置，对于u的任何一个邻接节点v，
+如果s到v的最短路径是<script type="math/tex"> s \xrightarrow{p} u \xrightarrow{} v </script>，那么s到v的路径能够被正确的设置，
+而且从v到s最短路径上的前趋节点u已经被添加进S, 这样当v被添加进S时，上述的性质都是能够保持的。</li>
+</ul>
+
+<h3 id="bellman-ford">Bellman-Ford算法</h3>
+
+<p>Bellman-Ford算法用于求解权重可以为负值时的单源最短路径问题，
+而且它还可以用于判断图中是否存在s可达的负的回路。
+Bellman-Ford的执行过程就是运行|V|-1次更新操作，
+每次更新操作遍历每一条边(u, v)更新dist[v]，伪代码如下：</p>
+
+<div class="highlight"><pre><code class="pascal">    <span class="k">procedure</span> <span class="nf">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span><span class="o">:</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">,</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span><span class="o">+</span><span class="n">w</span><span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="o">:=</span> <span class="mi">1</span> <span class="k">to</span> <span class="err">|</span><span class="n">V</span><span class="err">|</span><span class="o">-</span><span class="mi">1</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">in</span> <span class="n">E</span><span class="o">:</span>
+            <span class="n">update</span><span class="p">((</span><span class="n">u</span><span class="o">,</span> <span class="n">v</span><span class="p">))</span>
+</code></pre></div>
+
+<!--more-->
+
+<p>要证明这个算法的正确性，先说明它的两个性质：</p>
+
+<ol>
+  <li>如果调用update((u, v))时，dist[u]已经被正确的设置，
+那么dist[v]也将会被正确地设置。</li>
+  <li>如果dist[v]已经被正确的设置，
+调用任意的update((u, v))都不会改变dist[v]的值，
+也就是说多次地执行update是安全的。</li>
+</ol>
+
+<p>有了这个性质，对于任意节点v, 
+通过对v到s的最短路径的长度做一个简单的归纳，
+就能够说明当算法结束时，dist[v]能够被正确的设置。</p>
+
+<p>在我看来，Bellman-Ford算法的价值并不在于这个算法本身，
+它给出求解一些问题的普遍思路。对于有着相互依赖的k个元素<script type="math/tex"> \{n_1, n_2, ..., n_k\} </script>,
+如果它们之间的关系很复杂，比如如果<script type="math/tex"> n_1 </script>和<script type="math/tex"> n_2 </script>之间有关系，那么<script type="math/tex"> n_1 </script>和<script type="math/tex"> n_3 </script>之间可能就会有关系，
+而且这种关系可能构成一个循环，如果每次找到了两个元素的关系就去更新其他元素的关系就会陷入一个死循环，
+但如果利用Bellman-Ford算法的思想，就能明白对于任意两个元素<script type="math/tex"> n_i </script>和<script type="math/tex"> n_j </script>，它们之间的关系最多隔着k-2个中间元素，
+第1次更新的时候可以把没有隔中间元素的两个元素的关系确立好，第2次更新的时候可以把只隔1个元素的两个元素确定好，
+依次类推，当k-1次更新的时候，所有元素的关系都能确定好。就不需要一确定两个元素的关系就去考虑要不要更新相关的元素，
+思路显得清晰。</p>
+
+<h2 id="section-1">最大流问题</h2>
+
+<p>最大流问题是图论中一类很重要的问题，因为它和线性规划也有着很强的关联，
+所以它的应用也十分广泛。在最大流问题中，对于图G，有两个特殊的节点s,t，
+它的任何一条边都有一个容量c，对每条边的一个特定赋值称为一个流f，
+流必须满足两个性质：</p>
+
+<ol>
+  <li>对于任意一条边e，<script type="math/tex"> 0 \leq f_e \leq c_e </script></li>
+  <li>对于除了s,t之外的任意节点u, 入流等于出流, 即: <script type="math/tex"> \sum\limits_{(w,u) \in E} f_{wu} = \sum\limits_{(u, z) \in E} f_{uz} </script></li>
+</ol>
+
+<p>最大流是想找出一个f，使得<script type="math/tex"> \sum\limits_{s,u \in E} f_{su} </script>最大。</p>
+
+<p>求解最大流的算法非常直观：</p>
+
+<ol>
+  <li>从零流量开始</li>
+  <li>每次从f的残留网络中选择一条从s到t的路径，在这条路径上增加流，
+重复这个过程直到残留网络中不存在从s到t的路径为止</li>
+</ol>
+
+<p>要证明这个算法的正确性，需要了解图的(s,t)-割，
+以及割的容量，一个图的(s,t)-割把图分成互不交叉的两个组L和R,
+使得s在L中，t在R中。该割的容量就是横跨L和R两个集合的所有边的容量之和，
+有如下性质成立：</p>
+
+<p>对于任意流f，任意(s,t)-割(L, R), <script type="math/tex"> size(f) \leq capacity(L, R) </script></p>
+
+<p>说明割的容量是任何流的大小的上限。</p>
+
+<p>下面说明最大流算法的正确性。当程序终止时，残留网络<script type="math/tex"> G^f </script>中不存在由s到t的路径，
+那么令L为<script type="math/tex"> G^f </script>中s可达的所有节点，R为其他的节点，那么此时size(f) = capacity(L, R)。
+这是因为对于任何从L到R的边e, 有</p>
+
+<script type="math/tex; mode=display"> 
+f_e = c_e 且 f_{e'} = 0 其中f_{e'}表示从e的反向流量 
+</script>
+
+<p>因为这其中任何一个违反都会导致e的终止节点在<script type="math/tex"> G^f </script>中从s可达。所以此时size(f) = capacity(L, R)。
+所以对于任意流f’, 都有<script type="math/tex"> size(f') \leq size(f) </script>，意味这f是一个最大流。</p>
+
+<p>关于最大流还有两个很重要的东西：</p>
+
+<ol>
+  <li>如果采用BFS在残留网络中寻找从s到t的最短路径，会使得迭代的次数不会超过O(VE)</li>
+  <li>最大流可用于二部图的匹配，关键是要证明容量为整数的图中找出的最大流给任意边的赋值都是整数。</li>
+</ol>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">chouqin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-06T00:00:00+08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/clrs/'>clrs</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/01/new-2013/" title="Previous Post: 再见2012，你好2013">&laquo; 再见2012，你好2013</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/04/04/bachelor-thesis/" title="Next Post: 毕业论文点滴">毕业论文点滴 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/16/mapreduce/">MapReduce学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/10/gfs/">GFS学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/markup-lang/">使用markdown和reStructuredText生成文档</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/04/bachelor-thesis/">毕业论文点滴</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/01/06/clrs-24-26/">最短路径与最大流</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/chouqin">@chouqin</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'chouqin',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - chouqin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chouqinblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yanhah.github.io/blog/2013/01/06/clrs-24-26/';
+        var disqus_url = 'http://yanhah.github.io/blog/2013/01/06/clrs-24-26/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
