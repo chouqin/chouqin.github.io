@@ -41,7 +41,7 @@ categories:
 * Aside Bar只显示最近的Post和Github。
 * 配置了`disqus_short_name`。
 
-具体的配置可以查看我的[github](https://github.com/yanhah/yanhah.github.io/tree/source)
+具体的配置可以查看我的[github](https://github.com/chouqin/chouqin.github.io/tree/source)
 
 ### 使用MathJax
 
