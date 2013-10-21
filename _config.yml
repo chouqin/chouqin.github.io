@@ -2,11 +2,11 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
+url: http://chouqin.heroku.com
 title: My Octopress Blog
 subtitle: A blogging framework for hackers.
 author: Your Name
-simple_search: http://google.com/search
+simple_search: http://google.com.hk/search
 description:
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
