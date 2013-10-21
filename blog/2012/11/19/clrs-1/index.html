@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>《算法导论》读书总结1 - Chouqin's Blog</title>
+  <meta name="author" content="chouqin">
+
+  
+  <meta name="description" content="">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yanhah.github.io/blog/2012/11/19/clrs-1">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Chouqin's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	    tex2jax: {
+	      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	      processEscapes: true
+	    }
+	  });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+	      }
+	    });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Queue(function() {
+		var all = MathJax.Hub.getAllJax(), i;
+		for(i=0; i < all.length; i += 1) {
+		    all[i].SourceElement().parentNode.className += ' has-jax';
+		}
+	    });
+	</script>
+
+	<script type="text/javascript"
+	   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chouqin's Blog</a></h1>
+  
+    <h2>A blog for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yanhah.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/about">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">《算法导论》读书总结1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-19T00:00:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>正如上一篇所说，我这几天都在学习《算法导论》这本书，
+也终于是下定决心要好好把这本书看出个所以然来。
+这几天看下来，发现最大的困扰并不是知识的难度，
+而是克服自己内心的浮躁。因为这本书并不像其他的工科教材，
+它讲得东西是比较偏理论一些，里面充满了各种数学公式，数学定理,
+包括一个算法正确性的证明，都采取了形式化的证明手段，
+力求证明的数学严格性。
+如果只是需要粗粗理解各种算法是什么样的以及如何实现的话，
+那么看这本书有点不太合适，
+因为这方面的东西并不是这本书的重点。</p>
+
+<p>而我，也是在粗粗了解了各种算法和实现的基础上学习这本书的，
+一开始扫了一下书的第一章，第二章和第六章，
+发现和其他的算法书还差不多嘛，
+直到看到第七章快速排序，
+看到作者在大概描述完快速排序算法之后
+（这个快速排序的划分函数还和我以前见过的都不一样，更加容易理解和实现），
+转而开始分析快速排序的性能和随机化版本，我才明白，
+我不能再这么浮躁地只是抱着了解了解算法的目的来学习这本书了。
+于是我又回过去仔仔细细地从头看到了第7章，
+虽然说这本书里的定理和数学公式很多，但是并不难理解，
+因为作者总是把每一个步骤解释地十分细致和透彻，
+每一步的证明没有很大的跨越，
+每一个结论的得出都会指明依据的定理或者是前面的结论。
+所以说好好看下去其实并没有很大难度，
+关键是要能够静得下心。</p>
+
+<p>下面是1～7章中我的几点体会：</p>
+
+<!--more-->
+
+<h3 id="section">循环不变式</h3>
+<p>循环不变式用于证明算法的正确性，
+它能够保证一个算法能够终止，
+而且当它终止时，得到的结果是正确的结果。
+循环不变式的证明由三个部分组成：</p>
+
+<ul>
+  <li>初始化: 在循环的开始时，循环不变式成立。</li>
+  <li>保持：如果在某一轮迭代之前循环不变式成立，那么在迭代之后，
+循环不变式仍然成立。</li>
+  <li>终止：如果保持循环不变式一直到循环的终止，那么这个算法将得到正确的结果。</li>
+</ul>
+
+<p>循环不变式与数学归纳法十分类似，采用的也是同样的思想。
+在应用循环不变式对算法的正确性进行证明时，
+难点不在于上述的三个步骤，而在于循环不变式的构造，
+要构造一个循环不变式能够在循环过程中始终保持，
+而且能体现算法正确性，这确实需要一定的技巧。
+这就类似于在应用数学归纳法时选取归纳条件。</p>
+
+<p>比如书中思考题2-2：（证明冒泡排序的正确性）</p>
+
+<pre><code>for i &lt;- 1 to length[A]
+    do for j &lt;- length[A] downto i+1
+        do if A[j] &lt; A[j-1]
+            then exchange A[j] &lt;-&gt; A[j-1]
+</code></pre>
+
+<p>b)对于2-4行(内层循环)给出一个循环不变式，并证明这个循环不变式是成立的。</p>
+
+<p>内层循环的作用是把A[i]到A[n]（n是length[A]）中最小元素放到A[i],
+可以采用如下的循环不变式来表示：</p>
+
+<p>在每一轮迭代的开始，子数组A[j..n]中最小的元素位于A[j]。</p>
+
+<p>下面对这个循环不变式进行证明：</p>
+
+<ul>
+  <li>初始化： 在第一轮迭代开始前，j = n，A[j..n]中就只有一个元素，
+最小的元素位于A[n]。</li>
+  <li>保持：在第k轮迭代时，
+    <ul>
+      <li>如果A[j] &gt;= A[j-1]，由循环不变式可知，
+A[j]是字数组A[j..n]中最小的元素，那么循环结束时A[j-1]将是字数组A[j-1..n]中的最小元素。</li>
+      <li>如果A[j] &lt; A[j-1], 那么在互换A[j]和A[j-1]之后，最小的元素仍然是A[j-1]。</li>
+    </ul>
+  </li>
+  <li>终止: 在循环结束时j=i, 说明A[i]是字数组A[i..n]中的最小元素，
+算法达到了把最小元素放到A[i]的目的。</li>
+</ul>
+
+<h3 id="section-1">渐进符号</h3>
+<p>渐进符号用户描述一个算法的复杂度，以前只知道
+渐进符号用于描述算法的量级，比如<script type="math/tex"> 2n^2 = O(n^2) </script> 
+说明 
+<script type="math/tex"> 2n^2 </script>
+的量级是
+<script type="math/tex">O(n^2)</script>。</p>
+
+<p>书上给出了准确的定义:</p>
+
+<script type="math/tex; mode=display">
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+</script>
+
+<p>同时有：</p>
+
+<script type="math/tex; mode=display">
+f(n) = O(g(n)) \Longleftrightarrow f(n) \in O(g(n)) 
+</script>
+
+<p>其他的符号如<script type="math/tex">\Omega</script>, <script type="math/tex">\Theta </script>都是类似的定义。
+当然，我们只需要知道用<script type="math/tex"> O(f(n)) </script>来确定一个函数的上界，
+用<script type="math/tex"> \Omega(f(n)) </script>来确定一个函数的下界就可以了。</p>
+
+<h3 id="section-2">递归与主定理</h3>
+<p>分治法是一种很常见的算法设计方法，
+分治法的时间复杂度一般由如下的递归式给出：</p>
+
+<script type="math/tex; mode=display">
+T(n) = aT(n/b) + f(n)
+</script>
+
+<p>其中<script type="math/tex"> a \geq 1, b > 1</script>，f(n)一般用渐进函数表示。</p>
+
+<p>对于这样的递归式，主定理给出了计算T(n)的方法：</p>
+
+<ul>
+  <li>如果存在常数<script type="math/tex"> \epsilon > 0 </script>，有
+<script type="math/tex"> f(n) = O(n^{\log_ba - \epsilon}) </script>，
+则
+<script type="math/tex"> T(n) = \Theta(n^{\log_ba}) </script>;</li>
+  <li>如果
+<script type="math/tex"> f(n) = \Theta(n^{\log_ba}) </script>，
+则
+<script type="math/tex"> T(n) = \Theta(n^{\log_ba}\lg n) </script>;</li>
+  <li>如果存在常数<script type="math/tex"> \epsilon > 0 </script>，有
+<script type="math/tex"> f(n) = \Omega(n^{\log_ba + \epsilon}) </script>，
+且对常数<script type="math/tex">% <![CDATA[
+ c < 1  %]]></script>与足够大的n,有
+<script type="math/tex"> af(n/b) \leq cf(n) </script>，则
+<script type="math/tex"> T(n) = \Theta(f(n)) </script>。</li>
+</ul>
+
+<p>运用主定理，能够很快地求出分治算法的复杂度。</p>
+
+<h3 id="section-3">指示器随机变量</h3>
+<p>指示器随机变量的定义如下:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+ 
+    X_H = I\{H\} = 
+     \begin{cases}
+         1 & \text{如果H发生} \\
+         0 & \text{如果H没有发生}
+     \end{cases}
+ %]]></script>
+
+<p>指示器随机变量是随机变量的一种，可以求出它的期望如下：
+$$
+    E[X_H] = Pr_H
+$$</p>
+
+<p>指示器随机变量有一个很好的性质，它只能取0或者1，
+可以把它这些变量加起来求总的发生次数,
+因此当它应用到重复随机试验中时,
+统计重复试验某一事件发生次数的期望，
+比如在随机化的快速排序中统计交换次数的期望,
+可以通过如下公式得到：</p>
+
+<script type="math/tex; mode=display"> 
+E[X] = E[\sum_{i=1}^n X_i] = \sum_{i=1}^n E[X_i]
+</script>
+
+<p>要使等式的第二步成立，不一定要保证<script type="math/tex"> X_i </script>之间是相互独立的。</p>
+
+<p>这周的读书笔记就先写到这里，下周开始写第8章开始的内容。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">chouqin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-19T00:00:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/clrs/'>clrs</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/15/mysql-basic/" title="Previous Post: MySQL 基本优化">&laquo; MySQL 基本优化</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/01/clrs-8-9/" title="Next Post: 算法导论8~9章读书笔记">算法导论8~9章读书笔记 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/21/migrate-to-octopress/">把博客迁到Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/16/mapreduce/">MapReduce学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/10/gfs/">GFS学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/markup-lang/">使用markdown和reStructuredText生成文档</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/04/bachelor-thesis/">毕业论文点滴</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/chouqin">@chouqin</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'chouqin',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - chouqin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chouqinblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yanhah.github.io/blog/2012/11/19/clrs-1/';
+        var disqus_url = 'http://yanhah.github.io/blog/2012/11/19/clrs-1/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

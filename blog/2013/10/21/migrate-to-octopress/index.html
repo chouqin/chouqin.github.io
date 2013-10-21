@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>把博客迁到Octopress - Chouqin's Blog</title>
+  <meta name="author" content="chouqin">
+
+  
+  <meta name="description" content="折腾了一个下午，终于把博客迁到到了Octopress。
+迁移的原因主要有两点： 喜欢Octopress整体的风格，包括它的响应式设计，
+还有特别好看的solarized的语法高亮。 以前在jekyll上写博客，在github上面开了两个库，
+原因在于Github Pages上不允许运行ruby脚本 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yanhah.github.io/blog/2013/10/21/migrate-to-octopress">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Chouqin's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+	<script type="text/x-mathjax-config">
+	  MathJax.Hub.Config({
+	    tex2jax: {
+	      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+	      processEscapes: true
+	    }
+	  });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Config({
+	      tex2jax: {
+		skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+	      }
+	    });
+	</script>
+
+	<script type="text/x-mathjax-config">
+	    MathJax.Hub.Queue(function() {
+		var all = MathJax.Hub.getAllJax(), i;
+		for(i=0; i < all.length; i += 1) {
+		    all[i].SourceElement().parentNode.className += ' has-jax';
+		}
+	    });
+	</script>
+
+	<script type="text/javascript"
+	   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+	</script>
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Chouqin's Blog</a></h1>
+  
+    <h2>A blog for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com.hk/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yanhah.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/about">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">把博客迁到Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-21T20:02:00+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>折腾了一个下午，终于把博客迁到到了Octopress。
+迁移的原因主要有两点：</p>
+
+<ul>
+  <li>
+    <p>喜欢Octopress整体的风格，包括它的响应式设计，
+还有特别好看的<code>solarized</code>的语法高亮。</p>
+  </li>
+  <li>
+    <p>以前在<code>jekyll</code>上写博客，在<code>github</code>上面开了两个库，
+原因在于Github Pages上不允许运行ruby脚本，
+这样很多功能包括分页就都不能做了。为了完成分页的目的，
+我在一个库里保存博客的源代码，使用<code>jekyll</code>来生成静态页面，
+然后另一个库也就是<code>chouqin.github.io</code>就完全是静态页面，
+把它发布到Github Pages上去。Octopress也是这样，
+只不过它省去了我的麻烦，要发布到Github Pages，
+只要一条<code>rake deploy</code>就够了，非常方便。</p>
+  </li>
+</ul>
+
+<p>来说一下具体的迁移过程吧。</p>
+
+<h2 id="section">基础博客搭建</h2>
+
+<p>其实完全是照着Octopress的<a href="http://octopress.org/docs/setup/">官方文档</a>一步步安装过来的，
+官方博客已经写得很清楚了。Ruby管理使用的是<a href="http://rvm.io">rvm</a>。</p>
+
+<p>出现了一个问题是<code>rake</code>安装的是10.1.0的版本，跟Gemfile对应的不一致，
+直接把Gemfile里的那行改为<code>gem 'rake', '~&gt; 10.1.0'</code>。</p>
+
+<h2 id="section-1">修改配置</h2>
+
+<p>首先是按照文档修改了一些<code>_conf.yml</code>配置:</p>
+
+<ul>
+  <li>把使用的markdown改为<code>kramdown</code></li>
+  <li>启用<code>pygments</code>来进行语法高亮</li>
+  <li>Aside Bar只显示最近的Post和Github。</li>
+  <li>配置了<code>disqus_short_name</code>。</li>
+</ul>
+
+<p>具体的配置可以查看我的<a href="https://github.com/yanhah/yanhah.github.io/tree/source">github</a></p>
+
+<h3 id="mathjax">使用MathJax</h3>
+
+<p>由于使用的是<code>kramdown</code>，它的语法包含数学，为了在页面上展示数学公式，
+在<code>source/_includes/head.html</code>上加入以下的内容：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="c">&lt;!-- mathjax config similar to math.stackexchange --&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">  <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+</span><span class="line">    <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="line">      <span class="nx">inlineMath</span><span class="o">:</span> <span class="p">[</span> <span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">,</span><span class="s1">&#39;$&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;\\(&quot;</span><span class="p">,</span><span class="s2">&quot;\\)&quot;</span><span class="p">]</span> <span class="p">],</span>
+</span><span class="line">      <span class="nx">processEscapes</span><span class="o">:</span> <span class="kc">true</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">  <span class="p">});</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
+</span><span class="line">      <span class="nx">tex2jax</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="line">	<span class="nx">skipTags</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;noscript&#39;</span><span class="p">,</span> <span class="s1">&#39;style&#39;</span><span class="p">,</span> <span class="s1">&#39;textarea&#39;</span><span class="p">,</span> <span class="s1">&#39;pre&#39;</span><span class="p">,</span> <span class="s1">&#39;code&#39;</span><span class="p">]</span>
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">    <span class="p">});</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/x-mathjax-config&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Queue</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">getAllJax</span><span class="p">(),</span> <span class="nx">i</span><span class="p">;</span>
+</span><span class="line">	<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">all</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">	    <span class="nx">all</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">SourceElement</span><span class="p">().</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span> <span class="s1">&#39; has-jax&#39;</span><span class="p">;</span>
+</span><span class="line">	<span class="p">}</span>
+</span><span class="line">    <span class="p">});</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span>
+</span><span class="line">   <span class="na">src=</span><span class="s">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section-2">迁移原来的博文</h2>
+
+<p>原来的博客是基于<code>jekyll</code>的，对于每一篇博客，修改这几个地方即可：</p>
+
+<ul>
+  <li>删除掉前面的<code>Included file 'JB/setup' not found in _includes directory</code>。</li>
+  <li>在配置上加入<code>comments: true</code>。</li>
+</ul>
+
+<h2 id="section-3">发布到七牛</h2>
+
+<p>因为生成的是静态页面，所以也可以发布到七牛来加速访问。
+在部署之前，你需要先<a href="https://portal.qiniu.com/signup?code=3l94gjc9mqzwx">注册</a>成为七牛用户，
+然后获取<a href="https://portal.qiniu.com/setting/key">AccessKey 和 SecretKey</a>。</p>
+
+<p>然后安装七牛的<a href="http://docs.qiniu.com/tools/v6/qrsync.html">qrsync</a>。</p>
+
+<p>在<code>octopress</code>目录下创建<code>qiniu.conf</code>，写入以下内容:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;access_key&quot;</span><span class="p">:</span> <span class="s2">&quot;Please apply your access key here&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;secret_key&quot;</span><span class="p">:</span> <span class="s2">&quot;Dont send your secret key to anyone&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;bucket&quot;</span><span class="p">:</span> <span class="s2">&quot;Bucket name on qiniu resource storage&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;sync_dir&quot;</span><span class="p">:</span> <span class="s2">&quot;_deploy&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;async_ops&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;debug_level&quot;</span><span class="p">:</span> <span class="mi">1</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>最后执行<code>qrsync qiniu.conf</code>，就能部署到七牛了。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">chouqin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-21T20:02:00+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/16/mapreduce/" title="Previous Post: MapReduce学习心得">&laquo; MapReduce学习心得</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/21/migrate-to-octopress/">把博客迁到Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/16/mapreduce/">MapReduce学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/10/gfs/">GFS学习心得</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/20/markup-lang/">使用markdown和reStructuredText生成文档</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/04/bachelor-thesis/">毕业论文点滴</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/chouqin">@chouqin</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'chouqin',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - chouqin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'chouqinblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yanhah.github.io/blog/2013/10/21/migrate-to-octopress/';
+        var disqus_url = 'http://yanhah.github.io/blog/2013/10/21/migrate-to-octopress/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
