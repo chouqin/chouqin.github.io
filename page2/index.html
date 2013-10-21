@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Blog - 
+      
+      Chouqin & Laoqi
+    </title>
+    
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="row">
+    <div class="span8" style="margin-top:20px;">
+      <!--[> iterate through the posts on this page <]-->
+      
+        <div class="post">
+          <h1><a href="/tools/2013/04/20/markup-lang">使用markdown和reStructuredText生成文档</a></h1>
+          <p class="meta">April 20, 2013</p>
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h3 id="section">基本介绍</h3>
+<p><a href="http://daringfireball.net/projects/markdown/">Markdown</a>和
+<a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>(下面简称rst)
+是现在比较流行的<a href="http://en.wikipedia.org/wiki/Lightweight_markup_language">轻量级标注语言</a>，
+这些语言拥有比较强大的表现力，可以通过简单的书写代码就可以写出包含代码，图片，数学公式等各种格式的文档。
+这样，我们不用把心思花在各种格式的调节，而只需要专注于文档的内容就行了。
+我们通过标记语言写成的文本文件能够被转化为html, tex, pdf，epub, word等各种格式，
+我们只需要利用标记语言提供的语法把文本文件写好，相应的转换器会为你转换为特定的文档格式。
+我的博客其实都是使用markdown一个特定版本<a href="http://kramdown.rubyforge.org/">kramdown</a>写的，
+然后转换为html来发布。</p>
+
+<p>学习这些标记语言其实很简单，远远比学习latex简单，把它提供的一些语法都写一遍，比如说怎么写标题，
+怎么写列表，怎么插入代码，怎么插入数学符号等等。知道怎么写了之后，
+就多练习，写得多了，熟悉之后就会发现，确实能够省去你控制格式的很多烦恼。</p>
+
+<h3 id="pandoc">使用pandoc</h3>
+
+<p>Markdown有很多超集，比如上面提到的kramdown，这些超集在markdown的基础之上有提供了一些功能，
+比如说原生的markdown是不支持数学公式的，但kramdown支持，
+它可以把你写在两个在源文件中的这样一段markdown代码:</p>
+
+<pre><code>$$
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+$$
+</code></pre>
+
+<p>转化为这样一段html:</p>
+
+<div class="highlight"><pre><code class="html"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;math/tex; mode=display&quot;</span><span class="nt">&gt;</span>
+    <span class="nx">O</span><span class="p">(</span><span class="nx">g</span><span class="p">(</span><span class="nx">n</span><span class="p">))</span> <span class="o">=</span> <span class="err">\</span><span class="p">{</span><span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="o">:</span> <span class="err">\</span><span class="nx">exists</span> <span class="nx">c</span><span class="p">,</span><span class="nx">n</span><span class="err">，</span> <span class="err">\</span><span class="nx">forall</span> <span class="nx">n</span> <span class="err">\</span><span class="nx">geq</span> <span class="nx">n_0</span><span class="p">,</span>  <span class="mi">0</span> <span class="err">\</span><span class="nx">leq</span> <span class="nx">f</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="err">\</span><span class="nx">leq</span> <span class="nx">cg</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="err">\</span><span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>
+
+<p>包含这个的html<strong>如果里面包含<a href="http://www.mathjax.org/">MathJax</a>这个js库</strong>的话，
+MathJax就会把上述的一段html转换为如下的数学公式呈现给你。</p>
+
+<script type="math/tex; mode=display">
+O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
+</script>
+
+<p class='more'><a href='/tools/2013/04/20/markup-lang'>More...</a></p>
+        </div>
+      
+        <div class="post">
+          <h1><a href="/feelings/2013/04/04/bachelor-thesis">毕业论文点滴</a></h1>
+          <p class="meta">April  4, 2013</p>
+            
+<p>已经好久没写博客了，因为寒假一个多月都没看书，
+而一回到学校，又要忙着毕业论文的事，所以也无暇顾及这个。
+大部分牛人的博客，都是记载着自己正在研究的方面，
+在博客中也是向读者传达着一些知识，我们总是可以从其中学到某种东西。
+而我，要达到这样的程度要有很长的一段路需要走，
+由于技术水平较低，现在的博客记录的仍然还是自己在<strong>学习</strong>过程中的一些心得和体会，
+很大程度上是描述自己的坎坷经历，希望能给某些人一些借鉴，少走一些弯路。</p>
+
+<p>好了，言归正传，这一个月，都在忙着做毕业设计，
+包括看论文，写代码，找数据，做实验。一个月的时间，
+就完成了这么一件事，效率确实不算高，
+主要原因在于对于搞科研还是新手，
+很多情况下都是在尝试了各种可能之后才找到方法，
+有时一个人的蛮干还不如直接通过其他方式获得出路。
+哎，科研就是要耐得住寂寞，不停地调参数，不停地跑数据，
+把各种可能性都尝试一遍，之后才有好的结果。</p>
+
+<p>先简单介绍一下我这个论文的要求，论文的题目叫
+<code>信息缺失情况下的社区挖掘</code>，其实就是一个聚类算法，
+根据节点的某些属性和节点之间的边的关系，把图中的比较接近的节点聚到一起，
+形成一个社区。而信息缺失，是指节点中的某些边的关系并不知道，
+在这样的情况下进行聚类。采用的办法是首先利用节点之间的属性和边的关系，
+通过机器学习方法获取所有节点之间的距离，然后再根据这个距离对节点进行聚类。
+下面我来说一下整个的过程。</p>
+
+<p>首先是准备数据。一开始准备爬微博的数据，
+所以就去网上搜各种微博的爬虫，
+然后终于找到了这个<a href="https://bitbucket.org/chineking/weibocrawler">一个简单的分布式新浪微博爬虫</a>，
+在这个基础上进行了一点小修改，弄了一个简单的单节点爬虫。
+这个爬虫可以抓取用户的微博，用户的个人资料以及用户之间的关注关系。
+然后，又使用<a href="http://ictclas.nlpir.org/">NLPIR</a>对微博进行分词，
+提取出关键字作为用户的属性，同时以用户之间的关注关系作为边，这样就开始实验。
+可是，不知道是实验室的网络不稳定还是新浪微博的限制，这个爬虫很难稳定地抓取微博的数据，
+最后实在没办法，学长建议我去网上直接找别人爬取到的数据集。
+于是，我先后使用了Google+, Facebook, 
+Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stanford Large Network Dataset Collection</a>上找到的),
+和Flixter数据集做实验。其中使用Flixter数据集做出来的结果也还可以，可是师兄说一定要有<strong>Ground Truth</strong>用于验证，
+所以我又只好去找其他的数据集，
+最后终于<a href="http://dmml.asu.edu/users/xufei/datasets.html">在这</a>找到了可以用于实验的数据集。</p>
+
+<p>然后是实现代码去做实验。这个代码其实两部分，第一部分要利用机器学习去学习一个距离，
+第二部分是基于距离进行聚类。为了学习距离，需要求解一个最优化函数，
+而这里面涉及的数学的公式好复杂，实现起来也非常困难，
+找到了一份和这个论文比较相似的论文的源代码，却发现里面错误好多，有些地方也不知道从哪里开始改。
+大概修改了一下就把这个距离拿到第二步去聚类，发现结果非常差，
+然后也不知道是第一步的问题还是第二步的问题，但是我就只会改第二步的代码:P。
+终于在第二步实在找不出什么错误然后第一步的结果又不好之后，我去问老师，
+老师让我使用谱聚类算法来验证距离是不是正确的，
+因为谱聚类算法也是基于距离的聚类算法，如果谱聚类算法得不到正确的结果，那就是距离的问题了。
+多好的主意啊，我当时怎么就没想到呢，因为我当时还没听说过谱聚类算法。
+于是我就拿谱聚类算法去验证，果然是距离没学对，而除了代码没写对之外，
+有一个重要的步骤没有做，<strong>对Feature做Normalize</strong>，
+这个步骤对于使用节点的属性来说非常重要，它保证了所有属性的作用是均等的。
+而后，我又在<a href="http://www.cs.cmu.edu/~liuy/distlearn.htm">这里</a>找到了一些其他的学习距离的算法，
+我使用了其中的DCA算法来作为我的第一步，相当靠谱。
+通过谱聚类算法验证之后，我发现我的第二步算法就几乎没有什么问题了，
+跑出的结果也比较让人满意。</p>
+
+<p>大概就是这么一个比较纠结的过程，总结出一些经验吧:</p>
+
+<pre><code>&gt;&gt;&gt;import this
+</code></pre>
+
+<ol>
+  <li>
+    <p>写代码还是要多检查，一个bug除了导致几个小时的结果无效，还要浪费更多的时间去找到它。</p>
+  </li>
+  <li>
+    <p>在一个步骤保证正确之前，不要急于开展下一步，这样只会增加更多的复杂性。</p>
+  </li>
+  <li>
+    <p>沉下心来研究论文，尽量采用和别人一样的方法，得到的结果总是好些，虽然不知道为什么好。</p>
+  </li>
+  <li>
+    <p>不要畏惧实验和失败，说不定下一次就是成功的那一次。</p>
+  </li>
+  <li>
+    <p>真爱生命，远离科研。</p>
+  </li>
+</ol>
+
+        </div>
+      
+
+      <!--[> links to prev and next pages for browsing thru archives <]-->
+      
+        <span id="newer"><a href="/">&laquo;&laquo; Newer Entries</a></span>
+      
+      
+        <span id="older"><a href="/page3">Older Entries &raquo;&raquo;</a></span>
+      
+
+    </div>
+
+    <div class="span4" style="margin-top:20px;">
+        <h3>所有分类</h3>
+        <ul class="categories">
+        
+        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
+        
+        <li><a href="/categories/feelings">feelings <span> 3 </span></a></li>
+        
+        <li><a href="/categories/python">python <span> 1 </span></a></li>
+        
+        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
+        
+        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
+        
+        <li><a href="/categories/tools">tools <span> 1 </span></a></li>
+        
+        <li><a href="/categories/bigdata">bigdata <span> 2 </span></a></li>
+        
+        </ul>
+    </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+

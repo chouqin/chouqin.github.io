@@ -1,0 +1,493 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        MapReduce学习心得 - 
+      
+      Chouqin & Laoqi
+    </title>
+    <meta name="description" content="">
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+<div class="page-header">
+  <h1>
+    MapReduce学习心得
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    
+<h2 id="section">简介</h2>
+
+<p>对于计算机系的同学来说，MapReduce这个词应该并不陌生，
+现在是所谓的“大数据时代”，“大数据”这个词被炒得非常热。
+何为“大数据”？随着互联网的发展，现在的数据越来越多，
+给原先的技术带来了两方面的挑战，一是<strong>存储</strong>，
+如何存储这些PB级别的数据，
+二是<strong>分析</strong>， 如何对这么大的数据进行分析，
+从中提取出有用的信息。</p>
+
+<p>MapReduce就是一个对大数据进行分析的框架。
+使用MapReduce，用户只需要定义自己的<code>map</code>函数和<code>reduce</code>函数，
+然后MapReduce就能把这些函数分配到不同的机器上去并行的执行，
+MapReduce帮你解决好调度，容错，节点交互的问题。
+这样，一个没有分布式系统编程经验的人也可以利用MapReduce把自己的程序放到几千台机器上去执行。</p>
+
+<p><code>map</code>和<code>reduce</code>都是来自于函数式编程的概念，<code>map</code>函数接受一条条的纪录作为输入，
+然后输出一个个<code>&lt;key, value&gt;</code>对，<code>reduce</code>函数接受<code>&lt;key, values&gt;</code>对，
+（其中<code>values</code>是每一个<code>key</code>对应的所有的<code>value</code>)，通过对这些<code>values</code>进行一个“总结”，
+得到一个<code>&lt;key, reduce_value&gt;</code>。</p>
+
+<p>比如拿经典的<strong>WordCount</strong>例子来说，对于文本中的每一个单词<code>word</code>，
+<code>map</code>都会生成一个<code>&lt;word, 1&gt;</code>对（注意如果一个文本中一个单词出现多次就生成多个这样的对）,
+<code>reduce</code>函数就会收到<code>&lt;word, 1,...&gt;</code>这样的输入，它的工作就是把所有的<code>1</code>都加起来，
+生成一个<code>&lt;word, sum&gt;</code>。</p>
+
+<p>MapReduce函数基于键值对进行处理，看起来很简单，
+那很多的分析任务不仅仅只是简单的Wordcount而已，能够使用这两个函数来实现吗？
+幸运的是，很多的大规模数据分析任务都能通过MapReduce来表达，
+这也是为什么MapReduce能够作为一个框架被提出的原因，
+在最后一个部分中会给出一些更加复杂的使用MapReduce的例子。</p>
+
+<h2 id="section-1">架构</h2>
+
+<p>在大概了解了MapReduce之后，我们来看一下它到底是怎么实现的。
+我们首先看一下一个MapReduce任务执行完需要经过那些流程，
+然后再看一下在实现MapReduce的时候需要考虑的几个因素。</p>
+
+<h3 id="section-2">基本流程</h3>
+
+<p><img src="/assets/themes/../images/map_reduce_execution.png" alt="" /></p>
+
+<p>我们首先假定把一个任务分成M个<code>map</code>Task和R个<code>reduce</code>task，
+如上图,
+整个任务的执行过程如下：</p>
+
+<ol>
+  <li>
+    <p>首先根据<code>map</code>的数量把原来的数据分成M个splits，每一个split对应一个<code>map</code>task。</p>
+  </li>
+  <li>
+    <p>在集群的节点上启动<code>master</code>，M个<code>map</code>task和N个<code>reduce</code>task, 
+<code>master</code>把split分配给相应的<code>map</code>task。需要注意的是，
+一个集群的节点（又称作一个worker）上可能有多个<code>map</code>task,
+也有可能<code>map</code>task和<code>reduce</code>task在同一个worker。</p>
+  </li>
+  <li>
+    <p>每一个<code>map</code>task读取自己的split，根据用户定义的<code>map</code>函数生成<code>&lt;key value&gt;</code>对，
+把结果保存在<strong>本地文件</strong>中，
+根据<code>key</code>的不一样，结果被写入到R个不同的文件。
+这些文件的位置会告知给<code>master</code>，然后<code>master</code>再告知给相应的<code>reduce</code>task。</p>
+  </li>
+  <li>
+    <p>当一个<code>reduce</code>task被告知这些文件的位置时，它通过远程调用读取这些文件的内容，
+当和这个<code>reduce</code>task相关的所有文件都被读到之后，它把这些内容按照<code>key</code>进行一个排序，
+然后就能保证同一个<code>key</code>的所有<code>values</code>同时被传给<code>reduce</code>。</p>
+  </li>
+  <li>
+    <p><code>reduce</code>task使用用户定义的<code>reduce</code>函数处理上述排序好的数据，
+将最终的结果保存到一个<strong>Global File System</strong>（比如GFS），
+这是为了保证数据的可靠性。</p>
+  </li>
+</ol>
+
+<h3 id="section-3">文件的保存</h3>
+
+<p>在上述的过程中，我们看到<code>map</code>task的结果被保存在本地，
+而把<code>reduce</code>task的结果保存在具有可靠性保证的文件系统上。
+这是因为<code>map</code>task产生的是中间结果，当这些结果被<code>reduce</code>之后，
+就可以被扔掉，不需要备份，这样可以节约磁盘空间。
+而<code>reduce</code>task产生的是最终结果，需要一定的可靠性保证。</p>
+
+<h3 id="split">split的粒度</h3>
+
+<p>在对一个任务进行划分时，需要考虑split的粒度：</p>
+
+<ul>
+  <li>
+    <p>如果split太小，M就会很大，
+<code>master</code>需要纪录的数据就会很多，
+就会消耗很多<code>master</code>的内存。</p>
+  </li>
+  <li>
+    <p>如果split太大，一方面调度不具有灵活性，
+因为调度是以split为单位的，一个较大的task无法被分割放到其他空闲的worker上去执行。
+另一方面无法利用<code>locality</code>进行调度，
+因为<code>map</code>task的输入文件一般保存在分布式文件系统上，
+<code>master</code>在调度时尽量把一个split分配到较近的节点上去执行，
+如果split太大超过了一个文件block的大小，
+这样可能两个block在不同的节点上，甚至跨了不同的机架，
+这样无法利用<code>locality</code>了。</p>
+  </li>
+</ul>
+
+<p>所以，在实际应用中，split的大小为一个block。</p>
+
+<h3 id="section-4">容错</h3>
+
+<p>由于MapReduce被分布到上千台机器上去执行，
+错误是不可避免的。
+MapReduc需要在节点发生故障时进行处理。</p>
+
+<p>当一个节点发生故障，
+在这个节点上的所有的<code>map</code>task都需要重新执行，
+因为<code>map</code>task的结果是保存在节点本地的，
+节点发生故障之后，这些结果就不可用了。
+而成功执行的<code>reduce</code>task就不需要重新执行了，
+因为它的结果是保存在分布式文件系统上，
+可靠性是可以保证的。</p>
+
+<h2 id="section-5">常见应用</h2>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h3 id="section-6">矩阵向量乘法</h3>
+
+<p>假设有一个<script type="math/tex">m \times n</script>的矩阵M，
+它和一个n维列向量v的乘积是一个m维的列向量x，有</p>
+
+<script type="math/tex; mode=display">
+x_i = \sum_{j=1}^{n} m_{ij}v_j
+</script>
+
+<p>可以根据j，把M按列分成k块，把v也对应分成k块，
+每个M块和对应的v块被分给一个<code>map</code>task，
+<code>map</code>task生成的结果为<script type="math/tex">(i, m_{ij}v_j)</script>对，
+<code>reduce</code>task把每一个i对应的所有<script type="math/tex">m_{ij}v_j</script>加起来。</p>
+
+<h3 id="section-7">关系代数运算</h3>
+
+<p>关系数据库表的Join，Selection，Projection, Union, Intersection, 
+Difference，Group And Aggregation等操作都可以使用MapReduce来实现。</p>
+
+<p>值得一提的是，对于Join运算，比如链接关系R(a, b)和关系S(b, c)，
+在生成以b为键的键值对时，需要指定来自于哪一个关系，
+比如关系R生成的键值对的形式为<code>&lt;b, (R, a)&gt;</code>,
+这样<code>reduce</code>时就可以根据这个信息进行组合。</p>
+
+<h3 id="section-8">矩阵乘法</h3>
+
+<p>假设有一个<script type="math/tex">m \times n</script>的矩阵M，
+和一个<script type="math/tex">n \times p</script>的矩阵N，
+它们的乘积是一个<script type="math/tex">m \times p</script>的矩阵P,
+有:</p>
+
+<script type="math/tex; mode=display">
+p_{ik} = \sum_{j=1}^{n} m_{ij}n_{jk}
+</script>
+
+<p>矩阵M和矩阵N的乘法可以看成是关系M(I, J, V)和关系N(J, K, W)先进行一次Join，
+再进行一次Group And Aggregation之后的结果，
+因此可以直接通过两次MapReduce进行矩阵的乘法运算。</p>
+
+<p>如果想要一次MapReduce就得到结果，可以在<code>map</code>时以(i, k)为键生成键值对，
+同样的，需要指明来自于矩阵M还是矩阵N，因此，相应的键值对的格式分别为
+<script type="math/tex">((i, k), (M, j, m_{ij}))</script>(对于矩阵M)，<script type="math/tex">((i, k), (N, j, n_{jk}))</script>(对于矩阵N)。
+<code>reduce</code>时进行相应的组合。</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/bigdata/2013/10/10/gfs" title="GFS学习心得">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next disabled">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>16 October 2013</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+            <li><a href="/categories/bigdata">bigdata</a></li>
+        </span>
+      </section>
+    
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#bigdata-ref">bigdata <span>2</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+    
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+

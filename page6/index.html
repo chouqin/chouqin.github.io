@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        Blog - 
+      
+      Chouqin & Laoqi
+    </title>
+    
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        <div class="row">
+    <div class="span8" style="margin-top:20px;">
+      <!--[> iterate through the posts on this page <]-->
+      
+        <div class="post">
+          <h1><a href="/clrs/2012/12/01/clrs-8-9">算法导论8~9章读书笔记</a></h1>
+          <p class="meta">December  1, 2012</p>
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<h3 id="section">比较排序的时间下界</h3>
+<p>合并排序和堆排序在最坏情况下能够在O(nlgn)时间内排序n个数，
+而快速排序则能够在平均情况下达到这个上界。
+这些算法在确定元素的次序时，
+都是基于元素间的比较。
+这类排序算法称为__比较排序__。</p>
+
+<p>比较排序的时间下界是O(nlgn)，
+这意味着所有的基于比较的排序算法，在最坏情况下都要用<script type="math/tex"> \Omega (n \lg n) </script>
+次比较来完成排序。</p>
+
+<p>这是因为比较排序可以被抽象为__决策树__，
+决策树是一棵满二叉数，
+它的每一条从根节点到叶节点的路径都对应于比较排序的一次执行过程，
+达到叶节点时，叶节点确定了这次排序的结果。
+所以比较排序算法的最坏情况的比较次数等于决策树的高度。
+n个数的排列总数有n!，每一种排列都必须在决策树的叶节点中出现，
+高度为h的决策树的叶节点个数最多为<script type="math/tex"> 2^h </script>，故有：</p>
+
+<script type="math/tex; mode=display">
+n! \leq 2^h \\
+\Longrightarrow   h \geq \lg (n!) = \Omega (n \lg n)
+</script>
+
+<p>所以比较排序的时间下界是O(nlgn)。</p>
+
+<p class='more'><a href='/clrs/2012/12/01/clrs-8-9'>More...</a></p>
+        </div>
+      
+        <div class="post">
+          <h1><a href="/clrs/2012/11/19/clrs-1">《算法导论》读书总结1</a></h1>
+          <p class="meta">November 19, 2012</p>
+            <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!--<script type="text/javascript" src="/assets/custom/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+<p>正如上一篇所说，我这几天都在学习《算法导论》这本书，
+也终于是下定决心要好好把这本书看出个所以然来。
+这几天看下来，发现最大的困扰并不是知识的难度，
+而是克服自己内心的浮躁。因为这本书并不像其他的工科教材，
+它讲得东西是比较偏理论一些，里面充满了各种数学公式，数学定理,
+包括一个算法正确性的证明，都采取了形式化的证明手段，
+力求证明的数学严格性。
+如果只是需要粗粗理解各种算法是什么样的以及如何实现的话，
+那么看这本书有点不太合适，
+因为这方面的东西并不是这本书的重点。</p>
+
+<p>而我，也是在粗粗了解了各种算法和实现的基础上学习这本书的，
+一开始扫了一下书的第一章，第二章和第六章，
+发现和其他的算法书还差不多嘛，
+直到看到第七章快速排序，
+看到作者在大概描述完快速排序算法之后
+（这个快速排序的划分函数还和我以前见过的都不一样，更加容易理解和实现），
+转而开始分析快速排序的性能和随机化版本，我才明白，
+我不能再这么浮躁地只是抱着了解了解算法的目的来学习这本书了。
+于是我又回过去仔仔细细地从头看到了第7章，
+虽然说这本书里的定理和数学公式很多，但是并不难理解，
+因为作者总是把每一个步骤解释地十分细致和透彻，
+每一步的证明没有很大的跨越，
+每一个结论的得出都会指明依据的定理或者是前面的结论。
+所以说好好看下去其实并没有很大难度，
+关键是要能够静得下心。</p>
+
+<p>下面是1～7章中我的几点体会：</p>
+
+<p class='more'><a href='/clrs/2012/11/19/clrs-1'>More...</a></p>
+        </div>
+      
+
+      <!--[> links to prev and next pages for browsing thru archives <]-->
+      
+        <span id="newer"><a href="/page5">&laquo;&laquo; Newer Entries</a></span>
+      
+      
+        <span id="older"><a href="/page7">Older Entries &raquo;&raquo;</a></span>
+      
+
+    </div>
+
+    <div class="span4" style="margin-top:20px;">
+        <h3>所有分类</h3>
+        <ul class="categories">
+        
+        <li><a href="/categories/linux">linux <span> 1 </span></a></li>
+        
+        <li><a href="/categories/feelings">feelings <span> 3 </span></a></li>
+        
+        <li><a href="/categories/python">python <span> 1 </span></a></li>
+        
+        <li><a href="/categories/mysql">mysql <span> 1 </span></a></li>
+        
+        <li><a href="/categories/clrs">clrs <span> 7 </span></a></li>
+        
+        <li><a href="/categories/tools">tools <span> 1 </span></a></li>
+        
+        <li><a href="/categories/bigdata">bigdata <span> 2 </span></a></li>
+        
+        </ul>
+    </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+

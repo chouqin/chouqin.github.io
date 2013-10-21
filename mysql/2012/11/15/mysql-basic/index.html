@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      
+        MySQL 基本优化 - 
+      
+      Chouqin & Laoqi
+    </title>
+    <meta name="description" content="">
+    <meta name="author" content="Qiping Li">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <script src="/assets/themes/hooligan/js/jquery.min.js"></script>
+    <script src="/assets/themes/hooligan/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/themes/hooligan/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css" href="/assets/themes/hooligan/css-social-buttons/css/zocial.stripped.css" />
+    <link href="/assets/themes/hooligan/css/pygments.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/hooligan/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
+    <link href="/assets/themes/hooligan/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    
+    <!-- fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>      
+
+
+          <a class="brand" href="/">Chouqin & Laoqi</a>
+
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              
+              
+              
+
+
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about.html">About Me</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+            </ul>
+            <ul class="nav pull-right social visible-desktop">
+              <li class="divider-vertical"></li>
+              
+                <li>
+                  <a href="https://www.github.com/chouqin" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</a>
+                  </a>
+                </li>
+              
+                  
+                                        
+                         
+                                  
+              
+              
+                <li>
+                  <a href="http://www.weibo.com/" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</a>
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+        
+<div class="page-header">
+  <h1>
+    MySQL 基本优化 
+    
+  </h1>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
+才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,
+使它能够具有很强的稳定性同时具有很快的相应速度，
+这其中涉及的东西远远不是数据库的课上写几条sql语句那么简单。
+而在这篇博客中，我也仅就mysql的一些基本优化知识谈谈我的看法，
+待以后更加深入研究之后，再继续分享。</p>
+
+<h2>MySQL的表的设计</h2>
+
+<h3>Normalized Schema Or Denormalized Schema?</h3>
+
+<p>在一般的数据库教材中，讲到设计库表结构的设计，
+都是将数据库设计范式作为设计的准则，因为这样设计的数据库表重复很少，
+这样就会减少存储空间，
+同时因为重复的内容少，维护起来也很方便，
+因为如果很多的重复的话一个信息的更改可能会需要在多处进行更改才能保证数据的一致性。
+然而，数据库范式并不是万能的，这样设计出来的数据库会造成查找时间的加长，
+因为要查找一些数据往往需要将多个表join起来，而join是比较费时间的数据库操作，
+同时，一些有关系的列被分散到各个表中，不好组合在一起建成一个索引，
+这样也会减低查找的速度。
+所以在设计数据库的表的结构时，要结合应用的实际情况，平衡考虑。</p>
+
+<!--more-->
+
+
+<h3>Cache Table &amp; Summary Table</h3>
+
+<p>使用“空间换取时间”的理念，在数据统计的过程中，为了方便同时，
+我们会建立一些缓存表，
+这些表的目的是把一个表中的多行信息或者多个表的信息综合起来，
+比如有一个表保存了今天的用户访问记录，
+就可以建成一个daycount表统计每天有多少用户访问，
+这样如果需要查询某一天有多少用户访问的时候直接去这个表中去查了。
+缓存表引入的一个问题是缓存表的维护，
+一般是通过一些周期性跑的脚本去更新这些缓存表，
+FlexView这个工具能够自动的帮我们维护这些缓存表，
+有兴趣的可以尝试一下。</p>
+
+<h3>数据类型的选择</h3>
+
+<p>尽量选择小的，简单的数据类型，能用tinyint就不要用int,能有enum就不要用varchar。
+同时尽量不要用NULL，因为NULL会引入许多的问题，首先是它不容易被索引，
+同时保存它占用了更多的空间。</p>
+
+<h2>索引优化总结</h2>
+
+<h3>为什么索引能够提高查找的速度？</h3>
+
+<ul>
+<li>索引能够减少需要数据库需要读取的数据。因为它不需要整个表都读取一遍，
+同时如果使用了覆盖索引，那么需要的数据就在索引中，只要将索引的数据返回即可。</li>
+<li>索引能够帮助数据库进行排序。如果要排序的字段刚好在索引中，
+由于索引本身就是排好序的，这样就不需要再进行排序，减少了时间和空间的浪费。</li>
+<li>索引能够把随机IO转化为顺序IO，这是因为索引靠近的数据一般存储的位置也是相邻的，
+这样能够顺序读取。</li>
+</ul>
+
+
+<h3>多字段索引时顺序的选择</h3>
+
+<p>有时，建立索引一个字段的索引往往就够用了，因为通过这一个字段，就能过滤掉大部分的行，
+剩下来的行数比较少，这样再进行过滤或者是sort, group等操作都不会有很大的压力。
+然而，如果表中的数据非常多，一个字段过滤之后可能数据还是非常多，
+这时就需要建立一个多字段的索引，又称为组合索引。</p>
+
+<p>组合索引的顺序选择非常重要，因为mysql只能拿一个索引的前缀进行索引。比如有一个索引
+(col1, col2)，那么如果你的where语句中col1 = a and col2 = b或者是col1 = a，
+这时mysql可以使用这个索引。但如果你的where语句是col2 = b这时就不能使用这个索引。
+另外一个关乎索引顺序的地方是如果你的过滤条件是一个范围(range condition)的时候，再拿上面的索引为例，
+如果你where语句有col1 = 1 and col2 &lt; 2时，两个过滤的条件都会在使用索引过滤的时候起到作用，
+而如果where语句是col1 > 1 and col2 = 2，这时只有第一个过滤条件在过滤索引时起到作用，也就是说，
+在这时存储引擎会把col1 > 1的所有行都返回到mysql server，
+而后服务器再通过col2 = 2过滤掉一些行，这个过滤的效果显然不好，
+特别是当数据量较大的时候。关于这个的详细解释，
+可以参考这篇<a href="http://jorgenloland.blogspot.sg/2011/08/mysql-range-access-method-explained.html">The MySQL range access method explained</a>。</p>
+
+<p>既然索引的顺序这么重要，那如何去设计列的顺序呢？我总结了一些我的看法：</p>
+
+<ul>
+<li>A Rule of Thumb: 选择最具有过滤性列的放在索引的前面，因为这样的列能够很快地过滤掉
+一些不需要的行。</li>
+<li>把最经常拿来过滤的字段放在索引的前面，因为mysql使用的是前缀索引，
+如果不经常使用的列放在前面会造成索引的失效。</li>
+<li>把那些比较容易使用范围来进行过滤的字段放在索引后面，比如说day, created_at什么的。
+因为如果这些字段放在前面会造成后面字段的过滤条件不起作用。</li>
+</ul>
+
+
+<h3>理解explain语句</h3>
+
+<p>要知道一个索引设计得好不好，它有没有在sql语句中被合理地使用，
+通过explain sql来查看sql一些执行细节是很有必要的。
+explain sql的输出结果中，除了包含索引选择等信息，
+还会告诉你诸如mysql如何对结果进行排序等信息。</p>
+
+<p><a href="http://weevilgenius.net/2010/09/mysql-explain-reference/">MySQL Explain – Reference</a>
+这篇博客详细地讲述了explain语句输出的各个字段表示的意义，
+特别是将type(access type)这个部分讲得特别清楚。</p>
+
+<h2>优化SQL语句</h2>
+
+<p>设计好表的结构和索引之后，仍然需要采取适当的方式来进行查询才能达到更好的执行效率。
+《High Performance MySQL》给出了几个优化的技巧：</p>
+
+<ul>
+<li>尽量使用join来代替子查询语句，因为它能够更好地利用索引。</li>
+<li>使用'deferred join'来优化limit offset,具体可参照《High Performance MySQL》的6.7.5节。</li>
+<li>优化join:
+
+<ul>
+<li>确保被join的字段在第二个表中被索引</li>
+<li>确保group by或者order by的字段在同一个表中</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>推荐阅读</h2>
+
+<ul>
+<li><a href="http://net.tutsplus.com/tutorials/other/top-20-mysql-best-practices/">Top 20+ MySQL Best Practices</a>，
+陈皓写了这篇的<a href="http://coolshell.cn/articles/1846.html">翻译版</a>。</li>
+<li><a href="http://isky000.com/database/mysql-performance-tuning-index">MySQl 性能优化</a></li>
+</ul>
+
+
+<h2>预告</h2>
+
+<p>前两天<a href="http://weibo.com/jeffz">@老赵</a>发起了一个资助大学生读书的计划，
+我有幸得到了他资助的《算法导论》一本。
+这样一本书并不是随便就能得来的，正如老赵所说：</p>
+
+<blockquote><p>因此，千万不要把这个计划当做是免费的图书来源，选书要谨慎，拿到书就要好好阅读。
+在我看来，参与这个计划其实更多的是压力。
+当然，有适当的压力对于学习也是很有好处的，不是么？</p></blockquote>
+
+<p>而我，也正是需要这样的一种压力，能够督促我更好地去学习这样一本经典教材。
+因此，接下来我会经常地在这里公布我的读书笔记，更多的是自己学习算法的心得体会，
+希望能够多多有所感悟，学到更多的东西。:)</p>
+
+<p>特别感谢老赵的热心，能够让我们阅读这些经典的书籍，也希望他能够帮助更多的人。</p>
+
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/python/2012/11/11/chinese-encoding" title="浅谈中文编码">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next disabled">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+  
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>15 November 2012</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+          mysql
+        </span>
+      </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
+
+
+  
+     
+    	<li><a href="/tags.html#mysql-ref">mysql <span>1</span></a></li>
+    
+  
+
+
+
+        </ul>
+      </section>
+             
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p>&copy; Qiping Li 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+        </p>
+      </footer>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+
