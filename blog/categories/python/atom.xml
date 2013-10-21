@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: python | Chouqin's Blog]]></title>
-  <link href="http://yanhah.github.io/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://yanhah.github.io/"/>
-  <updated>2013-10-21T20:41:28+08:00</updated>
-  <id>http://yanhah.github.io/</id>
+  <link href="http://chouqin.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://chouqin.github.io/"/>
+  <updated>2013-10-21T21:38:47+08:00</updated>
+  <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[浅谈中文编码]]></title>
-    <link href="http://yanhah.github.io/blog/2012/11/11/chinese-encoding/"/>
+    <link href="http://chouqin.github.io/blog/2012/11/11/chinese-encoding/"/>
     <updated>2012-11-11T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/11/11/chinese-encoding</id>
+    <id>http://chouqin.github.io/blog/2012/11/11/chinese-encoding</id>
     <content type="html"><![CDATA[<p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
 在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
 所以特地花时间研究了一下中文编码，并通过python来熟悉一些概念。</p>

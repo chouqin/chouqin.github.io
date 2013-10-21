@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Chouqin's Blog]]></title>
-  <link href="http://yanhah.github.io/atom.xml" rel="self"/>
-  <link href="http://yanhah.github.io/"/>
-  <updated>2013-10-21T20:41:28+08:00</updated>
-  <id>http://yanhah.github.io/</id>
+  <link href="http://chouqin.github.io/atom.xml" rel="self"/>
+  <link href="http://chouqin.github.io/"/>
+  <updated>2013-10-21T21:38:47+08:00</updated>
+  <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[把博客迁到Octopress]]></title>
-    <link href="http://yanhah.github.io/blog/2013/10/21/migrate-to-octopress/"/>
+    <link href="http://chouqin.github.io/blog/2013/10/21/migrate-to-octopress/"/>
     <updated>2013-10-21T20:02:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/10/21/migrate-to-octopress</id>
+    <id>http://chouqin.github.io/blog/2013/10/21/migrate-to-octopress</id>
     <content type="html"><![CDATA[<p>折腾了一个下午，终于把博客迁到到了Octopress。
 迁移的原因主要有两点：</p>
 
@@ -59,7 +59,7 @@
   <li>配置了<code>disqus_short_name</code>。</li>
 </ul>
 
-<p>具体的配置可以查看我的<a href="https://github.com/yanhah/yanhah.github.io/tree/source">github</a></p>
+<p>具体的配置可以查看我的<a href="https://github.com/chouqin/chouqin.github.io/tree/source">github</a></p>
 
 <h3 id="mathjax">使用MathJax</h3>
 
@@ -173,9 +173,9 @@
   
   <entry>
     <title type="html"><![CDATA[MapReduce学习心得]]></title>
-    <link href="http://yanhah.github.io/blog/2013/10/16/mapreduce/"/>
+    <link href="http://chouqin.github.io/blog/2013/10/16/mapreduce/"/>
     <updated>2013-10-16T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/10/16/mapreduce</id>
+    <id>http://chouqin.github.io/blog/2013/10/16/mapreduce</id>
     <content type="html"><![CDATA[<h2 id="section">简介</h2>
 
 <p>对于计算机系的同学来说，MapReduce这个词应该并不陌生，
@@ -216,7 +216,7 @@ MapReduce帮你解决好调度，容错，节点交互的问题。
 
 <h3 id="section-2">基本流程</h3>
 
-<p><img src="http://yanhah.github.io/images/map_reduce_execution.png" alt="" /></p>
+<p><img src="http://chouqin.github.io/images/map_reduce_execution.png" alt="" /></p>
 
 <p>我们首先假定把一个任务分成M个<code>map</code>Task和R个<code>reduce</code>task，
 如上图,
@@ -347,9 +347,9 @@ p_{ik} = \sum_{j=1}^{n} m_{ij}n_{jk}
   
   <entry>
     <title type="html"><![CDATA[GFS学习心得]]></title>
-    <link href="http://yanhah.github.io/blog/2013/10/10/gfs/"/>
+    <link href="http://chouqin.github.io/blog/2013/10/10/gfs/"/>
     <updated>2013-10-10T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/10/10/gfs</id>
+    <id>http://chouqin.github.io/blog/2013/10/10/gfs</id>
     <content type="html"><![CDATA[<p>又好久没写博客了，这几个月来零零散散做了一些事情，
 学到的东西很杂，一直都没有形成系统，也没有在某些方面有很深的体会。
 有些东西刚刚深入进去看了一点（比如<a href="redis.io">redis</a>，看过一些代码，下次一定要写点心得出来），
@@ -442,7 +442,7 @@ GB级别的文件也很常见。必须能够有效地处理这样的大文件，
 
 <p>下面我们来具体看一下GFS的整个架构。</p>
 
-<p><img src="http://yanhah.github.io/images/gfs-arch.png" alt="" /></p>
+<p><img src="http://chouqin.github.io/images/gfs-arch.png" alt="" /></p>
 
 <p>可以看到GFS由三个不同的部分组成，分别是<code>master</code>，<code>client</code>, <code>chunkserver</code>。
 <code>master</code>负责管理整个系统（包括管理metadata，垃圾回收等），一个系统只有一个<code>master</code>。
@@ -607,7 +607,7 @@ metadata保存在内存中有一个不好的地方就是能保存的metadata受�
 
 <p>直接假设<code>client</code>已经知道了要写的chunk，如Figure 2，具体过程如下:</p>
 
-<p><img src="http://yanhah.github.io/images/gfs-write.png" alt="" /></p>
+<p><img src="http://chouqin.github.io/images/gfs-write.png" alt="" /></p>
 
 <ol>
   <li><code>client</code>向<code>master</code>询问拥有这个chunk的lease的<code>primary replica</code>，如果当前没有<code>primary replica</code>，
@@ -689,9 +689,9 @@ GFS只是简单的把文件删除的operation log记下，
   
   <entry>
     <title type="html"><![CDATA[使用markdown和reStructuredText生成文档]]></title>
-    <link href="http://yanhah.github.io/blog/2013/04/20/markup-lang/"/>
+    <link href="http://chouqin.github.io/blog/2013/04/20/markup-lang/"/>
     <updated>2013-04-20T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/04/20/markup-lang</id>
+    <id>http://chouqin.github.io/blog/2013/04/20/markup-lang</id>
     <content type="html"><![CDATA[<h3 id="section">基本介绍</h3>
 <p><a href="http://daringfireball.net/projects/markdown/">Markdown</a>和
 <a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>(下面简称rst)
@@ -860,9 +860,9 @@ O(g(n)) = \{f(n): \exists c,n， \forall n \geq n_0,  0 \leq f(n) \leq cg(n)\}
   
   <entry>
     <title type="html"><![CDATA[毕业论文点滴]]></title>
-    <link href="http://yanhah.github.io/blog/2013/04/04/bachelor-thesis/"/>
+    <link href="http://chouqin.github.io/blog/2013/04/04/bachelor-thesis/"/>
     <updated>2013-04-04T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/04/04/bachelor-thesis</id>
+    <id>http://chouqin.github.io/blog/2013/04/04/bachelor-thesis</id>
     <content type="html"><![CDATA[<p>已经好久没写博客了，因为寒假一个多月都没看书，
 而一回到学校，又要忙着毕业论文的事，所以也无暇顾及这个。
 大部分牛人的博客，都是记载着自己正在研究的方面，
@@ -948,9 +948,9 @@ Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stan
   
   <entry>
     <title type="html"><![CDATA[最短路径与最大流]]></title>
-    <link href="http://yanhah.github.io/blog/2013/01/06/clrs-24-26/"/>
+    <link href="http://chouqin.github.io/blog/2013/01/06/clrs-24-26/"/>
     <updated>2013-01-06T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/01/06/clrs-24-26</id>
+    <id>http://chouqin.github.io/blog/2013/01/06/clrs-24-26</id>
     <content type="html"><![CDATA[<h2 id="section">最短路径</h2>
 
 <p>在最短路径问题中，
@@ -1075,9 +1075,9 @@ f_e = c_e 且 f_{e'} = 0 其中f_{e'}表示从e的反向流量
   
   <entry>
     <title type="html"><![CDATA[再见2012，你好2013]]></title>
-    <link href="http://yanhah.github.io/blog/2013/01/01/new-2013/"/>
+    <link href="http://chouqin.github.io/blog/2013/01/01/new-2013/"/>
     <updated>2013-01-01T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/01/01/new-2013</id>
+    <id>http://chouqin.github.io/blog/2013/01/01/new-2013</id>
     <content type="html"><![CDATA[<p>看着网络上各路牛人的年末总结，也想跟风自己来写一个，
 只可惜拖的时间有点长，到现在才开始发表。</p>
 
@@ -1131,9 +1131,9 @@ f_e = c_e 且 f_{e'} = 0 其中f_{e'}表示从e的反向流量
   
   <entry>
     <title type="html"><![CDATA[图的基本算法]]></title>
-    <link href="http://yanhah.github.io/blog/2012/12/30/clrs-22-23/"/>
+    <link href="http://chouqin.github.io/blog/2012/12/30/clrs-22-23/"/>
     <updated>2012-12-30T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/12/30/clrs-22-23</id>
+    <id>http://chouqin.github.io/blog/2012/12/30/clrs-22-23</id>
     <content type="html"><![CDATA[<h2 id="section">广度优先遍历</h2>
 
 <p>对于广度优先遍历，在每次遍历时，都试图把同一个级别的所有节点先遍历，
@@ -1266,9 +1266,9 @@ u还没开始遍历，此时不可能有v到u的边，因为如果有的话那�
   
   <entry>
     <title type="html"><![CDATA[贪心算法和B树]]></title>
-    <link href="http://yanhah.github.io/blog/2012/12/18/clrs-1618/"/>
+    <link href="http://chouqin.github.io/blog/2012/12/18/clrs-1618/"/>
     <updated>2012-12-18T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/12/18/clrs-1618</id>
+    <id>http://chouqin.github.io/blog/2012/12/18/clrs-1618</id>
     <content type="html"><![CDATA[<h2 id="section">贪心算法</h2>
 <p>动态规划是一种解决问题的通用方法，
 在求解最优化问题的时候，
@@ -1540,9 +1540,9 @@ B树也正是实现了这样的思想，B树的深度不会太深，
   
   <entry>
     <title type="html"><![CDATA[红黑树扩充与动态规划]]></title>
-    <link href="http://yanhah.github.io/blog/2012/12/12/clrs-14-15/"/>
+    <link href="http://chouqin.github.io/blog/2012/12/12/clrs-14-15/"/>
     <updated>2012-12-12T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/12/12/clrs-14-15</id>
+    <id>http://chouqin.github.io/blog/2012/12/12/clrs-14-15</id>
     <content type="html"><![CDATA[<h2 id="section">红黑树的扩充</h2>
 
 <p>由于红黑树这种结构很好的平衡性（树的高度不会很高），
@@ -1856,9 +1856,9 @@ k是(i, j)最短路径中最后被迭代的节点，如果在迭代到k时，
   
   <entry>
     <title type="html"><![CDATA[《算法导论》之基本数据结构]]></title>
-    <link href="http://yanhah.github.io/blog/2012/12/04/clrs-10-13/"/>
+    <link href="http://chouqin.github.io/blog/2012/12/04/clrs-10-13/"/>
     <updated>2012-12-04T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/12/04/clrs-10-13</id>
+    <id>http://chouqin.github.io/blog/2012/12/04/clrs-10-13</id>
     <content type="html"><![CDATA[<h2 id="section">散列表中碰撞的解决</h2>
 <p>由于散列表的元素个数小于关键字的取值集合U,
 因此会有两个不同的关键字映射到散列表的同一个槽上，
@@ -2202,9 +2202,9 @@ E[X] &= \sum_{i=1}^{\infty}Pr\{ X \geq i \} \leq \sum_{i=1}^{\infty} \alpha^{i-1
   
   <entry>
     <title type="html"><![CDATA[算法导论8~9章读书笔记]]></title>
-    <link href="http://yanhah.github.io/blog/2012/12/01/clrs-8-9/"/>
+    <link href="http://chouqin.github.io/blog/2012/12/01/clrs-8-9/"/>
     <updated>2012-12-01T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/12/01/clrs-8-9</id>
+    <id>http://chouqin.github.io/blog/2012/12/01/clrs-8-9</id>
     <content type="html"><![CDATA[<h3 id="section">比较排序的时间下界</h3>
 <p>合并排序和堆排序在最坏情况下能够在O(nlgn)时间内排序n个数，
 而快速排序则能够在平均情况下达到这个上界。
@@ -2354,9 +2354,9 @@ i是在哪一个部分中去相应部分中进行查找，这种方法能保证�
   
   <entry>
     <title type="html"><![CDATA[《算法导论》读书总结1]]></title>
-    <link href="http://yanhah.github.io/blog/2012/11/19/clrs-1/"/>
+    <link href="http://chouqin.github.io/blog/2012/11/19/clrs-1/"/>
     <updated>2012-11-19T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/11/19/clrs-1</id>
+    <id>http://chouqin.github.io/blog/2012/11/19/clrs-1</id>
     <content type="html"><![CDATA[<p>正如上一篇所说，我这几天都在学习《算法导论》这本书，
 也终于是下定决心要好好把这本书看出个所以然来。
 这几天看下来，发现最大的困扰并不是知识的难度，
@@ -2530,9 +2530,9 @@ E[X] = E[\sum_{i=1}^n X_i] = \sum_{i=1}^n E[X_i]
   
   <entry>
     <title type="html"><![CDATA[MySQL 基本优化]]></title>
-    <link href="http://yanhah.github.io/blog/2012/11/15/mysql-basic/"/>
+    <link href="http://chouqin.github.io/blog/2012/11/15/mysql-basic/"/>
     <updated>2012-11-15T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/11/15/mysql-basic</id>
+    <id>http://chouqin.github.io/blog/2012/11/15/mysql-basic</id>
     <content type="html"><![CDATA[<p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
 才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,
 使它能够具有很强的稳定性同时具有很快的相应速度，
@@ -2667,9 +2667,9 @@ explain sql的输出结果中，除了包含索引选择等信息，
   
   <entry>
     <title type="html"><![CDATA[浅谈中文编码]]></title>
-    <link href="http://yanhah.github.io/blog/2012/11/11/chinese-encoding/"/>
+    <link href="http://chouqin.github.io/blog/2012/11/11/chinese-encoding/"/>
     <updated>2012-11-11T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/11/11/chinese-encoding</id>
+    <id>http://chouqin.github.io/blog/2012/11/11/chinese-encoding</id>
     <content type="html"><![CDATA[<p>作为一个天朝的程序员，总是会在编程的时候与中文打交道。一开始对于编码不是很熟悉，也没有弄明白它里面的原理，
 在处理中文的时候总是会遇到各种各样的问题，特别是在用python处理中文的时候，
 所以特地花时间研究了一下中文编码，并通过python来熟悉一些概念。</p>
@@ -2751,9 +2751,9 @@ E4B8AD转化为“中”。</p>
   
   <entry>
     <title type="html"><![CDATA[最近的总结与感悟]]></title>
-    <link href="http://yanhah.github.io/blog/2012/10/27/feeling/"/>
+    <link href="http://chouqin.github.io/blog/2012/10/27/feeling/"/>
     <updated>2012-10-27T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/10/27/feeling</id>
+    <id>http://chouqin.github.io/blog/2012/10/27/feeling</id>
     <content type="html"><![CDATA[<h2>来由</h2>
 
 <p>这段时间真的很忙，忙得都没时间好好看书，好好写博客。</p>
@@ -2888,9 +2888,9 @@ C或者C++可能要适合一些，又比如一些做一些自动事情的脚本�
   
   <entry>
     <title type="html"><![CDATA[ArchLinux 安装经过]]></title>
-    <link href="http://yanhah.github.io/blog/2012/09/14/archlinux-installation/"/>
+    <link href="http://chouqin.github.io/blog/2012/09/14/archlinux-installation/"/>
     <updated>2012-09-14T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/09/14/archlinux-installation</id>
+    <id>http://chouqin.github.io/blog/2012/09/14/archlinux-installation</id>
     <content type="html"><![CDATA[<p>因为实在受不了Ubuntu的更新繁琐，终于还是下定决心安装ArchLinux了。虽说安装起来要比Ubuntu的无脑安装要艰辛许多，
 可是成功之后的除了用起来爽很多之外，这其中的过程也是很有意义的。Arch的好处嘛，除了更新方便之外，源也比Ubuntu的
 要快很多，社区服务用起来也比Ubuntu更加方便。废话不多说，直接说安装过程。</p>
@@ -3009,9 +3009,9 @@ export LC_ALL="zh_CN.UTF-8"
   
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://yanhah.github.io/blog/2012/09/13/hello-world/"/>
+    <link href="http://chouqin.github.io/blog/2012/09/13/hello-world/"/>
     <updated>2012-09-13T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/09/13/hello-world</id>
+    <id>http://chouqin.github.io/blog/2012/09/13/hello-world</id>
     <content type="html"><![CDATA[<p>Github 真是个好东西，除了给你提供很好的代码托管服务，还提供了建立个人博客站点的功能。</p>
 
 <p>我这个博客就是通过Github Pages加上Jekyll创建的。</p>

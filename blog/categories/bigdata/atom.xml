@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: bigdata | Chouqin's Blog]]></title>
-  <link href="http://yanhah.github.io/blog/categories/bigdata/atom.xml" rel="self"/>
-  <link href="http://yanhah.github.io/"/>
-  <updated>2013-10-21T20:41:28+08:00</updated>
-  <id>http://yanhah.github.io/</id>
+  <link href="http://chouqin.github.io/blog/categories/bigdata/atom.xml" rel="self"/>
+  <link href="http://chouqin.github.io/"/>
+  <updated>2013-10-21T21:38:47+08:00</updated>
+  <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MapReduce学习心得]]></title>
-    <link href="http://yanhah.github.io/blog/2013/10/16/mapreduce/"/>
+    <link href="http://chouqin.github.io/blog/2013/10/16/mapreduce/"/>
     <updated>2013-10-16T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/10/16/mapreduce</id>
+    <id>http://chouqin.github.io/blog/2013/10/16/mapreduce</id>
     <content type="html"><![CDATA[<h2 id="section">简介</h2>
 
 <p>对于计算机系的同学来说，MapReduce这个词应该并不陌生，
@@ -189,9 +189,9 @@ p_{ik} = \sum_{j=1}^{n} m_{ij}n_{jk}
   
   <entry>
     <title type="html"><![CDATA[GFS学习心得]]></title>
-    <link href="http://yanhah.github.io/blog/2013/10/10/gfs/"/>
+    <link href="http://chouqin.github.io/blog/2013/10/10/gfs/"/>
     <updated>2013-10-10T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/10/10/gfs</id>
+    <id>http://chouqin.github.io/blog/2013/10/10/gfs</id>
     <content type="html"><![CDATA[<p>又好久没写博客了，这几个月来零零散散做了一些事情，
 学到的东西很杂，一直都没有形成系统，也没有在某些方面有很深的体会。
 有些东西刚刚深入进去看了一点（比如<a href="redis.io">redis</a>，看过一些代码，下次一定要写点心得出来），

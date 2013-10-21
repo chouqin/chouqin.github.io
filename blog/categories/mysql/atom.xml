@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mysql | Chouqin's Blog]]></title>
-  <link href="http://yanhah.github.io/blog/categories/mysql/atom.xml" rel="self"/>
-  <link href="http://yanhah.github.io/"/>
-  <updated>2013-10-21T20:41:28+08:00</updated>
-  <id>http://yanhah.github.io/</id>
+  <link href="http://chouqin.github.io/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://chouqin.github.io/"/>
+  <updated>2013-10-21T21:38:47+08:00</updated>
+  <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MySQL 基本优化]]></title>
-    <link href="http://yanhah.github.io/blog/2012/11/15/mysql-basic/"/>
+    <link href="http://chouqin.github.io/blog/2012/11/15/mysql-basic/"/>
     <updated>2012-11-15T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/11/15/mysql-basic</id>
+    <id>http://chouqin.github.io/blog/2012/11/15/mysql-basic</id>
     <content type="html"><![CDATA[<p>这几天好好地研究了一下mysql,认真地看了《High Performance MySQL》的几章，
 才发现，要能够精通mysql真的是一个长期的工程，有效地管理mysql,
 使它能够具有很强的稳定性同时具有很快的相应速度，

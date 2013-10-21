@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Feelings | Chouqin's Blog]]></title>
-  <link href="http://yanhah.github.io/blog/categories/feelings/atom.xml" rel="self"/>
-  <link href="http://yanhah.github.io/"/>
-  <updated>2013-10-21T20:41:28+08:00</updated>
-  <id>http://yanhah.github.io/</id>
+  <link href="http://chouqin.github.io/blog/categories/feelings/atom.xml" rel="self"/>
+  <link href="http://chouqin.github.io/"/>
+  <updated>2013-10-21T21:38:47+08:00</updated>
+  <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[毕业论文点滴]]></title>
-    <link href="http://yanhah.github.io/blog/2013/04/04/bachelor-thesis/"/>
+    <link href="http://chouqin.github.io/blog/2013/04/04/bachelor-thesis/"/>
     <updated>2013-04-04T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/04/04/bachelor-thesis</id>
+    <id>http://chouqin.github.io/blog/2013/04/04/bachelor-thesis</id>
     <content type="html"><![CDATA[<p>已经好久没写博客了，因为寒假一个多月都没看书，
 而一回到学校，又要忙着毕业论文的事，所以也无暇顾及这个。
 大部分牛人的博客，都是记载着自己正在研究的方面，
@@ -103,9 +103,9 @@ Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stan
   
   <entry>
     <title type="html"><![CDATA[再见2012，你好2013]]></title>
-    <link href="http://yanhah.github.io/blog/2013/01/01/new-2013/"/>
+    <link href="http://chouqin.github.io/blog/2013/01/01/new-2013/"/>
     <updated>2013-01-01T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2013/01/01/new-2013</id>
+    <id>http://chouqin.github.io/blog/2013/01/01/new-2013</id>
     <content type="html"><![CDATA[<p>看着网络上各路牛人的年末总结，也想跟风自己来写一个，
 只可惜拖的时间有点长，到现在才开始发表。</p>
 
@@ -159,9 +159,9 @@ Twitter(这三个数据集都是在<a href="http://snap.stanford.edu/data/">Stan
   
   <entry>
     <title type="html"><![CDATA[最近的总结与感悟]]></title>
-    <link href="http://yanhah.github.io/blog/2012/10/27/feeling/"/>
+    <link href="http://chouqin.github.io/blog/2012/10/27/feeling/"/>
     <updated>2012-10-27T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/10/27/feeling</id>
+    <id>http://chouqin.github.io/blog/2012/10/27/feeling</id>
     <content type="html"><![CDATA[<h2>来由</h2>
 
 <p>这段时间真的很忙，忙得都没时间好好看书，好好写博客。</p>

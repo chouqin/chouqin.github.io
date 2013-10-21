@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: linux | Chouqin's Blog]]></title>
-  <link href="http://yanhah.github.io/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://yanhah.github.io/"/>
-  <updated>2013-10-21T20:41:28+08:00</updated>
-  <id>http://yanhah.github.io/</id>
+  <link href="http://chouqin.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://chouqin.github.io/"/>
+  <updated>2013-10-21T21:38:47+08:00</updated>
+  <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ArchLinux 安装经过]]></title>
-    <link href="http://yanhah.github.io/blog/2012/09/14/archlinux-installation/"/>
+    <link href="http://chouqin.github.io/blog/2012/09/14/archlinux-installation/"/>
     <updated>2012-09-14T00:00:00+08:00</updated>
-    <id>http://yanhah.github.io/blog/2012/09/14/archlinux-installation</id>
+    <id>http://chouqin.github.io/blog/2012/09/14/archlinux-installation</id>
     <content type="html"><![CDATA[<p>因为实在受不了Ubuntu的更新繁琐，终于还是下定决心安装ArchLinux了。虽说安装起来要比Ubuntu的无脑安装要艰辛许多，
 可是成功之后的除了用起来爽很多之外，这其中的过程也是很有意义的。Arch的好处嘛，除了更新方便之外，源也比Ubuntu的
 要快很多，社区服务用起来也比Ubuntu更加方便。废话不多说，直接说安装过程。</p>

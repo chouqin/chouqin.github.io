@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://yanhah.github.io/sitemap.xml 
+Sitemap: http://chouqin.github.io/sitemap.xml 
