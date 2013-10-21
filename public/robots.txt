@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://chouqin.heroku.com/sitemap.xml 
+Sitemap: http://yanhah.github.io/sitemap.xml 
