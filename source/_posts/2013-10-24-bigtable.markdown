@@ -93,4 +93,30 @@ Bigtable使用了几个部件构建而成：
     * 存放schema
     * 存放ACL(access control list)
 
+    Chubby的开源实现是[ZooKeeper](http://zookeeper.apache.org/)，
+    下次再来研究Chubby。
+
+### 组成部分
+
+和GFS类似，Bigtable也由三个部分组成，分别是:
+
+* client：用于和应用程序交互
+* 一个master: 管理整个系统，要做的工作包括分配tablet，
+负载均衡，垃圾回收，处理schema的变化。
+* 很多的tablet server：一个tablet server负责多个tablet，
+client对于tablet的读写请求直接与tablet server进行交互。
+
+需要注意的是，与GFS不一样，
+关于tablet的位置信息client不需要通过master就可以知道(接下来就会提到)，
+所以大部分情况下client都不需要和master交互，
+这样master上的压力更小了。
+
+### Tablet的位置
+
+### Tablet的分配
+
+### 数据的保存
+
+### Compactions
+
 ## 优化
