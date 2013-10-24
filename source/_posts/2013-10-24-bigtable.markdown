@@ -1,0 +1,96 @@
+---
+layout: post
+title: "Bigtable 学习指南"
+date: 2013-10-24 20:49
+comments: true
+categories: bigdata 
+---
+
+## 基本介绍
+
+Bigtable是一个分布式的数据库，
+它的出现主要是因为传统的关系型数据库在面对大量数据（PB级别）时不具有扩展性。
+Bigtable在谷歌内部得到了广泛使用，
+[Apache HBase](http://hbase.apache.org/)是它的开源实现。
+
+### 数据格式
+
+可以把一个Bigtable当成一个持久化的，分布式的，多维的map。
+它的值通过`(rowkey, columnkey, timestamp)`来索引。
+其中`rowkey`，`columnkey`和值都可以是任意的字符串。
+如下图所示。
+
+![Bigtable数据示意图](/images/row_column.jpg)
+
+在上图中，`rowkey`是`com.cnn.www`。
+在Bigtable中，对row的操作是原子(atomic)的。
+在Bigtable中，数据的保存顺序是通过`rowkey`的字典序来维持的，
+基于这个特点，可以通过挑选合适的`rowkey`把相关的数据放在一起。
+比如上图，通过使用到序的主机名作为`rowkey`，
+可以把同一域名下的网页放在一起。
+几个row组合起来形成一个tablet，
+一个table由一个或多个tablet组成。
+
+`columnkey`通过`column family`来进行划分，
+如上图，anchor就是一个`column family`，它有两个`column key`：
+`anchor:cnnsi.com`和`anchor:my.look.cn`。
+contents也是一个`column family`, 它只有一个`column key`，
+就是`contents:`。`column family`是访问控制的基本单位。
+每一个`column key`必须以`column family: qualifier`的格式命名。
+
+对于同一个`rowkey`和`columnkey`的组合，
+Bigtable根据不同的`timestamp`保存了不同的值。
+通常，会保存最近的几个版本（具体的版本数用户可以指定），
+过期的数据会被垃圾回收掉。
+
+### API
+
+Bigtable的API非常简单，下面是两个使用API的例子： 
+
+```cpp 写Bigtable
+// Open the table
+Table *T = OpenOrDie("/bigtable/web/webtable");
+// Write a new anchor and delete an old anchor
+RowMutation r1(T, "com.cnn.www");
+r1.Set("anchor:www.c-span.org", "CNN");
+r1.Delete("anchor:www.abc.com");
+Operation op;
+Apply(&op, &r1);
+```
+
+上面的代码段对`rowkey="com.cnn.www"`的行，
+将`columnkey="anchor:www.c-span.org"`的列的值设置为`CNN`，
+同时删除`columnkey = "anchor:www.abc.com"`的列。其中`Apply()`是原子操作。
+
+```cpp 读Bigtable
+Scanner scanner(T);
+ScanStream *stream;
+stream = scanner.FetchColumnFamily("anchor");
+stream->SetReturnAllVersions();
+scanner.Lookup("com.cnn.www");
+for (; !stream->Done(); stream->Next()) {
+    printf("%s %s %lld %s\n",
+            scanner.RowName(),
+            stream->ColumnName(),
+            stream->MicroTimestamp(),
+            stream->Value());
+}
+```
+
+上面的代码段遍历`rowkey="com.cnn.www"`的行中`column family="anchor"`的所有列的所有版本。
+
+## 实现
+
+Bigtable使用了几个部件构建而成：
+
+* GFS，Bigtable的底层依赖GFS，它使用GFS来保存数据和commit log，马上就会讲述细节。
+* Chubby，是Google发布的另外一个分布式系统，它具体的原理我还没有去看那篇论文，
+    现在只需要知道Bigtable使用Chubby来完成下面的事情：
+
+    * 保证任何时候只有一个bigtable master server
+    * 存放Bigtable最开始的数据，用于定位METADATA，接下来会看到。
+    * 用于监控tablet server的状态
+    * 存放schema
+    * 存放ACL(access control list)
+
+## 优化
