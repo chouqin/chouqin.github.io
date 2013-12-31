@@ -9,10 +9,15 @@
   <meta name="author" content="chouqin">
 
   
-  <meta name="description" content="红黑树的扩充 由于红黑树这种结构很好的平衡性（树的高度不会很高），
-对于动态变化的集合插入，查找，删除等操作的复杂度都比较低，
-通过给它的节点增加一些其他的属性，
-能够得到一些在特定情况下很有用的数据结构。 扩充数据结构的四个步骤 选择基础的数据结构 确定需要给数据结构添加哪些信息， &hellip;">
+  <meta name="description" content="贪心算法
+动态规划是一种解决问题的通用方法，
+在求解最优化问题的时候，
+动态规划能够综合考虑到各种情况然后做出最优的选择。
+可是，对于一些特殊的问题，
+在从子问题中做出选择时，可以不用考虑所有的子问题，
+而只需要考虑一个子问题，
+因为选择这个子问题一定可以达到一个最优解，
+在这种情况下， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -102,6 +107,97 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/18/clrs-1618/">贪心算法和B树</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-18T00:00:00+08:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="section">贪心算法</h2>
+<p>动态规划是一种解决问题的通用方法，
+在求解最优化问题的时候，
+动态规划能够综合考虑到各种情况然后做出最优的选择。
+可是，对于一些特殊的问题，
+在从子问题中做出选择时，可以不用考虑所有的子问题，
+而只需要考虑一个子问题，
+因为选择这个子问题一定可以达到一个最优解，
+在这种情况下，就可以采用贪心算法来解决。
+贪心算法的好处在于，不需要考虑所有的子问题，
+只需要考虑一种情况，这时求解的子问题的数目就减少了，
+同时，可以采用一种自顶向下的方法解决问题，
+逐步地把问题转化为更小的子问题，直到可以轻易解决。</p>
+
+<h3 id="section-1">从动态规划到贪心</h3>
+<p>书上给出了一个这样的例子来说明从动态规划算法转化到贪心算法。</p>
+
+<p>有n个活动组成集合<script type="math/tex"> S = \{a_1, a_2, ..., a_n\} </script>，它们需要占用同一个资源，
+这个资源在同一个时间只能被一个活动占用，每一个活动<script type="math/tex"> a_i </script>使用资源的起始时间和结束时间分别为
+<script type="math/tex"> s_n, f_n </script>，如果区间<script type="math/tex"> [s_i, f_i) </script>与区间<script type="math/tex"> [s_j, f_j) </script>不重叠，
+就称活动<script type="math/tex"> a_i </script>与活动<script type="math/tex"> a_j </script>是兼容的，求S的一个由互相兼容的活动组成的最大子集，
+假设活动已经按结束时间排好序。</p>
+
+<p>对于这个问题，可以定义如下子问题<script type="math/tex"> S_{ij} </script>，
+表示从S的子集<script type="math/tex"> S_{ij} </script>中得到的最大兼容子集，
+其中<script type="math/tex">% <![CDATA[
+ S_{ij} = \{ a_k \in S: s_k \geq f_i and f_k < s_j \} %]]></script>，
+也就是说，<script type="math/tex"> S_{ij} </script>是由所有在<script type="math/tex"> a_i </script>结束之后开始，
+在<script type="math/tex"> a_j </script>开始之前结束的活动组成的集合。
+通过定义这样一个子问题，
+就可以很容易地得出如下递推公式，</p>
+
+<script type="math/tex; mode=display">
+A_{ij} = A_{ik} \bigcup \{a_k\} \bigcup A_{kj}, 其中A_{ij}表示子问题S_{ij}的解
+</script>
+
+<p>从而利用动态规划解决这个问题。</p>
+
+<p>然而，动态规划并不是一个最优的解法，
+因为要求解的子问题的个数为<script type="math/tex"> O(n^2) </script>个，
+而且求解每个子问题时选择的个数也有<script type="math/tex"> O(n) </script>个，
+这就导致了通过动态规划求解问题所需的复杂度为<script type="math/tex"> O(n^3) </script>。</p>
+
+<p>如果采用贪心的算法，每次通过选取<script type="math/tex"> S_{ij} </script>中具有最早结束时间的活动<script type="math/tex"> a_m </script>作为划分元素的话，
+那么就可以通过</p>
+
+<script type="math/tex; mode=display">
+A_{ij} = A_{im} \bigcup \{a_m\} \bigcup A_{mj}
+</script>
+
+<p>得到一个最优的解，而不用考虑其它元素作为划分元素时的子问题。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/12/18/clrs-1618/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -739,6 +835,10 @@ E4B8AD转化为“中”。</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/12/31/2013-summary/">2013年终总结</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/24/bigtable/">Bigtable 学习心得</a>
       </li>
     
@@ -752,10 +852,6 @@ E4B8AD转化为“中”。</p>
     
       <li class="post">
         <a href="/blog/2013/10/10/gfs/">GFS学习心得</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/04/20/markup-lang/">使用markdown和reStructuredText生成文档</a>
       </li>
     
   </ul>
@@ -797,7 +893,7 @@ E4B8AD转化为“中”。</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - chouqin -
+  Copyright &copy; 2014 - chouqin -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

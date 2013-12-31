@@ -4,7 +4,7 @@
   <title><![CDATA[Chouqin's Blog]]></title>
   <link href="http://chouqin.github.io/atom.xml" rel="self"/>
   <link href="http://chouqin.github.io/"/>
-  <updated>2013-10-25T13:41:01+08:00</updated>
+  <updated>2014-01-01T01:03:48+08:00</updated>
   <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
@@ -12,6 +12,179 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2013年终总结]]></title>
+    <link href="http://chouqin.github.io/blog/2013/12/31/2013-summary/"/>
+    <updated>2013-12-31T21:56:00+08:00</updated>
+    <id>http://chouqin.github.io/blog/2013/12/31/2013-summary</id>
+    <content type="html"><![CDATA[<p>还是踩着年末的尾巴发一篇年终总结吧。</p>
+
+<p>2013对我来说不是平淡的一年。
+这一年，我大学毕业，从一所大学来到另外一所大学，
+分别原来的同学和朋友，
+又在新的地方建立起了人际关系网；
+这一年，我从大学生变成了研究生，
+伴随着学历的增长，我的生活节奏也完全发生变化，
+现在的我，开始沉下心来学习一些东西，
+虽然现在仍然没有很大的成果。
+这一年，我和她吵了不知道多少次架，
+每次都是因我而起，我心里十分愧疚，
+我现在仍然不够成熟，
+心胸不够开阔。</p>
+
+<h2 id="section">计划的完成程度</h2>
+
+<blockquote>
+  <p>多看书，多感受生活，开阔自己的胸襟</p>
+</blockquote>
+
+<p>虽然这被放在了计划的第一条，但是完成的最不好。
+这里的“看书”，当然是说非专业的书籍，
+印象当中就看了《天龙八部》和《唐浩明评点曾国藩家书》（上下册），
+家书下册还是这两天逼迫自己看完的，
+看书之少，现在都替自己不好意思。</p>
+
+<p>至于修身，也没有花多少功夫，
+否则也不至于跟女朋友吵那么多架。
+没有把这个放在比较重要的位置，
+仍然还是我行我素，
+只知道在专业方面努力，
+其他方面都不在乎。
+这一点，在来年必须要改。</p>
+
+<blockquote>
+  <p>学习一门新的编程语言，可能是go或者erlang</p>
+</blockquote>
+
+<p>也完成的不是很好，大概的学习了一下go(完成了go tour)，
+没有用它写过实际的项目。</p>
+
+<blockquote>
+  <p>学完完有关数据挖掘的基础知识</p>
+</blockquote>
+
+<p>这个完成得还不错，
+掌握了很多的机器学习和数据挖掘方面的基础知识。
+完成了毕业设计，使用scikit-learn开发过机器学习程序，
+写了很多实现机器学习算法的matlab代码。
+上了两门机器学习的课程，一门是浙大蔡登老师上的，
+另一门是Coursera上的。</p>
+
+<blockquote>
+  <p>为github上的一个库提交代码</p>
+</blockquote>
+
+<p>为<a href="https://github.com/easychen/TeamToy-Plugins">TeamToy-Plugin</a>这个项目写了两个插件，
+一个是OpenId的，一个是创意墙（团队用户可以在上面分享创意，使用类似于Hacknews的排序，
+这个插件没有提交）。</p>
+
+<p>这个计划完成程度也不是很满意，投入的时间太少了。</p>
+
+<h2 id="section-1">计划之外</h2>
+
+<h3 id="section-2">专业书</h3>
+
+<p>2013年在专业方面的投入还是蛮多的，
+看过的书不能算少，也不能算多：</p>
+
+<ol>
+  <li>
+    <p>《The C Programming Language》，这仅仅只有200多页的书，
+除了让我知道如何写出好的C程序之外，
+也让我明白了如何如何精简地表达自己的观点。</p>
+  </li>
+  <li>
+    <p>《The CPP Programming Language》，以前一直对这本书持保留看法，
+觉得这么厚的一本书一定晦涩难懂，
+直到我认认真真地把整本书都看了一遍，
+才发现这是一本不可多得的好书。
+整本书讲解清晰，
+把C++这么复杂的一门语言的语言特性阐释得十分清楚，
+而且，里面还有很多如何写出更好的程序的技巧，
+很多时候作者的很多思想会引起我强烈的共鸣，
+或者启发我深度的思考。</p>
+  </li>
+  <li>
+    <p>《Introduction to Data Mining》，
+这本书总体感觉是介绍性质的，里面设计的理论不是很深，
+数学讲解不是很多，不过能从中知道数据挖掘的各个方面。
+可能Jiawei Han老师的那本数据挖掘更好一些。</p>
+  </li>
+  <li>
+    <p>《Pattern Classification》，
+这本书是上机器学习课程的主要教材，
+里面的理论讲得很深，
+是一本比较好的参考书。</p>
+  </li>
+  <li>
+    <p>《The Practice of Programming》,
+看这本书，完全是冲着Robert Pike的大名去的，
+看完之后果然不失所望，
+学到了很多的编程方法，
+只是这本书的评注实在让人哭笑不得。</p>
+  </li>
+  <li>
+    <p>《Effective Java》,
+这本书看的是中文版，
+翻译得不是很好，
+有少数几个地方有点难以理解。
+由于以前写的Java程序太少，
+看完这本书之后收益还是蛮大的，
+至少现在知道怎么去写Java程序了，
+同时对于面向对象的特性也有了更加深入的理解。</p>
+  </li>
+</ol>
+
+<p>应该说，今年看书确实比以往有所长进，
+因为看完书之后能够对它进行总结，
+其中一些重要的观点和思想都记录下来，
+而不是看完就忘记了。
+我觉得这是一种很好的看书方法，
+看书不应该一味的追求速度，
+看完之后的总结很有必要。</p>
+
+<h3 id="coding">Coding</h3>
+
+<p>2013年写过的代码不能算多，写的代码是PHP和Python，
+但是有时候也看一些其它语言的书和文章，
+然后拿着这些特性来进行一个比较，
+想得比较多。同时，
+有时需要写一些代码来测试一些有趣的语言特性，
+这些代码可以作为以后的参考。</p>
+
+<p>同时，今年看了几个开源项目的代码，
+包括scrapy和redis，
+看这些代码一方面能够开阔自己的视野，
+另一方面对于如何写程序也能够有所体会。</p>
+
+<h3 id="paper">Paper</h3>
+
+<p>2013年也看过一些论文，
+包括google的三大论文，
+还有graphlab的4篇论文，
+Spark的两篇论文。
+对于后面的两种论文，
+现在理解还不是很深入，
+幸亏存在开源的代码能够加深理解。</p>
+
+<p>在机器学习方面也看过一些论文，
+其中推荐系统和聚类方面的论文看得比较多。</p>
+
+<h2 id="section-3">2014年计划</h2>
+
+<ol>
+  <li>修身仍旧还是第一位，而且必须要花一定的时间。</li>
+  <li>多看书，多看非专业书。</li>
+  <li>看完Graphlab和Spark的源码, 期间需要巩固C++和学习Scala。</li>
+  <li>上完Convex Optimization、Probabilistic Graphical Models
+和Neural Networks for Machine Learning这三门在线课程。</li>
+  <li>在github上为开源项目提交代码。</li>
+</ol>
+
+<p>祝愿所有人新年快乐，新的一年实现自己的梦想。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bigtable 学习心得]]></title>
