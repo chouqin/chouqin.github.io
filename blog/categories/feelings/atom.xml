@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Feelings | Chouqin's Blog]]></title>
   <link href="http://chouqin.github.io/blog/categories/feelings/atom.xml" rel="self"/>
   <link href="http://chouqin.github.io/"/>
-  <updated>2015-01-02T09:11:03+08:00</updated>
+  <updated>2015-01-06T11:23:11+08:00</updated>
   <id>http://chouqin.github.io/</id>
   <author>
     <name><![CDATA[chouqin]]></name>
@@ -119,6 +119,17 @@ Scala也在读Spark源码过程中不断熟悉，现在看Spark的源码不会�
 
 <h2 id="section-4">计划之外</h2>
 
+<h3 id="llvm">LLVM</h3>
+
+<p>今年选了一门外教上的高级编译技术的课程。
+课程主要完成对LLVM进行扩展，让它能够支持使用并行机器指令完成长整数的运算。
+在整个过程中，我看完了LLVM官网上的所有文档，整个代码也看了很多，
+后端从LLVM IR到最终生成机器码的整个过程算是了解得比较清楚。
+最终大致得完成了整个项目，还发现了LLVM里面的一些bug。
+LLVM的代码写得还不错，是我看过的写得最好的C++代码之一。
+唯一不足的是除了官方的文档，其他人写得关于LLVM的文章很少，
+不管是关于实现还是使用的。学这门课最主要的还是锻炼了我的英语口语:D。</p>
+
 <h3 id="haskell">Haskell的课程</h3>
 
 <p>今年在Edx上学习了一门FP101的课程，比较基础地学习了Haskell，
@@ -151,7 +162,7 @@ Haskell的类型系统真的很强大，当时在没有完全理解CPS的情况�
   <li>机器学习方面，看完ESL和PRML（或者MLAPP)，学习落下的课程。</li>
   <li>多看书，多看和专业无关的书。</li>
   <li>跟进Spark的进展，争取在这方面能够有所建树。</li>
-  <li>看完parameter_server或者pettum的源码。</li>
+  <li>看完parameter_server或者petuum的源码。</li>
 </ol>
 ]]></content>
   </entry>
